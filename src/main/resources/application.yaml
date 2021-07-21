@@ -1,0 +1,18 @@
+server:
+  port: 8090
+spring:
+  banner:
+    location: classpath:banner.txt
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+  jpa:
+    open-in-view: on
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQL10Dialect
+  liquibase:
+    change-log: classpath:db.migration.v1/changelog.yaml

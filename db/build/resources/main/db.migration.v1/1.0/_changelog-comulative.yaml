@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: postgresql
+  - changeSet:
+      id: LT-001-202107191234
+      author: MTurusov
+      comment: CREATE Initital DB Structure
+      changes:
+        - sqlFile:
+            path: LT-001-202107191234.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107210928
+      author: MTurusov
+      comment: CREATE Initital DB Structure. Phase 2
+      changes:
+        - sqlFile:
+            path: LT-001-202107210928.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211051
+      author: MTurusov
+      comment: Supplemented the user table with data
+      changes:
+        - sqlFile:
+            path: LT-001-202107211051.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211140
+      author: MTurusov
+      comment: CREATE Initital DB Structure. Phase 3
+      changes:
+        - sqlFile:
+            path: LT-001-202107211140.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211252
+      author: MTurusov
+      comment: ALTER TABLE users ADD FOREIGN KEY note_id and ALTER TABLE notes
+      changes:
+        - sqlFile:
+            path: LT-001-202107211252.sql
+            relativeToChangelogFile: true

@@ -1,0 +1,2 @@
+ru/libraryteam/library/db/HelloWorldProvider.java
+ ru.libraryteam.library.db.HelloWorldProvider

@@ -1,0 +1,6 @@
+rootProject.name = 'library-system-backend-v2'
+include 'rest'
+include 'service'
+include 'db'
+include 'security'
+
