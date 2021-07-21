@@ -1,2 +1,6 @@
 ru/libraryteam/library/rest/api/HelloWorldController.java
  ru.libraryteam.library.rest.api.HelloWorldController
+ru/libraryteam/library/rest/RestConfiguration.java
+ ru.libraryteam.library.rest.RestConfiguration
+ru/libraryteam/library/rest/api/AuthorController.java
+ ru.libraryteam.library.rest.api.AuthorController

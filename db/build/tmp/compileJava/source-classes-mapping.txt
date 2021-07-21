@@ -1,2 +1,8 @@
 ru/libraryteam/library/db/HelloWorldProvider.java
  ru.libraryteam.library.db.HelloWorldProvider
+ru/libraryteam/library/db/DatabaseConfiguration.java
+ ru.libraryteam.library.db.DatabaseConfiguration
+ru/libraryteam/library/db/entity/AuthorEntity.java
+ ru.libraryteam.library.db.entity.AuthorEntity
+ru/libraryteam/library/db/repository/AuthorRepository.java
+ ru.libraryteam.library.db.repository.AuthorRepository

@@ -1,2 +1,2 @@
-ru/libraryteam/library/PlannerApplication.java
- ru.libraryteam.library.PlannerApplication
+ru/libraryteam/library/LibraryApplication.java
+ ru.libraryteam.library.LibraryApplication

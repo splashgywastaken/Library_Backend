@@ -42,3 +42,11 @@ databaseChangeLog:
         - sqlFile:
             path: LT-001-202107211252.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211458
+      author: MTurusov
+      comment: ALTER TABLE users, authors DELETE UNIQUE sex CONSTRAINT
+      changes:
+        - sqlFile:
+            path: LT-001-202107211458.sql
+            relativeToChangelogFile: true
