@@ -21,7 +21,6 @@ public class AuthorController {
     return authorRepository.findAll();
   }
 
-
   @PostMapping
   AuthorEntity createAuthor(@RequestBody AuthorEntity author) {
     return authorRepository.save(author);
