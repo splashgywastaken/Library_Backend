@@ -4,3 +4,5 @@ ru/libraryteam/library/rest/RestConfiguration.java
  ru.libraryteam.library.rest.RestConfiguration
 ru/libraryteam/library/rest/api/AuthorController.java
  ru.libraryteam.library.rest.api.AuthorController
+ru/libraryteam/library/rest/api/GenreController.java
+ ru.libraryteam.library.rest.api.GenreController

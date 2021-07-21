@@ -6,3 +6,7 @@ ru/libraryteam/library/db/entity/AuthorEntity.java
  ru.libraryteam.library.db.entity.AuthorEntity
 ru/libraryteam/library/db/repository/AuthorRepository.java
  ru.libraryteam.library.db.repository.AuthorRepository
+ru/libraryteam/library/db/repository/GenreRepository.java
+ ru.libraryteam.library.db.repository.GenreRepository
+ru/libraryteam/library/db/entity/GenreEntity.java
+ ru.libraryteam.library.db.entity.GenreEntity
