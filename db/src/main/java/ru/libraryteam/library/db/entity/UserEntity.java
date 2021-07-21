@@ -93,6 +93,6 @@ public class UserEntity {
   //Achievements
   public void setAchievement_id(Integer achievement_id) { this.achievement_id = achievement_id; }
 
-  public Integer getAchievement_id(Integer achievement_id) { return achievement_id; }
+  public Integer getAchievement_id() { return achievement_id; }
 
 }
