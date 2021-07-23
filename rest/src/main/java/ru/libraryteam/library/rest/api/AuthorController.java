@@ -1,39 +1,37 @@
 package ru.libraryteam.library.rest.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.db.entity.AuthorEntity;
-import ru.libraryteam.library.db.repository.AuthorRepository;
+import ru.libraryteam.library.service.mapper.dto.AuthorDto;
+import ru.libraryteam.library.service.mapper.logic.AuthorService;
 
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
 
-  private final AuthorRepository authorRepository;
+  private final AuthorService service;
 
-  @Autowired
-  public AuthorController(AuthorRepository authorRepository) {
-    this.authorRepository = authorRepository;
+  public AuthorController(AuthorService service) {
+    this.service = service;
   }
 
   @GetMapping
-  Iterable<AuthorEntity> getAuthors() {
-    return authorRepository.findAll();
+  Iterable<AuthorDto> getAuthors() {
+    return service.findAll();
   }
 
   @PostMapping
-  AuthorEntity createAuthor(@RequestBody AuthorEntity author) {
-    return authorRepository.save(author);
+  AuthorDto createAuthor(@RequestBody AuthorDto author) {
+    return service.createAuthor(author);
   }
 
   @PutMapping("/{id}")
-  AuthorEntity updateAuthor(@RequestBody AuthorEntity author, @PathVariable int id) {
+  AuthorDto updateAuthor(@RequestBody AuthorDto author, @PathVariable int id) {
     author.setId(id);
-    return authorRepository.save(author);
+    return service.updateAuthor(author);
   }
 
   @DeleteMapping("/{id}")
   void deleteAuthor(@PathVariable int id) {
-    authorRepository.deleteById(id);
+    service.deleteAuthor(id);
   }
 }

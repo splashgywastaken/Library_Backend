@@ -1,0 +1,8 @@
+ru/libraryteam/library/service/mapper/AuthorMapper.java
+ ru.libraryteam.library.service.mapper.AuthorMapper
+ru/libraryteam/library/service/mapper/dto/AuthorDto.java
+ ru.libraryteam.library.service.mapper.dto.AuthorDto
+ru/libraryteam/library/service/mapper/logic/impl/AuthorServiceImpl.java
+ ru.libraryteam.library.service.mapper.logic.impl.AuthorServiceImpl
+ru/libraryteam/library/service/mapper/logic/AuthorService.java
+ ru.libraryteam.library.service.mapper.logic.AuthorService
