@@ -1,8 +1,24 @@
 ru/libraryteam/library/service/mapper/AuthorMapper.java
  ru.libraryteam.library.service.mapper.AuthorMapper
+ru/libraryteam/library/service/mapper/logic/AuthorService.java
+ ru.libraryteam.library.service.mapper.logic.AuthorService
 ru/libraryteam/library/service/mapper/dto/AuthorDto.java
  ru.libraryteam.library.service.mapper.dto.AuthorDto
 ru/libraryteam/library/service/mapper/logic/impl/AuthorServiceImpl.java
  ru.libraryteam.library.service.mapper.logic.impl.AuthorServiceImpl
-ru/libraryteam/library/service/mapper/logic/AuthorService.java
- ru.libraryteam.library.service.mapper.logic.AuthorService
+ru/libraryteam/library/service/mapper/dto/GenreDto.java
+ ru.libraryteam.library.service.mapper.dto.GenreDto
+ru/libraryteam/library/service/mapper/GenreMapper.java
+ ru.libraryteam.library.service.mapper.GenreMapper
+ru/libraryteam/library/service/mapper/logic/impl/GenreServiceImpl.java
+ ru.libraryteam.library.service.mapper.logic.impl.GenreServiceImpl
+ru/libraryteam/library/service/mapper/logic/BookService.java
+ ru.libraryteam.library.service.mapper.logic.BookService
+ru/libraryteam/library/service/mapper/logic/GenreService.java
+ ru.libraryteam.library.service.mapper.logic.GenreService
+ru/libraryteam/library/service/mapper/dto/BookDto.java
+ ru.libraryteam.library.service.mapper.dto.BookDto
+ru/libraryteam/library/service/mapper/BookMapper.java
+ ru.libraryteam.library.service.mapper.BookMapper
+ru/libraryteam/library/service/mapper/logic/impl/BookServiceImpl.java
+ ru.libraryteam.library.service.mapper.logic.impl.BookServiceImpl

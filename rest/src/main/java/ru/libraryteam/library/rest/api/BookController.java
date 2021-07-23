@@ -1,37 +1,39 @@
 package ru.libraryteam.library.rest.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.db.entity.BookEntity;
-import ru.libraryteam.library.db.repository.BookRepository;
+import ru.libraryteam.library.service.mapper.dto.BookDto;
+import ru.libraryteam.library.service.mapper.logic.BookService;
 
 @RestController
 @RequestMapping("/books")
 public class BookController {
 
-  private final BookRepository bookRepository;
+  private final BookService service;
 
-  public BookController(BookRepository bookRepository) {
-    this.bookRepository = bookRepository;
+  @Autowired
+  public BookController(BookService service) {
+    this.service = service;
   }
 
   @GetMapping()
-  Iterable<BookEntity> getBooks() {
-    return bookRepository.findAll();
+  Iterable<BookDto> getBooks() {
+    return service.findAll();
   }
 
   @PostMapping
-  BookEntity createBook(@RequestBody BookEntity book) {
-    return bookRepository.save(book);
+  BookDto createBook(@RequestBody BookDto book) {
+    return service.createBook(book);
   }
 
   @PutMapping("/{id}")
-  BookEntity updateBook(@RequestBody BookEntity book, @PathVariable int id) {
+  BookDto updateBook(@RequestBody BookDto book, @PathVariable int id) {
     book.setId(id);
-    return bookRepository.save(book);
+    return service.updateBook(book);
   }
 
   @DeleteMapping("/{id}")
   void deleteBook(@PathVariable int id) {
-    bookRepository.deleteById(id);
+    service.deleteBook(id);
   }
 }

@@ -2,38 +2,36 @@ package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.db.entity.GenreEntity;
-import ru.libraryteam.library.db.repository.GenreRepository;
+import ru.libraryteam.library.service.mapper.dto.GenreDto;
+import ru.libraryteam.library.service.mapper.logic.GenreService;
 
 @RestController
 @RequestMapping("/genres")
 public class GenreController {
-
-  private final GenreRepository genreRepository;
+  private final GenreService service;
 
   @Autowired
-  public GenreController(GenreRepository genreRepository) {
-    this.genreRepository = genreRepository;
+  public GenreController(GenreService service) {
+    this.service = service;
   }
 
   @GetMapping
-  Iterable<GenreEntity> getGenres() {
-    return genreRepository.findAll();
+  Iterable<GenreDto> getGenres() {
+    return service.findAll();
   }
 
   @PostMapping
-  GenreEntity createGenre(@RequestBody GenreEntity genre) {
-    return genreRepository.save(genre);
+  GenreDto createGenre(@RequestBody GenreDto genre) {
+    return service.createGenre(genre);
   }
 
   @PutMapping("/{id}")
-  GenreEntity updateGenre(@RequestBody GenreEntity genre, @PathVariable int id) {
+  GenreDto updateGenre(@RequestBody GenreDto genre, @PathVariable int id) {
     genre.setId(id);
-    return genreRepository.save(genre);
+    return service.updateGenre(genre);
   }
 
   @DeleteMapping("/{id}")
-  void deleteGenre(@PathVariable int id) { genreRepository.deleteById(id);
-  }
+  void deleteGenre(@PathVariable int id) { service.deleteGenre(id); }
 
 }

@@ -1,5 +1,6 @@
 package ru.libraryteam.library.rest.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.mapper.dto.AuthorDto;
 import ru.libraryteam.library.service.mapper.logic.AuthorService;
@@ -10,6 +11,7 @@ public class AuthorController {
 
   private final AuthorService service;
 
+  @Autowired
   public AuthorController(AuthorService service) {
     this.service = service;
   }
