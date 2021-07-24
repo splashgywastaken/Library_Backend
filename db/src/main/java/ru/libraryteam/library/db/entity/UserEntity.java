@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Table(schema = "library", name = "users")
 @Entity(name = "users")
@@ -41,7 +40,7 @@ public class UserEntity {
   private String password;
 
   @Column(name = "achievement_id")
-  private Integer achievement_id;
+  private Integer achievementId;
 
   //Set and Get methods
 
@@ -91,8 +90,8 @@ public class UserEntity {
   public String getPassword() { return password; }
 
   //Achievements
-  public void setAchievement_id(Integer achievement_id) { this.achievement_id = achievement_id; }
+  public void setAchievementId(Integer achievementId) { this.achievementId = achievementId; }
 
-  public Integer getAchievement_id() { return achievement_id; }
+  public Integer getAchievementId() { return achievementId; }
 
 }

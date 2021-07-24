@@ -18,11 +18,11 @@ ru/libraryteam/library/db/entity/AuthorEntity.java
  ru.libraryteam.library.db.entity.AuthorEntity
 ru/libraryteam/library/db/entity/complex/id/BookAuthorsId.java
  ru.libraryteam.library.db.entity.complex.id.BookAuthorsId
-ru/libraryteam/library/db/entity/UserEntity.java
- ru.libraryteam.library.db.entity.UserEntity
+ru/libraryteam/library/db/entity/AchievementEntity.java
+ ru.libraryteam.library.db.entity.AchievementEntity
 ru/libraryteam/library/db/repository/BookRepository.java
  ru.libraryteam.library.db.repository.BookRepository
 ru/libraryteam/library/db/entity/GenreEntity.java
  ru.libraryteam.library.db.entity.GenreEntity
-ru/libraryteam/library/db/entity/AchievementEntity.java
- ru.libraryteam.library.db.entity.AchievementEntity
+ru/libraryteam/library/db/entity/UserEntity.java
+ ru.libraryteam.library.db.entity.UserEntity

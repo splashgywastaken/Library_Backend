@@ -2,42 +2,43 @@ package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.db.entity.UserEntity;
-import ru.libraryteam.library.db.repository.UserRepository;
-
-import java.util.Optional;
+import ru.libraryteam.library.service.mapper.dto.UserDto;
+import ru.libraryteam.library.service.mapper.logic.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-  private final UserRepository userRepository;
+  private final UserService service;
 
   @Autowired
-  public UserController(UserRepository userRepository) { this.userRepository = userRepository; }
-
-  @RequestMapping
-  Iterable<UserEntity> getUsers() { return userRepository.findAll(); }
-
-  @RequestMapping("/{id}")
-  Optional<UserEntity> getUserById(@PathVariable int id) {
-    return userRepository.findById(id);
+  public UserController(UserService service) {
+    this.service = service;
   }
 
-  @PostMapping()
-  UserEntity createUser(@RequestBody UserEntity user) {
-    return userRepository.save(user);
+
+  @RequestMapping
+  Iterable<UserDto> getUsers() { return service.findAll(); }
+
+  @RequestMapping("/{id}")
+  UserDto getUserById(@PathVariable int id) {
+    return service.findById(id);
+  }
+
+  @PostMapping
+  UserDto createUser(@RequestBody UserDto dto) {
+    return service.createUser(dto);
   }
 
   @PutMapping("/{id}")
-  UserEntity updateUser(@RequestBody UserEntity user, @PathVariable int id){
-    user.setId(id);
-    return userRepository.save(user);
+  UserDto updateUser(@RequestBody UserDto dto, @PathVariable int id){
+    dto.setId(id);
+    return service.updateUser(dto);
   }
 
   @DeleteMapping("/{id}")
   void deleteUser(@PathVariable int id) {
-    userRepository.deleteById(id);
+    service.deleteUser(id);
   }
 
 }
