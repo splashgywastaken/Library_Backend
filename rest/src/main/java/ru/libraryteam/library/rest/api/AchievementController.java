@@ -2,36 +2,41 @@ package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.db.entity.AchievementEntity;
-import ru.libraryteam.library.db.repository.AchievementRepository;
-
-import java.util.Optional;
+import ru.libraryteam.library.service.mapper.dto.AchievementDto;
+import ru.libraryteam.library.service.mapper.logic.AchievementService;
 
 @RestController
-@RequestMapping("/achievement")
+@RequestMapping("/achievements")
 public class AchievementController {
 
-  private final AchievementRepository achievementRepository;
+  private final AchievementService service;
 
   @Autowired
-  public AchievementController(AchievementRepository achievementRepository) { this.achievementRepository = achievementRepository; }
+  public AchievementController(AchievementService service) {
+    this.service = service;
+  }
+
 
   @RequestMapping
-  Iterable<AchievementEntity> getAchievements() { return achievementRepository.findAll(); }
+  Iterable<AchievementDto> getAchievements() { return service.findAll(); }
 
   @RequestMapping("/{id}")
-  Optional<AchievementEntity> getAchievementById(@PathVariable int id) { return achievementRepository.findById(id); }
+  AchievementDto getAchievementById(@PathVariable int id) { return service.findById(id); }
 
-  @PostMapping()
-  AchievementEntity createAchievement(@RequestBody AchievementEntity achievementEntity) { return achievementRepository.save(achievementEntity); }
+  @PostMapping
+  AchievementDto createAchievement(@RequestBody AchievementDto achievementDto) {
+    return service.createAchievement(achievementDto);
+  }
 
   @PutMapping("/{id}")
-  AchievementEntity updateAchievement(@RequestBody AchievementEntity achievement, @PathVariable int id) {
+  AchievementDto updateAchievement(@RequestBody AchievementDto achievement, @PathVariable int id) {
         achievement.setId(id);
-        return achievementRepository.save(achievement);
+        return service.updateAchievement(achievement);
   }
 
   @DeleteMapping("/{id}")
-  void deleteAchievement(@PathVariable int id) { achievementRepository.deleteById(id);}
+  void deleteAchievement(@PathVariable int id) {
+    service.deleteAchievement(id);
+  }
 
 }

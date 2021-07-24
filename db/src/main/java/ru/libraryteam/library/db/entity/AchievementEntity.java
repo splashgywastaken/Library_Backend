@@ -9,7 +9,7 @@ public class AchievementEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "achievement_id")
-  private int id;
+  private Integer id;
 
   @Column(name = "achievement_name")
   private String name;
@@ -17,13 +17,16 @@ public class AchievementEntity {
   //Get and Set methods
 
   //Id
-  public void setId(Integer id) { this.id = id; }
+  public Integer getId() {
+    return id;
+  }
 
-  public Integer getId() { return id; }
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   //Name
   public void setName(String name) { this.name = name; }
 
   public String getName() { return name; }
-
 }

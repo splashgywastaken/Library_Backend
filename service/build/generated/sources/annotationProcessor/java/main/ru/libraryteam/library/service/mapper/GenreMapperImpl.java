@@ -9,7 +9,7 @@ import ru.libraryteam.library.service.mapper.dto.GenreDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-07-23T23:32:48+0300",
+    date = "2021-07-24T12:09:05+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component

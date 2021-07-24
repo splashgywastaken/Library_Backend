@@ -6,10 +6,10 @@ public class BookDto {
 
   private Integer id;
 
-  @JsonProperty("book_name")
+  @JsonProperty("name")
   private String bookName;
 
-  @JsonProperty("year_of_publication")
+  @JsonProperty("year_of_publ")
   private Integer yearOfPublishing;
 
   @JsonProperty("isbn")

@@ -6,7 +6,7 @@ public class GenreDto {
 
   private Integer id;
 
-  @JsonProperty("genre_name")
+  @JsonProperty("name")
   private String genreName;
 
   public Integer getId() {

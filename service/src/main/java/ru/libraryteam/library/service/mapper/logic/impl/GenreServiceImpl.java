@@ -2,9 +2,9 @@ package ru.libraryteam.library.service.mapper.logic.impl;
 
 import org.springframework.stereotype.Service;
 import ru.libraryteam.library.db.repository.GenreRepository;
+import ru.libraryteam.library.service.mapper.logic.GenreService;
 import ru.libraryteam.library.service.mapper.GenreMapper;
 import ru.libraryteam.library.service.mapper.dto.GenreDto;
-import ru.libraryteam.library.service.mapper.logic.GenreService;
 
 import java.util.List;
 
