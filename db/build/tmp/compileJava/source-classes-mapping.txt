@@ -1,5 +1,5 @@
-ru/libraryteam/library/db/entity/BookEntity.java
- ru.libraryteam.library.db.entity.BookEntity
+ru/libraryteam/library/db/entity/GenreEntity.java
+ ru.libraryteam.library.db.entity.GenreEntity
 ru/libraryteam/library/db/DatabaseConfiguration.java
  ru.libraryteam.library.db.DatabaseConfiguration
 ru/libraryteam/library/db/repository/AchievementRepository.java
@@ -22,5 +22,5 @@ ru/libraryteam/library/db/entity/AchievementEntity.java
  ru.libraryteam.library.db.entity.AchievementEntity
 ru/libraryteam/library/db/repository/BookRepository.java
  ru.libraryteam.library.db.repository.BookRepository
-ru/libraryteam/library/db/entity/GenreEntity.java
- ru.libraryteam.library.db.entity.GenreEntity
+ru/libraryteam/library/db/entity/BookEntity.java
+ ru.libraryteam.library.db.entity.BookEntity

@@ -1,6 +1,7 @@
 package ru.libraryteam.library.db.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(schema = "library", name = "books")
 @Entity(name = "books")
@@ -28,6 +29,15 @@ public class BookEntity {
 
   @Column(name = "language")
   private String language;
+
+  @ManyToMany
+  @JoinTable(
+    joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "author_id"),
+    name = "book_authors",
+    schema = "library"
+  )
+  private List<AuthorEntity> authors;
 
   //id
   public Integer getId() { return id; }
@@ -63,4 +73,12 @@ public class BookEntity {
   public String getLanguage() { return language; }
 
   public void setLanguage(String language) { this.language = language; }
+
+  public List<AuthorEntity> getAuthors() {
+    return authors;
+  }
+
+  public void setAuthors(List<AuthorEntity> authors) {
+    this.authors = authors;
+  }
 }

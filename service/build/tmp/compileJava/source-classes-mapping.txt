@@ -1,11 +1,13 @@
 ru/libraryteam/library/service/mapper/logic/BookService.java
  ru.libraryteam.library.service.mapper.logic.BookService
-ru/libraryteam/library/service/mapper/logic/impl/AuthorServiceImpl.java
- ru.libraryteam.library.service.mapper.logic.impl.AuthorServiceImpl
+ru/libraryteam/library/service/mapper/UserMapper.java
+ ru.libraryteam.library.service.mapper.UserMapper
 ru/libraryteam/library/service/mapper/logic/impl/BookServiceImpl.java
  ru.libraryteam.library.service.mapper.logic.impl.BookServiceImpl
 ru/libraryteam/library/service/mapper/dto/UserDto.java
  ru.libraryteam.library.service.mapper.dto.UserDto
+ru/libraryteam/library/service/mapper/logic/UserService.java
+ ru.libraryteam.library.service.mapper.logic.UserService
 ru/libraryteam/library/service/mapper/dto/GenreDto.java
  ru.libraryteam.library.service.mapper.dto.GenreDto
 ru/libraryteam/library/service/mapper/logic/AchievementService.java
@@ -14,8 +16,8 @@ ru/libraryteam/library/service/mapper/logic/AuthorService.java
  ru.libraryteam.library.service.mapper.logic.AuthorService
 ru/libraryteam/library/service/mapper/BookMapper.java
  ru.libraryteam.library.service.mapper.BookMapper
-ru/libraryteam/library/service/mapper/logic/impl/AchievementServiceImpl.java
- ru.libraryteam.library.service.mapper.logic.impl.AchievementServiceImpl
+ru/libraryteam/library/service/mapper/AuthorMapper.java
+ ru.libraryteam.library.service.mapper.AuthorMapper
 ru/libraryteam/library/service/mapper/GenreMapper.java
  ru.libraryteam.library.service.mapper.GenreMapper
 ru/libraryteam/library/service/mapper/logic/impl/GenreServiceImpl.java
@@ -26,15 +28,13 @@ ru/libraryteam/library/service/mapper/dto/AuthorDto.java
  ru.libraryteam.library.service.mapper.dto.AuthorDto
 ru/libraryteam/library/service/mapper/logic/GenreService.java
  ru.libraryteam.library.service.mapper.logic.GenreService
-ru/libraryteam/library/service/mapper/dto/BookDto.java
- ru.libraryteam.library.service.mapper.dto.BookDto
-ru/libraryteam/library/service/mapper/dto/AchievementDto.java
- ru.libraryteam.library.service.mapper.dto.AchievementDto
-ru/libraryteam/library/service/mapper/AuthorMapper.java
- ru.libraryteam.library.service.mapper.AuthorMapper
-ru/libraryteam/library/service/mapper/UserMapper.java
- ru.libraryteam.library.service.mapper.UserMapper
-ru/libraryteam/library/service/mapper/logic/UserService.java
- ru.libraryteam.library.service.mapper.logic.UserService
+ru/libraryteam/library/service/mapper/logic/impl/AuthorServiceImpl.java
+ ru.libraryteam.library.service.mapper.logic.impl.AuthorServiceImpl
 ru/libraryteam/library/service/mapper/logic/impl/UserServiceImpl.java
  ru.libraryteam.library.service.mapper.logic.impl.UserServiceImpl
+ru/libraryteam/library/service/mapper/dto/AchievementDto.java
+ ru.libraryteam.library.service.mapper.dto.AchievementDto
+ru/libraryteam/library/service/mapper/dto/BookDto.java
+ ru.libraryteam.library.service.mapper.dto.BookDto
+ru/libraryteam/library/service/mapper/logic/impl/AchievementServiceImpl.java
+ ru.libraryteam.library.service.mapper.logic.impl.AchievementServiceImpl

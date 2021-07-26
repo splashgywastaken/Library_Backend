@@ -14,6 +14,7 @@ public class BookServiceImpl implements BookService {
   private final BookRepository repository;
   private final BookMapper mapper;
 
+
   public BookServiceImpl(BookRepository repository, BookMapper mapper) {
     this.repository = repository;
     this.mapper = mapper;
