@@ -3,7 +3,7 @@ package ru.libraryteam.library.service.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.libraryteam.library.db.entity.UserEntity;
-import ru.libraryteam.library.service.mapper.dto.UserDto;
+import ru.libraryteam.library.service.model.UserDto;
 
 import java.util.List;
 

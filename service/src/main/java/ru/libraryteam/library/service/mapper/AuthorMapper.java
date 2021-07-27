@@ -5,8 +5,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ru.libraryteam.library.db.entity.AuthorEntity;
-import ru.libraryteam.library.service.mapper.dto.AuthorDto;
-import ru.libraryteam.library.service.mapper.dto.AuthorWithBooksDto;
+import ru.libraryteam.library.service.model.AuthorDto;
+import ru.libraryteam.library.service.model.AuthorWithBooksDto;
 
 import java.util.List;
 

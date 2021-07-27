@@ -1,0 +1,25 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+  backend:
+    image: library-system-backend:latest
+    depends_on:
+      - postgres
+    environment:
+      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
+      spring.datasource.password: postgres
+      spring.datasource.username: postgres
+    links:
+      - postgres
+    ports:
+      - 8090:8090
+volumes:
+  pgdata:
+    name: pgdata

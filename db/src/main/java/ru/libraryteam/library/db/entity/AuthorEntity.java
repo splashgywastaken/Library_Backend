@@ -56,8 +56,7 @@ public class AuthorEntity {
     joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "author_id"),
     inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "book_id"),
     name = "book_authors",
-    schema = "library"
-  )
+    schema = "library")
   private List<BookEntity> books;
 
   //id
@@ -95,6 +94,7 @@ public class AuthorEntity {
 
   public void setSex(String sex) { this.sex = sex; }
 
+  //books
   public List<BookEntity> getBooks() {
     return books;
   }

@@ -2,8 +2,8 @@ package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.service.mapper.dto.BookDto;
-import ru.libraryteam.library.service.mapper.logic.BookService;
+import ru.libraryteam.library.service.model.BookDto;
+import ru.libraryteam.library.service.logic.BookService;
 
 @RestController
 @RequestMapping("/books")

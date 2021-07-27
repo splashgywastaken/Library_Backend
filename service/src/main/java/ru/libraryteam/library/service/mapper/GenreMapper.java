@@ -2,7 +2,7 @@ package ru.libraryteam.library.service.mapper;
 
 import org.mapstruct.Mapper;
 import ru.libraryteam.library.db.entity.GenreEntity;
-import ru.libraryteam.library.service.mapper.dto.GenreDto;
+import ru.libraryteam.library.service.model.GenreDto;
 
 import java.util.List;
 

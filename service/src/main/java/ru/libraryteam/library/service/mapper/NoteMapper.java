@@ -2,7 +2,7 @@ package ru.libraryteam.library.service.mapper;
 
 import org.mapstruct.Mapper;
 import ru.libraryteam.library.db.entity.NoteEntity;
-import ru.libraryteam.library.service.mapper.dto.NoteDto;
+import ru.libraryteam.library.service.model.NoteDto;
 
 import java.util.List;
 

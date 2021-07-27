@@ -13,13 +13,12 @@ public class BookAuthorsEntity {
 
   @ManyToOne
   @JoinColumn(
-    name = "book_id",
-    referencedColumnName = "book_id",
-    insertable = false,
-    updatable = false)
+    name = "book_id", referencedColumnName = "book_id",
+    insertable = false, updatable = false)
   private BookEntity book;
 
 
+  //id
   public BookAuthorsId getId() {
     return id;
   }
@@ -28,6 +27,7 @@ public class BookAuthorsEntity {
     this.id = id;
   }
 
+  //book
   public BookEntity getBook() {
     return book;
   }

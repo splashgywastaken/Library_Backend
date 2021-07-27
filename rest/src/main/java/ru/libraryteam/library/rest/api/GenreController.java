@@ -2,8 +2,8 @@ package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.service.mapper.dto.GenreDto;
-import ru.libraryteam.library.service.mapper.logic.GenreService;
+import ru.libraryteam.library.service.model.GenreDto;
+import ru.libraryteam.library.service.logic.GenreService;
 
 @RestController
 @RequestMapping("/genres")

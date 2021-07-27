@@ -2,8 +2,8 @@ package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.service.mapper.dto.AchievementDto;
-import ru.libraryteam.library.service.mapper.logic.AchievementService;
+import ru.libraryteam.library.service.model.AchievementDto;
+import ru.libraryteam.library.service.logic.AchievementService;
 
 @RestController
 @RequestMapping("/achievements")

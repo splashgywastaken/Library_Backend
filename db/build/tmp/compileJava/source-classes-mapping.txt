@@ -14,25 +14,25 @@ ru/libraryteam/library/db/repository/BookRepository.java
  ru.libraryteam.library.db.repository.BookRepository
 ru/libraryteam/library/db/entity/UserEntity.java
  ru.libraryteam.library.db.entity.UserEntity
-ru/libraryteam/library/db/entity/BookEntity.java
- ru.libraryteam.library.db.entity.BookEntity
+ru/libraryteam/library/db/entity/NoteEntity.java
+ ru.libraryteam.library.db.entity.NoteEntity
 ru/libraryteam/library/db/entity/complex/id/BookAuthorsId.java
  ru.libraryteam.library.db.entity.complex.id.BookAuthorsId
 ru/libraryteam/library/db/entity/AchievementEntity.java
  ru.libraryteam.library.db.entity.AchievementEntity
-ru/libraryteam/library/db/repository/AuthorRepository.java
- ru.libraryteam.library.db.repository.AuthorRepository
+ru/libraryteam/library/db/entity/complex/id/Lines.java
+ ru.libraryteam.library.db.entity.complex.id.Lines
 ru/libraryteam/library/db/entity/complex/id/Messages.java
  ru.libraryteam.library.db.entity.complex.id.Messages
 ru/libraryteam/library/db/repository/NoteRepository.java
  ru.libraryteam.library.db.repository.NoteRepository
 ru/libraryteam/library/db/repository/BookAuthorsRepository.java
  ru.libraryteam.library.db.repository.BookAuthorsRepository
-ru/libraryteam/library/db/entity/complex/id/Lines.java
- ru.libraryteam.library.db.entity.complex.id.Lines
-ru/libraryteam/library/db/entity/NoteEntity.java
- ru.libraryteam.library.db.entity.NoteEntity
-ru/libraryteam/library/db/entity/BookAuthorsEntity.java
- ru.libraryteam.library.db.entity.BookAuthorsEntity
+ru/libraryteam/library/db/entity/BookEntity.java
+ ru.libraryteam.library.db.entity.BookEntity
 ru/libraryteam/library/db/entity/AuthorEntity.java
  ru.libraryteam.library.db.entity.AuthorEntity
+ru/libraryteam/library/db/entity/BookAuthorsEntity.java
+ ru.libraryteam.library.db.entity.BookAuthorsEntity
+ru/libraryteam/library/db/repository/AuthorRepository.java
+ ru.libraryteam.library.db.repository.AuthorRepository

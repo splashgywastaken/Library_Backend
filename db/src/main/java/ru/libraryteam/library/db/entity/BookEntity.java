@@ -74,6 +74,7 @@ public class BookEntity {
 
   public void setLanguage(String language) { this.language = language; }
 
+  //authors
   public List<AuthorEntity> getAuthors() {
     return authors;
   }
