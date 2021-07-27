@@ -3,17 +3,22 @@ package ru.libraryteam.library.service.mapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.AuthorEntity;
 import ru.libraryteam.library.service.mapper.dto.AuthorDto;
+import ru.libraryteam.library.service.mapper.dto.AuthorWithBooksDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-07-26T23:43:11+0300",
+    date = "2021-07-27T16:59:09+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class AuthorMapperImpl implements AuthorMapper {
+
+    @Autowired
+    private BookMapper bookMapper;
 
     @Override
     public AuthorDto fromEntity(AuthorEntity authorEntity) {
@@ -30,6 +35,38 @@ public class AuthorMapperImpl implements AuthorMapper {
         authorDto.setPseudonym( authorEntity.getPseudonym() );
 
         return authorDto;
+    }
+
+    @Override
+    public AuthorWithBooksDto fromEntityWithBooks(AuthorEntity author) {
+        if ( author == null ) {
+            return null;
+        }
+
+        AuthorWithBooksDto authorWithBooksDto = new AuthorWithBooksDto();
+
+        authorWithBooksDto.setId( author.getId() );
+        authorWithBooksDto.setFirstName( author.getFirstName() );
+        authorWithBooksDto.setLastName( author.getLastName() );
+        authorWithBooksDto.setMiddleName( author.getMiddleName() );
+        authorWithBooksDto.setPseudonym( author.getPseudonym() );
+        authorWithBooksDto.setBooks( bookMapper.fromEntities( author.getBooks() ) );
+
+        return authorWithBooksDto;
+    }
+
+    @Override
+    public List<AuthorWithBooksDto> fromEntitiesWithBooks(Iterable<AuthorEntity> authors) {
+        if ( authors == null ) {
+            return null;
+        }
+
+        List<AuthorWithBooksDto> list = new ArrayList<AuthorWithBooksDto>();
+        for ( AuthorEntity authorEntity : authors ) {
+            list.add( fromEntityWithBooks( authorEntity ) );
+        }
+
+        return list;
     }
 
     @Override

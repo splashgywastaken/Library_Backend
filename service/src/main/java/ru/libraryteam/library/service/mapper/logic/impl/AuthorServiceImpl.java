@@ -2,9 +2,13 @@ package ru.libraryteam.library.service.mapper.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.libraryteam.library.db.entity.BookAuthorsEntity;
+import ru.libraryteam.library.db.entity.complex.id.BookAuthorsId;
 import ru.libraryteam.library.db.repository.AuthorRepository;
+import ru.libraryteam.library.db.repository.BookAuthorsRepository;
 import ru.libraryteam.library.service.mapper.AuthorMapper;
 import ru.libraryteam.library.service.mapper.dto.AuthorDto;
+import ru.libraryteam.library.service.mapper.dto.AuthorWithBooksDto;
 import ru.libraryteam.library.service.mapper.logic.AuthorService;
 
 import java.util.List;
@@ -12,33 +16,35 @@ import java.util.List;
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-  private final AuthorRepository repository;
-  private final AuthorMapper mapper;
+  private final AuthorRepository authorRepository;
+  private final AuthorMapper authorMapper;
+  private final BookAuthorsRepository bookAuthorsRepository;
 
   @Autowired
-  public AuthorServiceImpl(AuthorRepository repository, AuthorMapper mapper) {
-    this.repository = repository;
-    this.mapper = mapper;
+  public AuthorServiceImpl(AuthorRepository authorRepository, AuthorMapper authorMapper, BookAuthorsRepository bookAuthorsRepository) {
+    this.authorRepository = authorRepository;
+    this.authorMapper = authorMapper;
+    this.bookAuthorsRepository = bookAuthorsRepository;
   }
 
   @Override
   public AuthorDto createAuthor(AuthorDto authorDto) {
-    return mapper.fromEntity(
-      repository.save(
-        mapper.toEntity(authorDto)
+    return authorMapper.fromEntity(
+      authorRepository.save(
+        authorMapper.toEntity(authorDto)
       )
     );
   }
 
   @Override
   public AuthorDto findById(int id) {
-    return mapper.fromEntity(repository.findById(id).orElse(null));
+    return authorMapper.fromEntity(authorRepository.findById(id).orElse(null));
 
   }
 
   @Override
   public List<AuthorDto> findAll() {
-    return mapper.fromEntities(repository.findAll());
+    return authorMapper.fromEntities(authorRepository.findAll());
   }
 
   @Override
@@ -48,6 +54,36 @@ public class AuthorServiceImpl implements AuthorService {
 
   @Override
   public void deleteAuthor(int id) {
-    repository.deleteById(id);
+    authorRepository.deleteById(id);
+  }
+
+  @Override
+  public AuthorWithBooksDto getAuthorInfo(int authorId) {
+    return authorRepository
+      .findById(authorId)
+      .map(authorMapper::fromEntityWithBooks)
+      .orElse(null);
+  }
+
+
+
+  @Override
+  public AuthorWithBooksDto addBookToAuthor(int authorId, int bookId) {
+    final var entity = new BookAuthorsEntity();
+    final var id = new BookAuthorsId();
+    id.setAuthorId(authorId);
+    id.setBookId(bookId);
+    entity.setId(id);
+    var saved = bookAuthorsRepository.save(entity);
+
+    return authorRepository
+      .findById(authorId)
+      .map(authorMapper::fromEntityWithBooks)
+      .orElse(null);
+  }
+
+  @Override
+  public List<AuthorWithBooksDto> getAuthors() {
+    return authorMapper.fromEntitiesWithBooks(authorRepository.findAll());
   }
 }
