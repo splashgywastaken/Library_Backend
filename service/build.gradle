@@ -4,12 +4,14 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     implementation 'org.springframework.data:spring-data-jpa:2.5.3'
+
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.4'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
-    implementation 'jakarta.persistence:jakarta.persistence-api:2.2.3'
 
     implementation 'org.immutables:value-annotations:2.8.8'
     annotationProcessor 'org.immutables:value-processor:2.8.8'
+
+    implementation 'jakarta.persistence:jakarta.persistence-api:2.2.3'
 }
 
 compileJava {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.BookEntity;
 import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.mapper.BookMapper;
+import ru.libraryteam.library.service.model.BookDtoImpl;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
@@ -22,7 +23,7 @@ public class BookMapperImpl implements BookMapper {
             return null;
         }
 
-        BookDto bookDto = new BookDto();
+        BookDtoImpl bookDto = new BookDtoImpl();
 
         bookDto.setId( bookEntity.getId() );
         bookDto.setBookName( bookEntity.getBookName() );

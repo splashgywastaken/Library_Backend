@@ -23,6 +23,7 @@ public interface AuthorMapper {
 
   @Mapping(target = "birthday", ignore = true)
   @Mapping(target = "sex", ignore = true)
+  @Mapping(target = "books", ignore = true)
   AuthorEntity toEntity(AuthorDto authorDto);
 
   List<AuthorDto> fromEntities(Iterable<AuthorEntity> authorEntities);
