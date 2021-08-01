@@ -10,5 +10,7 @@ ru/libraryteam/library/rest/RestConfiguration.java
  ru.libraryteam.library.rest.RestConfiguration
 ru/libraryteam/library/rest/api/UserController.java
  ru.libraryteam.library.rest.api.UserController
+ru/libraryteam/library/rest/api/TagController.java
+ ru.libraryteam.library.rest.api.TagController
 ru/libraryteam/library/rest/api/BookController.java
  ru.libraryteam.library.rest.api.BookController

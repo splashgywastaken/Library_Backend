@@ -1,7 +1,9 @@
 package ru.libraryteam.library.service.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.entity.BookAuthorsEntity;
 import ru.libraryteam.library.db.entity.complex.id.BookAuthorsId;
 import ru.libraryteam.library.db.repository.AuthorRepository;
@@ -10,6 +12,8 @@ import ru.libraryteam.library.service.model.AuthorWithBooksDto;
 import ru.libraryteam.library.service.logic.AuthorService;
 import ru.libraryteam.library.service.mapper.AuthorMapper;
 import ru.libraryteam.library.service.model.AuthorDto;
+import ru.libraryteam.library.service.model.ImmutablePageDto;
+import ru.libraryteam.library.service.model.PageDto;
 
 import java.util.List;
 

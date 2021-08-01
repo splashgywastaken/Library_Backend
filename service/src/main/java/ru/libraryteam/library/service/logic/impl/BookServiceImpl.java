@@ -1,13 +1,13 @@
 package ru.libraryteam.library.service.logic.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.repository.BookRepository;
+import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.mapper.BookMapper;
 import ru.libraryteam.library.service.model.BookDto;
-import ru.libraryteam.library.service.logic.BookService;
-import ru.libraryteam.library.service.model.ImmutableBookDto;
 import ru.libraryteam.library.service.model.ImmutablePageDto;
 import ru.libraryteam.library.service.model.PageDto;
 
@@ -19,7 +19,7 @@ public class BookServiceImpl implements BookService {
   private final BookRepository repository;
   private final BookMapper mapper;
 
-
+  @Autowired
   public BookServiceImpl(BookRepository repository, BookMapper mapper) {
     this.repository = repository;
     this.mapper = mapper;
@@ -70,6 +70,33 @@ public class BookServiceImpl implements BookService {
         Pageable
           .ofSize(pageSize)
           .withPage(pageNumber)
+      ).map(mapper::fromEntity);
+
+    return ImmutablePageDto.<BookDto>builder()
+      .pageNumber(pageNumber)
+      .totalPages(values.getTotalPages())
+      .items(values.getContent())
+      .build();
+  }
+
+  @Override
+  @Transactional
+  public PageDto<BookDto> newFind(
+    String authorLastName,
+    String authorFirstName,
+    String genreName,
+    String tagName,
+    Integer pageSize,
+    Integer pageNumber) {
+    var values = repository
+      .findBooks(
+        authorLastName,
+        authorFirstName,
+        genreName,
+        tagName,
+        Pageable
+        .ofSize(pageSize)
+        .withPage(pageNumber)
       ).map(mapper::fromEntity);
 
     return ImmutablePageDto.<BookDto>builder()

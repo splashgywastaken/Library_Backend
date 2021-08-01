@@ -3,12 +3,10 @@ package ru.libraryteam.library.rest.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.logic.BookService;
-import ru.libraryteam.library.service.model.BookDtoImpl;
+import ru.libraryteam.library.service.model.BookDto;
+import ru.libraryteam.library.service.model.impl.BookDtoImpl;
 import ru.libraryteam.library.service.model.PageDto;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/books")
@@ -28,6 +26,35 @@ public class BookController {
     @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
   ) {
     return service.find(search, pageSize, pageNumber);
+  }
+
+  @GetMapping("/search-book")
+  PageDto<BookDto> newFindBooks(
+    @RequestParam(name = "author", required = false) String author,
+    @RequestParam(name = "genre", required = false, defaultValue = "") String genre,
+    @RequestParam(name = "tag", required = false, defaultValue = "") String tag,
+    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
+    @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
+  ) {
+    String firstName = "";
+    String lastName = "";
+    String[] fullName = author.split("\\s");
+
+    if (fullName.length == 1) {
+      lastName = fullName[0];
+    }
+    if (fullName.length > 1){
+      lastName = fullName[0];
+      firstName = fullName[1];
+    }
+
+    return service.newFind(
+      lastName,
+      firstName,
+      genre,
+      tag,
+      pageSize,
+      pageNumber);
   }
 
   /*@GetMapping()

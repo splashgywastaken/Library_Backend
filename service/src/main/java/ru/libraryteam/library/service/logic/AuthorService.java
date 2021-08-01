@@ -2,6 +2,7 @@ package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.AuthorDto;
 import ru.libraryteam.library.service.model.AuthorWithBooksDto;
+import ru.libraryteam.library.service.model.PageDto;
 
 import java.util.List;
 

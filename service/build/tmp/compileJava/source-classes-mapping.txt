@@ -2,8 +2,8 @@ ru/libraryteam/library/service/logic/impl/AuthorServiceImpl.java
  ru.libraryteam.library.service.logic.impl.AuthorServiceImpl
 ru/libraryteam/library/service/mapper/UserMapper.java
  ru.libraryteam.library.service.mapper.UserMapper
-ru/libraryteam/library/service/model/BookDtoImpl.java
- ru.libraryteam.library.service.model.BookDtoImpl
+ru/libraryteam/library/service/model/impl/BookDtoImpl.java
+ ru.libraryteam.library.service.model.impl.BookDtoImpl
 ru/libraryteam/library/service/model/AuthorWithBooksDto.java
  ru.libraryteam.library.service.model.AuthorWithBooksDto
 ru/libraryteam/library/service/mapper/AuthorMapper.java
@@ -24,6 +24,10 @@ ru/libraryteam/library/service/logic/GenreService.java
  ru.libraryteam.library.service.logic.GenreService
 ru/libraryteam/library/service/logic/impl/NoteServiceImpl.java
  ru.libraryteam.library.service.logic.impl.NoteServiceImpl
+ru/libraryteam/library/service/model/TagDto.java
+ ru.libraryteam.library.service.model.TagDto
+ru/libraryteam/library/service/logic/impl/TagServiceImpl.java
+ ru.libraryteam.library.service.logic.impl.TagServiceImpl
 ru/libraryteam/library/service/model/GenreDto.java
  ru.libraryteam.library.service.model.GenreDto
 ru/libraryteam/library/service/logic/AchievementService.java
@@ -38,12 +42,16 @@ ru/libraryteam/library/service/mapper/GenreMapper.java
  ru.libraryteam.library.service.mapper.GenreMapper
 ru/libraryteam/library/service/logic/NoteService.java
  ru.libraryteam.library.service.logic.NoteService
+ru/libraryteam/library/service/logic/TagService.java
+ ru.libraryteam.library.service.logic.TagService
 ru/libraryteam/library/service/mapper/AchievementMapper.java
  ru.libraryteam.library.service.mapper.AchievementMapper
 ru/libraryteam/library/service/mapper/NoteMapper.java
  ru.libraryteam.library.service.mapper.NoteMapper
 ru/libraryteam/library/service/model/AuthorDto.java
  ru.libraryteam.library.service.model.AuthorDto
+ru/libraryteam/library/service/mapper/TagMapper.java
+ ru.libraryteam.library.service.mapper.TagMapper
 ru/libraryteam/library/service/logic/UserService.java
  ru.libraryteam.library.service.logic.UserService
 ru/libraryteam/library/service/model/UserDto.java

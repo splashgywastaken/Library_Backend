@@ -39,6 +39,24 @@ public class BookEntity {
   )
   private List<AuthorEntity> authors;
 
+  @ManyToMany
+  @JoinTable(
+    joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "genre_id"),
+    name = "book_genres",
+    schema = "library"
+  )
+  private List<GenreEntity> genres;
+
+  @ManyToMany
+  @JoinTable(
+    joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "tag_id"),
+    name = "book_tags",
+    schema = "library"
+  )
+  private List<TagEntity> tags;
+
   //id
   public Integer getId() { return id; }
 
@@ -81,5 +99,23 @@ public class BookEntity {
 
   public void setAuthors(List<AuthorEntity> authors) {
     this.authors = authors;
+  }
+
+  //genres
+  public List<GenreEntity> getGenres() {
+    return genres;
+  }
+
+  public void setGenres(List<GenreEntity> genres) {
+    this.genres = genres;
+  }
+
+  //tags
+  public List<TagEntity> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<TagEntity> tags) {
+    this.tags = tags;
   }
 }
