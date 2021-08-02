@@ -16,67 +16,45 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
-  private final BookRepository repository;
-  private final BookMapper mapper;
+  private final BookRepository bookRepository;
+  private final BookMapper bookMapper;
 
   @Autowired
-  public BookServiceImpl(BookRepository repository, BookMapper mapper) {
-    this.repository = repository;
-    this.mapper = mapper;
-  }
-
-
-  @Override
-  public BookDto createBook(BookDto bookDto) {
-    return mapper.fromEntity(
-      repository.save(
-        mapper.toEntity(bookDto)
-      )
-    );
+  public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper) {
+    this.bookRepository = bookRepository;
+    this.bookMapper = bookMapper;
   }
 
   @Override
-  public BookDto findById(int id) {
-    return mapper
-      .fromEntity(
-        repository
-        .findById(id)
+  public BookDto findBookById(int id) {
+    return bookMapper.fromEntity(
+        bookRepository.findById(id)
         .orElse(null)
     );
   }
 
   @Override
-  public List<BookDto> findAll() {
-    return mapper.fromEntities(repository.findAll());
+  public List<BookDto> findAllBooks() {
+    return bookMapper.fromEntities(bookRepository.findAll());
   }
 
   @Override
-  public BookDto updateBook(BookDto bookDto) {
-    return createBook(bookDto);
+  public BookDto createBook(BookDto dto) {
+    return bookMapper.fromEntity(
+      bookRepository.save(
+        bookMapper.toEntity(dto)
+      )
+    );
+  }
+
+  @Override
+  public BookDto updateBook(BookDto dto) {
+    return createBook(dto);
   }
 
   @Override
   public void deleteBook(int id) {
-    repository.deleteById(id);
-  }
-
-  @Override
-  @Transactional
-  public PageDto<BookDto> find(String search, Integer pageSize, Integer pageNumber) {
-    var values = repository
-      .getAllByBookNameIsContainingOrAgeRatingIsContaining(
-        search,
-        search,
-        Pageable
-          .ofSize(pageSize)
-          .withPage(pageNumber)
-      ).map(mapper::fromEntity);
-
-    return ImmutablePageDto.<BookDto>builder()
-      .pageNumber(pageNumber)
-      .totalPages(values.getTotalPages())
-      .items(values.getContent())
-      .build();
+    bookRepository.deleteById(id);
   }
 
   @Override
@@ -92,7 +70,7 @@ public class BookServiceImpl implements BookService {
     String ageRating,
     Integer pageSize,
     Integer pageNumber) {
-    var values = repository
+    var values = bookRepository
       .findBooks(
         authorLastName,
         authorFirstName,
@@ -105,7 +83,7 @@ public class BookServiceImpl implements BookService {
         Pageable
         .ofSize(pageSize)
         .withPage(pageNumber)
-      ).map(mapper::fromEntity);
+      ).map(bookMapper::fromEntity);
 
     return ImmutablePageDto.<BookDto>builder()
       .pageNumber(pageNumber)

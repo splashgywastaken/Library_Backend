@@ -7,17 +7,15 @@ import java.util.List;
 
 public interface BookService {
 
+  BookDto findBookById(int id);
+
+  List<BookDto> findAllBooks();
+
   BookDto createBook(BookDto bookDto);
-
-  BookDto findById(int id);
-
-  List<BookDto> findAll();
 
   BookDto updateBook(BookDto bookDto);
 
   void deleteBook(int id);
-
-  PageDto<BookDto> find(String search, Integer pageSize, Integer pageNumber);
 
   PageDto<BookDto> newFind(
     List<String> authorLastName,

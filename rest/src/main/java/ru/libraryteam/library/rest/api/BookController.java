@@ -10,37 +10,29 @@ import ru.libraryteam.library.service.model.impl.BookDtoImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping(value = "/books")
 public class BookController {
 
-  private final BookService service;
+  private final BookService bookService;
 
   @Autowired
-  public BookController(BookService service) {
-    this.service = service;
+  public BookController(BookService bookService) {
+    this.bookService = bookService;
   }
 
-  @GetMapping
-  PageDto<BookDto> findBooks(
-    @RequestParam(name = "search", required = false) String search,
-    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
-    @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
-  ) {
-    return service.find(search, pageSize, pageNumber);
-  }
-
-  @GetMapping("/search-book")
+  @GetMapping(value = "/search-book")
   PageDto<BookDto> newFindBooks(
+    @RequestParam(name = "name", required = false, defaultValue = "") String bookName,
     @RequestParam(name = "author", required = false) List<String> authors,
-    @RequestParam(name = "genre", required = false) List<String> genres,
-    @RequestParam(name = "tag", required = false) List<String> tags,
-    @RequestParam(name = "book_name", required = false, defaultValue = "") String bookName,
     @RequestParam(name = "year", required = false, defaultValue = "0") Integer yearOfPublishing,
-    @RequestParam(name = "isbn", required = false, defaultValue = "") String isbn,
-    @RequestParam(name = "age", required = false, defaultValue = "") String age,
-    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
+    @RequestParam(name = "tag", required = false) List<String> tags,
+    @RequestParam(name = "isbn", required = false, defaultValue = "null") String isbn,
+    @RequestParam(name = "genre", required = false) List<String> genres,
+    @RequestParam(name = "age", required = false, defaultValue = "null") String age,
+    @RequestParam(name = "page_size", defaultValue = "3") Integer pageSize,
     @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
   ) {
     List<String> lastName = new ArrayList<>();
@@ -64,8 +56,9 @@ public class BookController {
 
     if (genres.isEmpty()) genres = new ArrayList<>();
     if (tags.isEmpty()) tags = new ArrayList<>();
+    if (bookName.isEmpty() || bookName.isBlank()) bookName = UUID.randomUUID().toString();
 
-    return service.newFind(
+    return bookService.newFind(
       lastName,
       firstName,
       genres,
@@ -78,24 +71,29 @@ public class BookController {
       pageNumber);
   }
 
-  /*@GetMapping()
-  List<BookDto> getBooks() {
-    return service.findAll();
-  }*/
+  @GetMapping(value = "/{id}")
+  BookDto findBookById(@PathVariable(value = "id") int bookId) {
+    return bookService.findBookById(bookId);
+  }
+
+  @GetMapping()
+  List<BookDto> getAllBooks() {
+    return bookService.findAllBooks();
+  }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   BookDto createBook(@RequestBody BookDto book) {
-    return service.createBook(book);
+    return bookService.createBook(book);
   }
 
-  @PutMapping("/{id}")
-  BookDto updateBook(@RequestBody BookDtoImpl book, @PathVariable int id) {
-    book.setId(id);
-    return service.updateBook(book);
+  @PutMapping(value = "/{id}")
+  BookDto updateBook(@RequestBody BookDtoImpl book, @PathVariable(value = "id") int bookId) {
+    book.setId(bookId);
+    return bookService.updateBook(book);
   }
 
-  @DeleteMapping("/{id}")
-  void deleteBook(@PathVariable int id) {
-    service.deleteBook(id);
+  @DeleteMapping(value = "/{id}")
+  void deleteBook(@PathVariable(value = "id") int bookId) {
+    bookService.deleteBook(bookId);
   }
 }
