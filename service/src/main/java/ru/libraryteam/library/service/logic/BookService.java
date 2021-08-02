@@ -20,10 +20,14 @@ public interface BookService {
   PageDto<BookDto> find(String search, Integer pageSize, Integer pageNumber);
 
   PageDto<BookDto> newFind(
-    String authorLastName,
-    String authorFirstName,
-    String genreName,
-    String tagName,
+    List<String> authorLastName,
+    List<String> authorFirstName,
+    List<String> genreName,
+    List<String> tagName,
+    String bookName,
+    Integer yearOfPublishing,
+    String isbn,
+    String ageRating,
     Integer pageSize,
     Integer pageNumber);
 }

@@ -8,6 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.libraryteam.library.db.entity.BookEntity;
 
+import java.util.List;
+
 @Repository
 public interface BookRepository extends CrudRepository<BookEntity, Integer>, JpaSpecificationExecutor<BookEntity> {
 
@@ -22,16 +24,26 @@ public interface BookRepository extends CrudRepository<BookEntity, Integer>, Jpa
       + "LEFT JOIN b.authors a "
       + "LEFT JOIN b.genres g "
       + "LEFT JOIN b.tags t "
-      + "WHERE (LOWER(a.lastName) LIKE CONCAT('%', LOWER(?1), '%') "
-      + "OR LOWER(a.firstName) LIKE CONCAT('%', LOWER(?2), '%')) "
-      + "AND LOWER(g.genreName) LIKE CONCAT('%', LOWER(?3), '%') "
-      + "AND LOWER(t.tagName) LIKE CONCAT('%', LOWER(?4), '%') "
+      + "WHERE "
+      + "LOWER(a.lastName) IN ?1 "
+      + "OR LOWER(a.firstName) IN ?2 "
+      + "OR LOWER(g.genreName) IN ?3 "
+      + "OR LOWER(t.tagName) IN ?4 "
+      + "OR LOWER(b.bookName) LIKE CONCAT('%', LOWER(?5), '%') "
+      + "OR b.yearOfPublishing = ?6 "
+      + "OR b.isbn = ?7 "
+      + "OR b.ageRating = ?8 "
+      + "GROUP BY b.id "
   )
   Page<BookEntity> findBooks(
-    String authorLastName,
-    String authorFirstName,
-    String genreName,
-    String tagName,
+    List<String> authorLastName,
+    List<String> authorFirstName,
+    List<String> genreName,
+    List<String> tagName,
+    String bookName,
+    Integer yearOfPublishing,
+    String isbn,
+    String ageRating,
     Pageable pageable
   );
 

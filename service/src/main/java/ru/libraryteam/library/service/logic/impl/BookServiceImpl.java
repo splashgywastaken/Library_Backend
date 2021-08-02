@@ -82,10 +82,14 @@ public class BookServiceImpl implements BookService {
   @Override
   @Transactional
   public PageDto<BookDto> newFind(
-    String authorLastName,
-    String authorFirstName,
-    String genreName,
-    String tagName,
+    List<String> authorLastName,
+    List<String> authorFirstName,
+    List<String> genreName,
+    List<String> tagName,
+    String bookName,
+    Integer yearOfPublishing,
+    String isbn,
+    String ageRating,
     Integer pageSize,
     Integer pageNumber) {
     var values = repository
@@ -94,6 +98,10 @@ public class BookServiceImpl implements BookService {
         authorFirstName,
         genreName,
         tagName,
+        bookName,
+        yearOfPublishing,
+        isbn,
+        ageRating,
         Pageable
         .ofSize(pageSize)
         .withPage(pageNumber)
