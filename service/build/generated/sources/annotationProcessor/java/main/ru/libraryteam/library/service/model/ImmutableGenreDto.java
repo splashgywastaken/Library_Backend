@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.immutables.value.Generated;
+import org.springframework.lang.Nullable;
 
 /**
  * Immutable implementation of {@link GenreDto}.
@@ -16,10 +17,10 @@ import org.immutables.value.Generated;
 @SuppressWarnings({"all"})
 @javax.annotation.processing.Generated("org.immutables.processor.ProxyProcessor")
 public final class ImmutableGenreDto implements GenreDto {
-  private final Integer id;
+  private final @Nullable Integer id;
   private final String genreName;
 
-  private ImmutableGenreDto(Integer id, String genreName) {
+  private ImmutableGenreDto(@Nullable Integer id, String genreName) {
     this.id = id;
     this.genreName = genreName;
   }
@@ -29,7 +30,7 @@ public final class ImmutableGenreDto implements GenreDto {
    */
   @JsonProperty("id")
   @Override
-  public Integer getId() {
+  public @Nullable Integer getId() {
     return id;
   }
 
@@ -45,13 +46,12 @@ public final class ImmutableGenreDto implements GenreDto {
   /**
    * Copy the current immutable object by setting a value for the {@link GenreDto#getId() id} attribute.
    * An equals check used to prevent copying of the same value by returning {@code this}.
-   * @param value A new value for id
+   * @param value A new value for id (can be {@code null})
    * @return A modified copy of the {@code this} object
    */
-  public final ImmutableGenreDto withId(Integer value) {
-    Integer newValue = Objects.requireNonNull(value, "id");
-    if (this.id.equals(newValue)) return this;
-    return new ImmutableGenreDto(newValue, this.genreName);
+  public final ImmutableGenreDto withId(@Nullable Integer value) {
+    if (Objects.equals(this.id, value)) return this;
+    return new ImmutableGenreDto(value, this.genreName);
   }
 
   /**
@@ -78,7 +78,7 @@ public final class ImmutableGenreDto implements GenreDto {
   }
 
   private boolean equalTo(ImmutableGenreDto another) {
-    return id.equals(another.id)
+    return Objects.equals(id, another.id)
         && genreName.equals(another.genreName);
   }
 
@@ -89,7 +89,7 @@ public final class ImmutableGenreDto implements GenreDto {
   @Override
   public int hashCode() {
     int h = 5381;
-    h += (h << 5) + id.hashCode();
+    h += (h << 5) + Objects.hashCode(id);
     h += (h << 5) + genreName.hashCode();
     return h;
   }
@@ -126,7 +126,7 @@ public final class ImmutableGenreDto implements GenreDto {
    * Creates a builder for {@link ImmutableGenreDto ImmutableGenreDto}.
    * <pre>
    * ImmutableGenreDto.builder()
-   *    .id(Integer) // required {@link GenreDto#getId() id}
+   *    .id(Integer | null) // nullable {@link GenreDto#getId() id}
    *    .genreName(String) // required {@link GenreDto#getGenreName() genreName}
    *    .build();
    * </pre>
@@ -145,9 +145,8 @@ public final class ImmutableGenreDto implements GenreDto {
    */
   @Generated(from = "GenreDto", generator = "Immutables")
   public static final class Builder {
-    private static final long INIT_BIT_ID = 0x1L;
-    private static final long INIT_BIT_GENRE_NAME = 0x2L;
-    private long initBits = 0x3L;
+    private static final long INIT_BIT_GENRE_NAME = 0x1L;
+    private long initBits = 0x1L;
 
     private Integer id;
     private String genreName;
@@ -164,20 +163,22 @@ public final class ImmutableGenreDto implements GenreDto {
      */
     public final Builder from(GenreDto instance) {
       Objects.requireNonNull(instance, "instance");
-      id(instance.getId());
+      Integer idValue = instance.getId();
+      if (idValue != null) {
+        id(idValue);
+      }
       genreName(instance.getGenreName());
       return this;
     }
 
     /**
      * Initializes the value for the {@link GenreDto#getId() id} attribute.
-     * @param id The value for id 
+     * @param id The value for id (can be {@code null})
      * @return {@code this} builder for use in a chained invocation
      */
     @JsonProperty("id")
-    public final Builder id(Integer id) {
-      this.id = Objects.requireNonNull(id, "id");
-      initBits &= ~INIT_BIT_ID;
+    public final Builder id(@Nullable Integer id) {
+      this.id = id;
       return this;
     }
 
@@ -207,7 +208,6 @@ public final class ImmutableGenreDto implements GenreDto {
 
     private String formatRequiredAttributesMessage() {
       List<String> attributes = new ArrayList<>();
-      if ((initBits & INIT_BIT_ID) != 0) attributes.add("id");
       if ((initBits & INIT_BIT_GENRE_NAME) != 0) attributes.add("genreName");
       return "Cannot build GenreDto, some of required attributes are not set " + attributes;
     }

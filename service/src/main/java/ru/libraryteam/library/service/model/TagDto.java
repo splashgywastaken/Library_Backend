@@ -8,7 +8,7 @@ public class TagDto {
 
   private Integer id;
 
-  @JsonProperty("name")
+  @JsonProperty("tag_name")
   private String tagName;
 
   public Integer getId() {

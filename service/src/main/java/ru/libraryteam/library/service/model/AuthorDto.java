@@ -6,7 +6,7 @@ import org.immutables.value.Value;
 import org.springframework.lang.Nullable;
 
 @Value.Immutable
-@JsonDeserialize(builder = ImmutableAuthorDto.class)
+@JsonDeserialize(builder = ImmutableAuthorDto.Builder.class)
 public interface AuthorDto {
 
   @Nullable

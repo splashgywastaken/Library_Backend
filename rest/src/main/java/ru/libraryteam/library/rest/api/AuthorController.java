@@ -11,27 +11,37 @@ import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
 @RequestMapping("/authors")
 public class AuthorController {
 
-  private final AuthorService service;
+  private final AuthorService authorService;
 
   @Autowired
-  public AuthorController(AuthorService service) {
-    this.service = service;
+  public AuthorController(AuthorService authorService) {
+    this.authorService = authorService;
+  }
+
+  @GetMapping
+  Iterable<AuthorDto> getAllAuthors() {
+    return authorService.findAll();
+  }
+
+  @GetMapping(value = "/{id}")
+  AuthorDto findAuthorById(@PathVariable(value = "id") int authorId) {
+    return authorService.findById(authorId);
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   AuthorDto createAuthor(@RequestBody AuthorDto author) {
-    return service.createAuthor(author);
+    return authorService.createAuthor(author);
   }
 
-  @PutMapping("/{id}")
-  AuthorDto updateAuthor(@RequestBody AuthorDtoImpl author, @PathVariable int id) {
-    author.setId(id);
-    return service.updateAuthor(author);
+  @PutMapping(value = "/{id}")
+  AuthorDto updateAuthor(@RequestBody AuthorDtoImpl author, @PathVariable(value = "id") int authorId) {
+    author.setId(authorId);
+    return authorService.updateAuthor(author);
   }
 
-  @DeleteMapping("/{id}")
-  void deleteAuthor(@PathVariable int id) {
-    service.deleteAuthor(id);
+  @DeleteMapping(value = "/{id}")
+  void deleteAuthor(@PathVariable(value = "id") int authorId) {
+    authorService.deleteAuthor(authorId);
   }
 
 }

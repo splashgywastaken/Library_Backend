@@ -87,7 +87,7 @@ public class BookController {
   }
 
   @PutMapping("/{bookId}/authors/{authorId}")
-  public BookWithAuthorsGenresDto addBook(
+  public BookWithAuthorsGenresDto addAuthor(
     @PathVariable("bookId") int bookId,
     @PathVariable("authorId") int authorId) {
     return bookService.addAuthorToBook(bookId, authorId);
