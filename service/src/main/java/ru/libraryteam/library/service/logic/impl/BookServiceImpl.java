@@ -33,10 +33,10 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public BookDto createBook() {
+  public BookDto createBook(BookDto dto) {
     return bookMapper.fromEntity(
       bookRepository.save(
-        new BookEntity()
+        bookMapper.toEntity(dto)
       )
     );
   }

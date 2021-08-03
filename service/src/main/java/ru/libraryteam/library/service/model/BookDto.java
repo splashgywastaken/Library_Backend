@@ -6,12 +6,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
    "id",
   "book_name",
-  "year_of_publication",
+  "year_of_publishing",
   "isbn",
   "age_rating",
   "language",
-  "quantity",
-  "authors"
+  "quantity"
   })
 public class BookDto {
 

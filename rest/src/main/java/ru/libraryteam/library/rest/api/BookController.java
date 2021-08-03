@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.model.BookDto;
+import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
 
@@ -70,19 +71,9 @@ public class BookController {
       pageNumber);
   }
 
-  /*@GetMapping(value = "/{id}")
-  BookDto findBookById(@PathVariable(value = "id") int bookId) {
-    return bookService.findBookById(bookId);
-  }
-
-  @GetMapping()
-  List<BookDto> getAllBooks() {
-    return bookService.findAllBooks();
-  }*/
-
   @PostMapping
-  BookDto createBook() {
-    return bookService.createBook();
+  BookDto createBook(@RequestBody BookDto dto) {
+    return bookService.createBook(dto);
   }
 
   @GetMapping()

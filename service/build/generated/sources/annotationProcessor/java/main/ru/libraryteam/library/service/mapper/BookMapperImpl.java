@@ -11,7 +11,7 @@ import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-03T13:33:15+0300",
+    date = "2021-08-03T15:10:22+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -74,5 +74,24 @@ public class BookMapperImpl implements BookMapper {
         bookDto.setQuantity( bookEntity.getQuantity() );
 
         return bookDto;
+    }
+
+    @Override
+    public BookEntity toEntity(BookDto dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        BookEntity bookEntity = new BookEntity();
+
+        bookEntity.setId( dto.getId() );
+        bookEntity.setBookName( dto.getBookName() );
+        bookEntity.setYearOfPublishing( dto.getYearOfPublishing() );
+        bookEntity.setQuantity( dto.getQuantity() );
+        bookEntity.setIsbn( dto.getIsbn() );
+        bookEntity.setAgeRating( dto.getAgeRating() );
+        bookEntity.setLanguage( dto.getLanguage() );
+
+        return bookEntity;
     }
 }

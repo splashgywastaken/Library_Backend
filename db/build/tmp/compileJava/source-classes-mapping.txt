@@ -38,11 +38,11 @@ ru/libraryteam/library/db/entity/complex/id/BookTagsId.java
  ru.libraryteam.library.db.entity.complex.id.BookTagsId
 ru/libraryteam/library/db/entity/AuthorEntity.java
  ru.libraryteam.library.db.entity.AuthorEntity
-ru/libraryteam/library/db/entity/BookEntity.java
- ru.libraryteam.library.db.entity.BookEntity
+ru/libraryteam/library/db/repository/BookRepository.java
+ ru.libraryteam.library.db.repository.BookRepository
 ru/libraryteam/library/db/entity/BookGenresEntity.java
  ru.libraryteam.library.db.entity.BookGenresEntity
 ru/libraryteam/library/db/repository/BookGenresRepository.java
  ru.libraryteam.library.db.repository.BookGenresRepository
-ru/libraryteam/library/db/repository/BookRepository.java
- ru.libraryteam.library.db.repository.BookRepository
+ru/libraryteam/library/db/entity/BookEntity.java
+ ru.libraryteam.library.db.entity.BookEntity

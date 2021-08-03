@@ -1,7 +1,10 @@
 package ru.libraryteam.library.db.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @NamedEntityGraph(
   name = "book-with-authors-genres",
@@ -68,7 +71,7 @@ public class BookEntity {
     name = "book_authors",
     schema = "library"
   )
-  private List<AuthorEntity> authors;
+  private Set<AuthorEntity> authors = new HashSet<>();
 
   @ManyToMany
   @JoinTable(
@@ -77,7 +80,7 @@ public class BookEntity {
     name = "book_genres",
     schema = "library"
   )
-  private List<GenreEntity> genres;
+  private Set<GenreEntity> genres = new HashSet<>();
 
   @ManyToMany
   @JoinTable(
@@ -124,20 +127,20 @@ public class BookEntity {
   public void setLanguage(String language) { this.language = language; }
 
   //authors
-  public List<AuthorEntity> getAuthors() {
+  public Set<AuthorEntity> getAuthors() {
     return authors;
   }
 
-  public void setAuthors(List<AuthorEntity> authors) {
+  public void setAuthors(Set<AuthorEntity> authors) {
     this.authors = authors;
   }
 
   //genres
-  public List<GenreEntity> getGenres() {
+  public Set<GenreEntity> getGenres() {
     return genres;
   }
 
-  public void setGenres(List<GenreEntity> genres) {
+  public void setGenres(Set<GenreEntity> genres) {
     this.genres = genres;
   }
 

@@ -1,6 +1,7 @@
 package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.AuthorDto;
+import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
 
 import java.util.List;
 

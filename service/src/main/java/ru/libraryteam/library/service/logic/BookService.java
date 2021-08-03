@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BookService {
 
-  BookDto createBook();
+  BookDto createBook(BookDto dto);
 
   BookWithAuthorsGenresDto getBookInfo(int bookId);
 

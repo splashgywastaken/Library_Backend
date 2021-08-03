@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.libraryteam.library.db.entity.AuthorEntity;
 import ru.libraryteam.library.service.model.AuthorDto;
+import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
 
 import java.util.List;
 

@@ -6,6 +6,7 @@ import ru.libraryteam.library.db.repository.AuthorRepository;
 import ru.libraryteam.library.service.logic.AuthorService;
 import ru.libraryteam.library.service.mapper.AuthorMapper;
 import ru.libraryteam.library.service.model.AuthorDto;
+import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
 
 import java.util.List;
 
