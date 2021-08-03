@@ -1,21 +1,20 @@
 package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.BookDto;
+import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
 import ru.libraryteam.library.service.model.PageDto;
 
 import java.util.List;
 
 public interface BookService {
 
-  BookDto findBookById(int id);
+  BookDto createBook();
 
-  List<BookDto> findAllBooks();
+  BookWithAuthorsGenresDto getBookInfo(int bookId);
 
-  BookDto createBook(BookDto bookDto);
+  BookWithAuthorsGenresDto addAuthorToBook(int bookId, int authorId);
 
-  BookDto updateBook(BookDto bookDto);
-
-  void deleteBook(int id);
+  List<BookWithAuthorsGenresDto> getAllBooks();
 
   PageDto<BookDto> newFind(
     List<String> authorLastName,

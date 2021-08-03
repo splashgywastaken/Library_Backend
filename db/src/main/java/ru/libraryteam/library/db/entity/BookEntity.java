@@ -3,6 +3,37 @@ package ru.libraryteam.library.db.entity;
 import javax.persistence.*;
 import java.util.List;
 
+@NamedEntityGraph(
+  name = "book-with-authors-genres",
+  attributeNodes = {
+    @NamedAttributeNode(value = "id"),
+    @NamedAttributeNode(value = "bookName"),
+    @NamedAttributeNode(value = "yearOfPublishing"),
+    @NamedAttributeNode(value = "quantity"),
+    @NamedAttributeNode(value = "isbn"),
+    @NamedAttributeNode(value = "ageRating"),
+    @NamedAttributeNode(value = "language"),
+    @NamedAttributeNode(value = "authors", subgraph = "authors"),
+    @NamedAttributeNode(value = "genres", subgraph = "genres")
+  },
+  subgraphs = {
+    @NamedSubgraph(
+      name = "authors",
+      attributeNodes = {
+        @NamedAttributeNode("id"),
+        @NamedAttributeNode("firstName"),
+        @NamedAttributeNode("lastName")
+      }
+    ),
+    @NamedSubgraph(
+      name = "genres",
+      attributeNodes = {
+        @NamedAttributeNode("id"),
+        @NamedAttributeNode("genreName")
+      }
+    )
+  }
+)
 @Table(schema = "library", name = "books")
 @Entity(name = "books")
 public class BookEntity {

@@ -11,13 +11,6 @@ public class BookAuthorsEntity {
   @EmbeddedId
   private BookAuthorsId id;
 
-  @ManyToOne
-  @JoinColumn(
-    name = "book_id", referencedColumnName = "book_id",
-    insertable = false, updatable = false)
-  private BookEntity book;
-
-
   //id
   public BookAuthorsId getId() {
     return id;
@@ -25,14 +18,5 @@ public class BookAuthorsEntity {
 
   public void setId(BookAuthorsId id) {
     this.id = id;
-  }
-
-  //book
-  public BookEntity getBook() {
-    return book;
-  }
-
-  public void setBook(BookEntity book) {
-    this.book = book;
   }
 }

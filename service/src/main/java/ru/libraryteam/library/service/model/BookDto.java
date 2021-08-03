@@ -1,30 +1,91 @@
 package ru.libraryteam.library.service.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.immutables.value.Value;
-import org.springframework.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@Value.Immutable
-@JsonDeserialize(builder = ImmutableBookDto.Builder.class)
-public interface BookDto {
+@JsonPropertyOrder({
+   "id",
+  "book_name",
+  "year_of_publication",
+  "isbn",
+  "age_rating",
+  "language",
+  "quantity",
+  "authors"
+  })
+public class BookDto {
 
-  @Nullable
-  Integer getId();
+  private Integer id;
 
-  @JsonProperty("name")
-  String getBookName();
+  @JsonProperty("book_name")
+  private String bookName;
 
-  @JsonProperty("year_of_publ")
-  Integer getYearOfPublishing();
+  @JsonProperty("year_of_publication")
+  private Integer yearOfPublishing;
 
-  @JsonProperty("isbn")
-  String getIsbn();
+  private String isbn;
 
   @JsonProperty("age_rating")
-  String getAgeRating();
+  private String ageRating;
 
-  String getLanguage();
+  private String language;
 
-  Integer getQuantity();
+  private Integer quantity;
+
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getBookName() {
+    return bookName;
+  }
+
+  public void setBookName(String bookName) {
+    this.bookName = bookName;
+  }
+
+  public Integer getYearOfPublishing() {
+    return yearOfPublishing;
+  }
+
+  public void setYearOfPublishing(Integer yearOfPublishing) {
+    this.yearOfPublishing = yearOfPublishing;
+  }
+
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public void setIsbn(String isbn) {
+    this.isbn = isbn;
+  }
+
+  public String getAgeRating() {
+    return ageRating;
+  }
+
+  public void setAgeRating(String ageRating) {
+    this.ageRating = ageRating;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(String language) {
+    this.language = language;
+  }
+
+  public Integer getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
+  }
 }

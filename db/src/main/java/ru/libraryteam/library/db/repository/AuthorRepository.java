@@ -12,6 +12,5 @@ import ru.libraryteam.library.db.entity.AuthorEntity;
 public interface AuthorRepository extends CrudRepository<AuthorEntity, Integer> {
 
   @Override
-  @EntityGraph(value = "author-with-books")
   Iterable<AuthorEntity> findAll();
 }

@@ -4,11 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.libraryteam.library.db.entity.BookAuthorsEntity;
+import ru.libraryteam.library.db.entity.BookEntity;
+import ru.libraryteam.library.db.entity.complex.id.BookAuthorsId;
+import ru.libraryteam.library.db.repository.BookAuthorsRepository;
 import ru.libraryteam.library.db.repository.BookRepository;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.mapper.BookMapper;
 import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.model.ImmutablePageDto;
+import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
 import ru.libraryteam.library.service.model.PageDto;
 
 import java.util.List;
@@ -18,43 +23,50 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final BookMapper bookMapper;
+  private final BookAuthorsRepository bookAuthorsRepository;
 
   @Autowired
-  public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper) {
+  public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper, BookAuthorsRepository bookAuthorsRepository) {
     this.bookRepository = bookRepository;
     this.bookMapper = bookMapper;
+    this.bookAuthorsRepository = bookAuthorsRepository;
   }
 
   @Override
-  public BookDto findBookById(int id) {
-    return bookMapper.fromEntity(
-        bookRepository.findById(id)
-        .orElse(null)
-    );
-  }
-
-  @Override
-  public List<BookDto> findAllBooks() {
-    return bookMapper.fromEntities(bookRepository.findAll());
-  }
-
-  @Override
-  public BookDto createBook(BookDto dto) {
+  public BookDto createBook() {
     return bookMapper.fromEntity(
       bookRepository.save(
-        bookMapper.toEntity(dto)
+        new BookEntity()
       )
     );
   }
 
   @Override
-  public BookDto updateBook(BookDto dto) {
-    return createBook(dto);
+  public BookWithAuthorsGenresDto getBookInfo(int bookId) {
+    return bookRepository
+      .findById(bookId)
+      .map(bookMapper::fromEntityWithAuthorsGenres)
+      .orElse(null);
   }
 
   @Override
-  public void deleteBook(int id) {
-    bookRepository.deleteById(id);
+  public BookWithAuthorsGenresDto addAuthorToBook(int bookId, int authorId) {
+    final var entity = new BookAuthorsEntity();
+    final var id = new BookAuthorsId();
+    id.setAuthorId(authorId);
+    id.setBookId(bookId);
+    entity.setId(id);
+    var saved = bookAuthorsRepository.save(entity);
+
+    return bookRepository
+      .findById(bookId)
+      .map(bookMapper::fromEntityWithAuthorsGenres)
+      .orElse(null);
+  }
+
+  @Override
+  public List<BookWithAuthorsGenresDto> getAllBooks() {
+    return bookMapper.fromEntitiesWithAuthorsGenres(bookRepository.findAll());
   }
 
   @Override

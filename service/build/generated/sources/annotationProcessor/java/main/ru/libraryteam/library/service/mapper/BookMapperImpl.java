@@ -3,19 +3,59 @@ package ru.libraryteam.library.service.mapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.BookEntity;
 import ru.libraryteam.library.service.model.BookDto;
-import ru.libraryteam.library.service.model.ImmutableBookDto;
-import ru.libraryteam.library.service.model.ImmutableBookDto.Builder;
+import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-03T02:02:34+0300",
+    date = "2021-08-03T13:33:15+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class BookMapperImpl implements BookMapper {
+
+    @Autowired
+    private AuthorMapper authorMapper;
+    @Autowired
+    private GenreMapper genreMapper;
+
+    @Override
+    public BookWithAuthorsGenresDto fromEntityWithAuthorsGenres(BookEntity book) {
+        if ( book == null ) {
+            return null;
+        }
+
+        BookWithAuthorsGenresDto bookWithAuthorsGenresDto = new BookWithAuthorsGenresDto();
+
+        bookWithAuthorsGenresDto.setId( book.getId() );
+        bookWithAuthorsGenresDto.setBookName( book.getBookName() );
+        bookWithAuthorsGenresDto.setYearOfPublishing( book.getYearOfPublishing() );
+        bookWithAuthorsGenresDto.setIsbn( book.getIsbn() );
+        bookWithAuthorsGenresDto.setAgeRating( book.getAgeRating() );
+        bookWithAuthorsGenresDto.setLanguage( book.getLanguage() );
+        bookWithAuthorsGenresDto.setQuantity( book.getQuantity() );
+        bookWithAuthorsGenresDto.setAuthors( authorMapper.fromEntities( book.getAuthors() ) );
+        bookWithAuthorsGenresDto.setGenres( genreMapper.fromEntities( book.getGenres() ) );
+
+        return bookWithAuthorsGenresDto;
+    }
+
+    @Override
+    public List<BookWithAuthorsGenresDto> fromEntitiesWithAuthorsGenres(Iterable<BookEntity> books) {
+        if ( books == null ) {
+            return null;
+        }
+
+        List<BookWithAuthorsGenresDto> list = new ArrayList<BookWithAuthorsGenresDto>();
+        for ( BookEntity bookEntity : books ) {
+            list.add( fromEntityWithAuthorsGenres( bookEntity ) );
+        }
+
+        return list;
+    }
 
     @Override
     public BookDto fromEntity(BookEntity bookEntity) {
@@ -23,49 +63,16 @@ public class BookMapperImpl implements BookMapper {
             return null;
         }
 
-        Builder bookDto = ImmutableBookDto.builder();
+        BookDto bookDto = new BookDto();
 
-        bookDto.id( bookEntity.getId() );
-        bookDto.bookName( bookEntity.getBookName() );
-        bookDto.yearOfPublishing( bookEntity.getYearOfPublishing() );
-        bookDto.isbn( bookEntity.getIsbn() );
-        bookDto.ageRating( bookEntity.getAgeRating() );
-        bookDto.language( bookEntity.getLanguage() );
-        bookDto.quantity( bookEntity.getQuantity() );
+        bookDto.setId( bookEntity.getId() );
+        bookDto.setBookName( bookEntity.getBookName() );
+        bookDto.setYearOfPublishing( bookEntity.getYearOfPublishing() );
+        bookDto.setIsbn( bookEntity.getIsbn() );
+        bookDto.setAgeRating( bookEntity.getAgeRating() );
+        bookDto.setLanguage( bookEntity.getLanguage() );
+        bookDto.setQuantity( bookEntity.getQuantity() );
 
-        return bookDto.build();
-    }
-
-    @Override
-    public BookEntity toEntity(BookDto bookDto) {
-        if ( bookDto == null ) {
-            return null;
-        }
-
-        BookEntity bookEntity = new BookEntity();
-
-        bookEntity.setId( bookDto.getId() );
-        bookEntity.setBookName( bookDto.getBookName() );
-        bookEntity.setYearOfPublishing( bookDto.getYearOfPublishing() );
-        bookEntity.setQuantity( bookDto.getQuantity() );
-        bookEntity.setIsbn( bookDto.getIsbn() );
-        bookEntity.setAgeRating( bookDto.getAgeRating() );
-        bookEntity.setLanguage( bookDto.getLanguage() );
-
-        return bookEntity;
-    }
-
-    @Override
-    public List<BookDto> fromEntities(Iterable<BookEntity> bookEntities) {
-        if ( bookEntities == null ) {
-            return null;
-        }
-
-        List<BookDto> list = new ArrayList<BookDto>();
-        for ( BookEntity bookEntity : bookEntities ) {
-            list.add( fromEntity( bookEntity ) );
-        }
-
-        return list;
+        return bookDto;
     }
 }

@@ -4,26 +4,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@NamedEntityGraph(
-  name = "author-with-books",
-  attributeNodes = {
-    @NamedAttributeNode("id"),
-    @NamedAttributeNode("firstName"),
-    @NamedAttributeNode("lastName"),
-    @NamedAttributeNode(value = "books", subgraph = "books")
-  },
-  subgraphs = {
-    @NamedSubgraph(
-      name = "books",
-      attributeNodes = {
-        @NamedAttributeNode("id"),
-        @NamedAttributeNode("bookName"),
-        @NamedAttributeNode("yearOfPublishing"),
-        @NamedAttributeNode("quantity")
-      }
-    )
-  }
-)
 @Table(schema = "library", name = "authors")
 @Entity(name = "authors")
 public class AuthorEntity {
@@ -50,14 +30,6 @@ public class AuthorEntity {
 
   @Column(name = "author_sex")
   private String sex;
-
-  @ManyToMany
-  @JoinTable(
-    joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "author_id"),
-    inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "book_id"),
-    name = "book_authors",
-    schema = "library")
-  private List<BookEntity> books;
 
   //id
   public Integer getId() { return id; }
@@ -93,13 +65,4 @@ public class AuthorEntity {
   public String getSex() { return sex; }
 
   public void setSex(String sex) { this.sex = sex; }
-
-  //books
-  public List<BookEntity> getBooks() {
-    return books;
-  }
-
-  public void setBooks(List<BookEntity> books) {
-    this.books = books;
-  }
 }

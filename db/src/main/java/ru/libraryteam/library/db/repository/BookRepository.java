@@ -2,20 +2,18 @@ package ru.libraryteam.library.db.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import ru.libraryteam.library.db.entity.AuthorEntity;
 import ru.libraryteam.library.db.entity.BookEntity;
 
 import java.util.List;
 
 @Repository
 public interface BookRepository extends CrudRepository<BookEntity, Integer>, JpaSpecificationExecutor<BookEntity> {
-
-  Page<BookEntity> getAllByBookNameIsContainingOrAgeRatingIsContaining(
-    String bookName, String ageRating, Pageable pageable
-  );
 
   @Query(
     ""
@@ -47,4 +45,8 @@ public interface BookRepository extends CrudRepository<BookEntity, Integer>, Jpa
     Pageable pageable
   );
 
+
+  @Override
+  @EntityGraph(value = "book-with-authors-genres")
+  Iterable<BookEntity> findAll();
 }

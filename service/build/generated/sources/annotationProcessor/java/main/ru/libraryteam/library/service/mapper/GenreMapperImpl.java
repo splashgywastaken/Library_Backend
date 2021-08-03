@@ -6,10 +6,12 @@ import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.GenreEntity;
 import ru.libraryteam.library.service.model.GenreDto;
+import ru.libraryteam.library.service.model.ImmutableGenreDto;
+import ru.libraryteam.library.service.model.ImmutableGenreDto.Builder;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-03T02:02:34+0300",
+    date = "2021-08-03T13:33:16+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -21,12 +23,12 @@ public class GenreMapperImpl implements GenreMapper {
             return null;
         }
 
-        GenreDto genreDto = new GenreDto();
+        Builder genreDto = ImmutableGenreDto.builder();
 
-        genreDto.setId( genreEntity.getId() );
-        genreDto.setGenreName( genreEntity.getGenreName() );
+        genreDto.id( genreEntity.getId() );
+        genreDto.genreName( genreEntity.getGenreName() );
 
-        return genreDto;
+        return genreDto.build();
     }
 
     @Override

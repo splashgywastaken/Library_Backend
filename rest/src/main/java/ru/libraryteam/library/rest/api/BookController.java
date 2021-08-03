@@ -1,12 +1,11 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.model.PageDto;
-import ru.libraryteam.library.service.model.impl.BookDtoImpl;
+import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class BookController {
       pageNumber);
   }
 
-  @GetMapping(value = "/{id}")
+  /*@GetMapping(value = "/{id}")
   BookDto findBookById(@PathVariable(value = "id") int bookId) {
     return bookService.findBookById(bookId);
   }
@@ -79,21 +78,27 @@ public class BookController {
   @GetMapping()
   List<BookDto> getAllBooks() {
     return bookService.findAllBooks();
+  }*/
+
+  @PostMapping
+  BookDto createBook() {
+    return bookService.createBook();
   }
 
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  BookDto createBook(@RequestBody BookDto book) {
-    return bookService.createBook(book);
+  @GetMapping()
+  public List<BookWithAuthorsGenresDto> getAllBooks() {
+    return bookService.getAllBooks();
   }
 
-  @PutMapping(value = "/{id}")
-  BookDto updateBook(@RequestBody BookDtoImpl book, @PathVariable(value = "id") int bookId) {
-    book.setId(bookId);
-    return bookService.updateBook(book);
+  @GetMapping("/{id}")
+  public BookWithAuthorsGenresDto findBookById(@PathVariable("id") int bookId) {
+    return bookService.getBookInfo(bookId);
   }
 
-  @DeleteMapping(value = "/{id}")
-  void deleteBook(@PathVariable(value = "id") int bookId) {
-    bookService.deleteBook(bookId);
+  @PutMapping("/{bookId}/authors/{authorId}")
+  public BookWithAuthorsGenresDto addBook(
+    @PathVariable("bookId") int bookId,
+    @PathVariable("authorId") int authorId) {
+    return bookService.addAuthorToBook(bookId, authorId);
   }
 }

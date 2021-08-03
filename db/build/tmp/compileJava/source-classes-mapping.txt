@@ -18,8 +18,8 @@ ru/libraryteam/library/db/repository/AuthorRepository.java
  ru.libraryteam.library.db.repository.AuthorRepository
 ru/libraryteam/library/db/entity/complex/id/Messages.java
  ru.libraryteam.library.db.entity.complex.id.Messages
-ru/libraryteam/library/db/entity/AuthorEntity.java
- ru.libraryteam.library.db.entity.AuthorEntity
+ru/libraryteam/library/db/entity/BookAuthorsEntity.java
+ ru.libraryteam.library.db.entity.BookAuthorsEntity
 ru/libraryteam/library/db/entity/complex/id/BookAuthorsId.java
  ru.libraryteam.library.db.entity.complex.id.BookAuthorsId
 ru/libraryteam/library/db/repository/NoteRepository.java
@@ -36,9 +36,13 @@ ru/libraryteam/library/db/repository/TagRepository.java
  ru.libraryteam.library.db.repository.TagRepository
 ru/libraryteam/library/db/entity/complex/id/BookTagsId.java
  ru.libraryteam.library.db.entity.complex.id.BookTagsId
+ru/libraryteam/library/db/entity/AuthorEntity.java
+ ru.libraryteam.library.db.entity.AuthorEntity
 ru/libraryteam/library/db/entity/BookEntity.java
  ru.libraryteam.library.db.entity.BookEntity
-ru/libraryteam/library/db/entity/BookAuthorsEntity.java
- ru.libraryteam.library.db.entity.BookAuthorsEntity
+ru/libraryteam/library/db/entity/BookGenresEntity.java
+ ru.libraryteam.library.db.entity.BookGenresEntity
+ru/libraryteam/library/db/repository/BookGenresRepository.java
+ ru.libraryteam.library.db.repository.BookGenresRepository
 ru/libraryteam/library/db/repository/BookRepository.java
  ru.libraryteam.library.db.repository.BookRepository

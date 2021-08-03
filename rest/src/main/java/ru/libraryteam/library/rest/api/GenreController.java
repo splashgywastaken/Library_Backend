@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.logic.GenreService;
+import ru.libraryteam.library.service.model.impl.GenreDtoImpl;
 
 @RestController
 @RequestMapping("/genres")
@@ -26,7 +27,7 @@ public class GenreController {
   }
 
   @PutMapping("/{id}")
-  GenreDto updateGenre(@RequestBody GenreDto genre, @PathVariable int id) {
+  GenreDto updateGenre(@RequestBody GenreDtoImpl genre, @PathVariable int id) {
     genre.setId(id);
     return service.updateGenre(genre);
   }
