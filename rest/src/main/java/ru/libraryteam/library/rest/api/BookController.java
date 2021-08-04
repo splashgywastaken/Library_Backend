@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.model.BookDto;
-import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.model.PageDto;
-import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
+import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +55,10 @@ public class BookController {
 
     if (genres.isEmpty()) genres = new ArrayList<>();
     if (tags.isEmpty()) tags = new ArrayList<>();
+
     if (bookName.isEmpty() || bookName.isBlank()) bookName = UUID.randomUUID().toString();
 
-    return bookService.newFind(
+    return bookService.search(
       lastName,
       firstName,
       genres,
@@ -72,24 +72,28 @@ public class BookController {
   }
 
   @PostMapping
-  BookDto createBook(@RequestBody BookDto dto) {
-    return bookService.createBook(dto);
+  BookDto createBook(@RequestBody BookWithAuthorsGenresTagsDto dto) {
+    return bookService.extendedCreateBook(dto);
   }
 
   @GetMapping()
-  public List<BookWithAuthorsGenresDto> getAllBooks() {
+  public List<BookWithAuthorsGenresTagsDto> getAllBooks() {
     return bookService.getAllBooks();
   }
 
   @GetMapping("/{id}")
-  public BookWithAuthorsGenresDto findBookById(@PathVariable("id") int bookId) {
+  public BookWithAuthorsGenresTagsDto findBookById(@PathVariable("id") int bookId) {
     return bookService.getBookInfo(bookId);
   }
 
-  @PutMapping("/{bookId}/authors/{authorId}")
-  public BookWithAuthorsGenresDto addAuthor(
-    @PathVariable("bookId") int bookId,
-    @PathVariable("authorId") int authorId) {
-    return bookService.addAuthorToBook(bookId, authorId);
+  @PutMapping(value = "/{id}")
+  BookDto updateBook(@RequestBody BookDto book, @PathVariable(value = "id") int bookId) {
+    book.setId(bookId);
+    return bookService.updateBook(book);
+  }
+
+  @DeleteMapping(value = "/{id}")
+  void deleteBook(@PathVariable(value = "id") int bookId) {
+    bookService.deleteBook(bookId);
   }
 }

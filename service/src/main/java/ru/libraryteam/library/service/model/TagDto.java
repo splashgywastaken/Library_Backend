@@ -1,29 +1,17 @@
 package ru.libraryteam.library.service.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.immutables.value.Value;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.Column;
+@Value.Immutable
+@JsonDeserialize(builder = ImmutableTagDto.Builder.class)
+public interface TagDto {
 
-public class TagDto {
-
-  private Integer id;
+  @Nullable
+  public Integer getId();
 
   @JsonProperty("tag_name")
-  private String tagName;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getTagName() {
-    return tagName;
-  }
-
-  public void setTagName(String tagName) {
-    this.tagName = tagName;
-  }
+  public String getTagName();
 }

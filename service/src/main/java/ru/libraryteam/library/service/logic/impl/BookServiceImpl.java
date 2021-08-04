@@ -5,16 +5,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.entity.BookAuthorsEntity;
-import ru.libraryteam.library.db.entity.BookEntity;
+import ru.libraryteam.library.db.entity.BookGenresEntity;
+import ru.libraryteam.library.db.entity.BookTagsEntity;
 import ru.libraryteam.library.db.entity.complex.id.BookAuthorsId;
-import ru.libraryteam.library.db.repository.BookAuthorsRepository;
-import ru.libraryteam.library.db.repository.BookRepository;
+import ru.libraryteam.library.db.entity.complex.id.BookGenresId;
+import ru.libraryteam.library.db.entity.complex.id.BookTagsId;
+import ru.libraryteam.library.db.repository.*;
 import ru.libraryteam.library.service.logic.BookService;
+import ru.libraryteam.library.service.mapper.AuthorMapper;
 import ru.libraryteam.library.service.mapper.BookMapper;
-import ru.libraryteam.library.service.model.BookDto;
-import ru.libraryteam.library.service.model.ImmutablePageDto;
-import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto;
-import ru.libraryteam.library.service.model.PageDto;
+import ru.libraryteam.library.service.mapper.GenreMapper;
+import ru.libraryteam.library.service.mapper.TagMapper;
+import ru.libraryteam.library.service.model.*;
+import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
+import ru.libraryteam.library.service.model.impl.GenreDtoImpl;
+import ru.libraryteam.library.service.model.impl.TagDtoImpl;
 
 import java.util.List;
 
@@ -23,17 +29,48 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final BookMapper bookMapper;
+
   private final BookAuthorsRepository bookAuthorsRepository;
+  private final BookGenresRepository bookGenresRepository;
+  private final BookTagsRepository bookTagsRepository;
+
+  private final AuthorRepository authorRepository;
+  private final AuthorMapper authorMapper;
+
+  private final GenreRepository genreRepository;
+  private final GenreMapper genreMapper;
+
+  private final TagRepository tagRepository;
+  private final TagMapper tagMapper;
 
   @Autowired
-  public BookServiceImpl(BookRepository bookRepository, BookMapper bookMapper, BookAuthorsRepository bookAuthorsRepository) {
+  public BookServiceImpl(
+    BookRepository bookRepository,
+    BookMapper bookMapper,
+    BookAuthorsRepository bookAuthorsRepository,
+    BookGenresRepository bookGenresRepository,
+    BookTagsRepository bookTagsRepository,
+    AuthorRepository authorRepository,
+    AuthorMapper authorMapper,
+    GenreRepository genreRepository,
+    GenreMapper genreMapper,
+    TagRepository tagRepository,
+    TagMapper tagMapper) {
     this.bookRepository = bookRepository;
     this.bookMapper = bookMapper;
     this.bookAuthorsRepository = bookAuthorsRepository;
+    this.bookGenresRepository = bookGenresRepository;
+    this.bookTagsRepository = bookTagsRepository;
+    this.authorRepository = authorRepository;
+    this.authorMapper = authorMapper;
+    this.genreRepository = genreRepository;
+    this.genreMapper = genreMapper;
+    this.tagRepository = tagRepository;
+    this.tagMapper = tagMapper;
   }
 
   @Override
-  public BookDto createBook(BookDto dto) {
+  public BookDto basicCreateBook(BookDto dto) {
     return bookMapper.fromEntity(
       bookRepository.save(
         bookMapper.toEntity(dto)
@@ -42,15 +79,38 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public BookWithAuthorsGenresDto getBookInfo(int bookId) {
+  public BookDto extendedCreateBook(BookWithAuthorsGenresTagsDto dto) {
+    var book  = (BookDto) basicCreateBook(dto);
+
+    extendedAddAuthorToBook(book, dto);
+
+    extendedAddGenreToBook(book, dto);
+
+    extendedAddTagToBook(book, dto);
+
+    return book;
+  }
+
+  @Override
+  public BookDto updateBook(BookDto dto) {
+    return basicCreateBook(dto);
+  }
+
+  @Override
+  public BookWithAuthorsGenresTagsDto getBookInfo(int bookId) {
     return bookRepository
       .findById(bookId)
-      .map(bookMapper::fromEntityWithAuthorsGenres)
+      .map(bookMapper::fromEntityWithAuthorsGenresTags)
       .orElse(null);
   }
 
   @Override
-  public BookWithAuthorsGenresDto addAuthorToBook(int bookId, int authorId) {
+  public List<BookWithAuthorsGenresTagsDto> getAllBooks() {
+    return bookMapper.fromEntitiesWithAuthorsGenresTags(bookRepository.findAll());
+  }
+
+  @Override
+  public void addAuthorToBook(int bookId, int authorId) {
     final var entity = new BookAuthorsEntity();
     final var id = new BookAuthorsId();
     id.setAuthorId(authorId);
@@ -58,20 +118,134 @@ public class BookServiceImpl implements BookService {
     entity.setId(id);
     var saved = bookAuthorsRepository.save(entity);
 
-    return bookRepository
+    bookRepository
       .findById(bookId)
-      .map(bookMapper::fromEntityWithAuthorsGenres)
-      .orElse(null);
+      .map(bookMapper::fromEntityWithAuthorsGenresTags);
   }
 
   @Override
-  public List<BookWithAuthorsGenresDto> getAllBooks() {
-    return bookMapper.fromEntitiesWithAuthorsGenres(bookRepository.findAll());
+  public void addGenreToBook(int bookId, int genreId) {
+    final var entity = new BookGenresEntity();
+    final var id = new BookGenresId();
+    id.setGenreId(genreId);
+    id.setBookId(bookId);
+    entity.setId(id);
+    var saved = bookGenresRepository.save(entity);
+
+    bookRepository
+      .findById(bookId)
+      .map(bookMapper::fromEntityWithAuthorsGenresTags);
+  }
+
+  @Override
+  public void addTagToBook(int bookId, int tagId) {
+    final var entity = new BookTagsEntity();
+    final var id = new BookTagsId();
+    id.setTagId(tagId);
+    id.setBookId(bookId);
+    entity.setId(id);
+    var saved = bookTagsRepository.save(entity);
+
+    bookRepository
+      .findById(bookId)
+      .map(bookMapper::fromEntityWithAuthorsGenresTags);
+  }
+
+  @Override
+  public void extendedAddAuthorToBook(BookDto book, BookWithAuthorsGenresTagsDto dto) {
+    if (dto.getAuthors() != null) {
+      if (!dto.getAuthors().isEmpty()) {
+        for (AuthorDto author : dto.getAuthors()) {
+          if (!author.getFirstName().isBlank() && !author.getLastName().isBlank()) {
+            var foundAuthor =
+              authorRepository.getByFirstNameAndLastName(author.getFirstName(), author.getLastName());
+
+            if (foundAuthor == null) {
+              var newAuthor = new AuthorDtoImpl();
+              newAuthor.setFirstName(author.getFirstName());
+              newAuthor.setLastName(author.getLastName());
+
+              author =  authorMapper.fromEntity(
+                authorRepository.save(
+                  authorMapper.toEntity(newAuthor)
+                )
+              );
+            }
+
+            if (author.getId() != null && book.getId() != null) {
+              addAuthorToBook(book.getId(), author.getId());
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @Override
+  public void extendedAddGenreToBook(BookDto book, BookWithAuthorsGenresTagsDto dto) {
+    if (dto.getGenres() != null) {
+      if (!dto.getGenres().isEmpty()) {
+        for (GenreDto genre: dto.getGenres()){
+          if (!genre.getGenreName().isBlank()) {
+            var foundGenre = genreRepository.getByGenreNameEquals(genre.getGenreName());
+
+            if (foundGenre == null) {
+              var newGenre = new GenreDtoImpl();
+              newGenre.setGenreName(genre.getGenreName());
+
+              genre = genreMapper.fromEntity(
+                genreRepository.save(
+                  genreMapper.toEntity(newGenre)
+                )
+              );
+            }
+
+            if (genre.getId() != null && book.getId() != null) {
+              addGenreToBook(book.getId(), genre.getId());
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  @Override
+  public void extendedAddTagToBook(BookDto book, BookWithAuthorsGenresTagsDto dto) {
+    if (dto.getTags() != null) {
+      if (!dto.getTags().isEmpty()) {
+        for (TagDto tag: dto.getTags()){
+          if (!tag.getTagName().isBlank()) {
+            var foundTag = tagRepository.getByTagNameEquals(tag.getTagName());
+
+            if (foundTag == null) {
+              var newTag = new TagDtoImpl() ;
+              newTag.setTagName(tag.getTagName());
+
+              tag = tagMapper.fromEntity(
+                tagRepository.save(
+                  tagMapper.toEntity(newTag)
+                )
+              );
+            }
+
+            if (tag.getId() != null && book.getId() != null) {
+              addTagToBook(book.getId(), tag.getId());
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @Override
+  public void deleteBook(int bookId) {
+    bookRepository.deleteById(bookId);
   }
 
   @Override
   @Transactional
-  public PageDto<BookDto> newFind(
+  public PageDto<BookDto> search(
     List<String> authorLastName,
     List<String> authorFirstName,
     List<String> genreName,

@@ -19,7 +19,7 @@ public class BookDto {
   @JsonProperty("book_name")
   private String bookName;
 
-  @JsonProperty("year_of_publication")
+  @JsonProperty("year_of_publishing")
   private Integer yearOfPublishing;
 
   private String isbn;

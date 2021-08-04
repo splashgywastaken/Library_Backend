@@ -13,4 +13,6 @@ public interface AuthorRepository extends CrudRepository<AuthorEntity, Integer> 
 
   @Override
   Iterable<AuthorEntity> findAll();
+
+  AuthorEntity getByFirstNameAndLastName(String firstName, String lastName);
 }

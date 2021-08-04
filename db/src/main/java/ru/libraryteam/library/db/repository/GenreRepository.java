@@ -7,4 +7,5 @@ import ru.libraryteam.library.db.entity.GenreEntity;
 @Repository
 public interface GenreRepository extends CrudRepository<GenreEntity, Integer> {
 
+  GenreEntity getByGenreNameEquals(String genreName);
 }

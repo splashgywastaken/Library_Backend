@@ -1,13 +1,11 @@
 package ru.libraryteam.library.db.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @NamedEntityGraph(
-  name = "book-with-authors-genres",
+  name = "book-with-authors-genres-tags",
   attributeNodes = {
     @NamedAttributeNode(value = "id"),
     @NamedAttributeNode(value = "bookName"),
@@ -17,7 +15,8 @@ import java.util.Set;
     @NamedAttributeNode(value = "ageRating"),
     @NamedAttributeNode(value = "language"),
     @NamedAttributeNode(value = "authors", subgraph = "authors"),
-    @NamedAttributeNode(value = "genres", subgraph = "genres")
+    @NamedAttributeNode(value = "genres", subgraph = "genres"),
+    @NamedAttributeNode(value = "tags", subgraph = "tags")
   },
   subgraphs = {
     @NamedSubgraph(
@@ -33,6 +32,13 @@ import java.util.Set;
       attributeNodes = {
         @NamedAttributeNode("id"),
         @NamedAttributeNode("genreName")
+      }
+    ),
+    @NamedSubgraph(
+      name = "tags",
+      attributeNodes = {
+        @NamedAttributeNode("id"),
+        @NamedAttributeNode("tagName")
       }
     )
   }
@@ -89,7 +95,7 @@ public class BookEntity {
     name = "book_tags",
     schema = "library"
   )
-  private List<TagEntity> tags;
+  private Set<TagEntity> tags;
 
   //id
   public Integer getId() { return id; }
@@ -145,11 +151,11 @@ public class BookEntity {
   }
 
   //tags
-  public List<TagEntity> getTags() {
+  public Set<TagEntity> getTags() {
     return tags;
   }
 
-  public void setTags(List<TagEntity> tags) {
+  public void setTags(Set<TagEntity> tags) {
     this.tags = tags;
   }
 }

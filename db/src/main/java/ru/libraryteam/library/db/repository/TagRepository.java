@@ -6,4 +6,6 @@ import ru.libraryteam.library.db.entity.TagEntity;
 
 @Repository
 public interface TagRepository extends CrudRepository<TagEntity, Integer> {
+
+  TagEntity getByTagNameEquals(String tagName);
 }

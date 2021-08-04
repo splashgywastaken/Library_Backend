@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.TagEntity;
+import ru.libraryteam.library.service.model.ImmutableTagDto;
+import ru.libraryteam.library.service.model.ImmutableTagDto.Builder;
 import ru.libraryteam.library.service.model.TagDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-03T15:52:49+0300",
+    date = "2021-08-04T14:52:14+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -21,12 +23,12 @@ public class TagMapperImpl implements TagMapper {
             return null;
         }
 
-        TagDto tagDto = new TagDto();
+        Builder tagDto = ImmutableTagDto.builder();
 
-        tagDto.setId( entity.getId() );
-        tagDto.setTagName( entity.getTagName() );
+        tagDto.id( entity.getId() );
+        tagDto.tagName( entity.getTagName() );
 
-        return tagDto;
+        return tagDto.build();
     }
 
     @Override

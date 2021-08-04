@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.TagService;
 import ru.libraryteam.library.service.model.TagDto;
+import ru.libraryteam.library.service.model.impl.TagDtoImpl;
 
 @RestController
 @RequestMapping(value = "/tags")
@@ -32,7 +33,7 @@ public class TagController {
   }
 
   @PutMapping(value = "/{id}")
-  TagDto updateTag(@RequestBody TagDto tag, @PathVariable(value = "id") int tagId) {
+  TagDto updateTag(@RequestBody TagDtoImpl tag, @PathVariable(value = "id") int tagId) {
     tag.setId(tagId);
     return tagService.updateTag(tag);
   }

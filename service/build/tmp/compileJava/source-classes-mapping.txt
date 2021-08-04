@@ -18,18 +18,18 @@ ru/libraryteam/library/service/model/BookDto.java
  ru.libraryteam.library.service.model.BookDto
 ru/libraryteam/library/service/logic/BookService.java
  ru.libraryteam.library.service.logic.BookService
-ru/libraryteam/library/service/model/complex/dto/BookWithAuthorsGenresDto.java
- ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresDto
+ru/libraryteam/library/service/model/TagDto.java
+ ru.libraryteam.library.service.model.TagDto
 ru/libraryteam/library/service/logic/GenreService.java
  ru.libraryteam.library.service.logic.GenreService
 ru/libraryteam/library/service/logic/impl/NoteServiceImpl.java
  ru.libraryteam.library.service.logic.impl.NoteServiceImpl
-ru/libraryteam/library/service/model/TagDto.java
- ru.libraryteam.library.service.model.TagDto
 ru/libraryteam/library/service/logic/impl/TagServiceImpl.java
  ru.libraryteam.library.service.logic.impl.TagServiceImpl
 ru/libraryteam/library/service/model/impl/GenreDtoImpl.java
  ru.libraryteam.library.service.model.impl.GenreDtoImpl
+ru/libraryteam/library/service/model/impl/TagDtoImpl.java
+ ru.libraryteam.library.service.model.impl.TagDtoImpl
 ru/libraryteam/library/service/model/GenreDto.java
  ru.libraryteam.library.service.model.GenreDto
 ru/libraryteam/library/service/logic/AchievementService.java
@@ -52,6 +52,8 @@ ru/libraryteam/library/service/mapper/NoteMapper.java
  ru.libraryteam.library.service.mapper.NoteMapper
 ru/libraryteam/library/service/model/AuthorDto.java
  ru.libraryteam.library.service.model.AuthorDto
+ru/libraryteam/library/service/model/complex/dto/BookWithAuthorsGenresTagsDto.java
+ ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto
 ru/libraryteam/library/service/mapper/TagMapper.java
  ru.libraryteam.library.service.mapper.TagMapper
 ru/libraryteam/library/service/logic/UserService.java

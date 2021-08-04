@@ -47,6 +47,6 @@ public interface BookRepository extends CrudRepository<BookEntity, Integer>, Jpa
 
 
   @Override
-  @EntityGraph(value = "book-with-authors-genres")
+  @EntityGraph(value = "book-with-authors-genres-tags")
   Iterable<BookEntity> findAll();
 }
