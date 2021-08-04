@@ -6,10 +6,11 @@ import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.UserEntity;
 import ru.libraryteam.library.service.model.UserDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-04T14:52:13+0300",
+    date = "2021-08-05T01:39:10+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -64,6 +65,35 @@ public class UserMapperImpl implements UserMapper {
         List<UserDto> list = new ArrayList<UserDto>();
         for ( UserEntity userEntity : entities ) {
             list.add( fromEntity( userEntity ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public SimpleUserMessageDto fromSimpleEntity(UserEntity entity) {
+        if ( entity == null ) {
+            return null;
+        }
+
+        SimpleUserMessageDto simpleUserMessageDto = new SimpleUserMessageDto();
+
+        simpleUserMessageDto.setId( entity.getId() );
+        simpleUserMessageDto.setFirstName( entity.getFirstName() );
+        simpleUserMessageDto.setLastName( entity.getLastName() );
+
+        return simpleUserMessageDto;
+    }
+
+    @Override
+    public List<SimpleUserMessageDto> fromSimpleEntities(Iterable<UserEntity> entities) {
+        if ( entities == null ) {
+            return null;
+        }
+
+        List<SimpleUserMessageDto> list = new ArrayList<SimpleUserMessageDto>();
+        for ( UserEntity userEntity : entities ) {
+            list.add( fromSimpleEntity( userEntity ) );
         }
 
         return list;

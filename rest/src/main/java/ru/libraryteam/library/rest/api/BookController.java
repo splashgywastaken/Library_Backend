@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.model.BookDto;
+import ru.libraryteam.library.service.model.MessageDto;
 import ru.libraryteam.library.service.model.PageDto;
-import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +79,7 @@ public class BookController {
   }
 
   @GetMapping()
-  public List<BookWithAuthorsGenresTagsDto> getAllBooks() {
+  public List<SimpleBookWithAuthorsGenresDto> getAllBooks() {
     return bookService.getAllBooks();
   }
 
@@ -96,4 +98,14 @@ public class BookController {
   void deleteBook(@PathVariable(value = "id") int bookId) {
     bookService.deleteBook(bookId);
   }
+
+  @PostMapping(value = "/{bookId}/users/{userId}")
+  public BookWithAuthorsGenresTagsDto addUser(
+    @RequestBody MessageDto messageDto,
+    @PathVariable("bookId") int bookId,
+    @PathVariable("userId") int userId
+  ) {
+    return bookService.addMessageToBook(bookId, userId, messageDto);
+  }
+
 }

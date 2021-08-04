@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.libraryteam.library.db.entity.UserEntity;
 import ru.libraryteam.library.service.model.UserDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface UserMapper {
   UserEntity toEntity(UserDto dto);
 
   List<UserDto> formEntities(Iterable<UserEntity> entities);
+
+  SimpleUserMessageDto fromSimpleEntity(UserEntity entity);
+
+  List<SimpleUserMessageDto> fromSimpleEntities(Iterable<UserEntity> entities);
 }

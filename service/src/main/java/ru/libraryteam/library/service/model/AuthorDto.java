@@ -12,9 +12,9 @@ public interface AuthorDto {
   @Nullable
   Integer getId();
 
-  @JsonProperty("first_name")
+  @JsonProperty(value = "first_name")
   String getFirstName();
 
-  @JsonProperty("last_name")
+  @JsonProperty(value = "last_name")
   String getLastName();
 }

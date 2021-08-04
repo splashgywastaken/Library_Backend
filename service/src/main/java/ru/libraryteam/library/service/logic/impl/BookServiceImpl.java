@@ -7,20 +7,19 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.entity.BookAuthorsEntity;
 import ru.libraryteam.library.db.entity.BookGenresEntity;
 import ru.libraryteam.library.db.entity.BookTagsEntity;
+import ru.libraryteam.library.db.entity.MessageEntity;
 import ru.libraryteam.library.db.entity.complex.id.BookAuthorsId;
 import ru.libraryteam.library.db.entity.complex.id.BookGenresId;
 import ru.libraryteam.library.db.entity.complex.id.BookTagsId;
+import ru.libraryteam.library.db.entity.complex.id.MessageId;
 import ru.libraryteam.library.db.repository.*;
 import ru.libraryteam.library.service.logic.BookService;
-import ru.libraryteam.library.service.mapper.AuthorMapper;
-import ru.libraryteam.library.service.mapper.BookMapper;
-import ru.libraryteam.library.service.mapper.GenreMapper;
-import ru.libraryteam.library.service.mapper.TagMapper;
+import ru.libraryteam.library.service.mapper.*;
 import ru.libraryteam.library.service.model.*;
-import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto;
 import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
 import ru.libraryteam.library.service.model.impl.GenreDtoImpl;
 import ru.libraryteam.library.service.model.impl.TagDtoImpl;
+import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 import java.util.List;
 
@@ -34,6 +33,9 @@ public class BookServiceImpl implements BookService {
   private final BookGenresRepository bookGenresRepository;
   private final BookTagsRepository bookTagsRepository;
 
+  private final MessageRepository messageRepository;
+  private final MessageMapper messageMapper;
+
   private final AuthorRepository authorRepository;
   private final AuthorMapper authorMapper;
 
@@ -43,6 +45,9 @@ public class BookServiceImpl implements BookService {
   private final TagRepository tagRepository;
   private final TagMapper tagMapper;
 
+  private final UserRepository repository;
+  private final UserMapper mapper;
+
   @Autowired
   public BookServiceImpl(
     BookRepository bookRepository,
@@ -50,23 +55,29 @@ public class BookServiceImpl implements BookService {
     BookAuthorsRepository bookAuthorsRepository,
     BookGenresRepository bookGenresRepository,
     BookTagsRepository bookTagsRepository,
+    MessageRepository messageRepository,
+    MessageMapper messageMapper,
     AuthorRepository authorRepository,
     AuthorMapper authorMapper,
     GenreRepository genreRepository,
     GenreMapper genreMapper,
     TagRepository tagRepository,
-    TagMapper tagMapper) {
+    TagMapper tagMapper, UserRepository repository, UserMapper mapper) {
     this.bookRepository = bookRepository;
     this.bookMapper = bookMapper;
     this.bookAuthorsRepository = bookAuthorsRepository;
     this.bookGenresRepository = bookGenresRepository;
     this.bookTagsRepository = bookTagsRepository;
+    this.messageRepository = messageRepository;
+    this.messageMapper = messageMapper;
     this.authorRepository = authorRepository;
     this.authorMapper = authorMapper;
     this.genreRepository = genreRepository;
     this.genreMapper = genreMapper;
     this.tagRepository = tagRepository;
     this.tagMapper = tagMapper;
+    this.repository = repository;
+    this.mapper = mapper;
   }
 
   @Override
@@ -105,8 +116,8 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public List<BookWithAuthorsGenresTagsDto> getAllBooks() {
-    return bookMapper.fromEntitiesWithAuthorsGenresTags(bookRepository.findAll());
+  public List<SimpleBookWithAuthorsGenresDto> getAllBooks() {
+    return bookMapper.fromEntitiesWithAuthorsGenres(bookRepository.findAll());
   }
 
   @Override
@@ -241,6 +252,30 @@ public class BookServiceImpl implements BookService {
   @Override
   public void deleteBook(int bookId) {
     bookRepository.deleteById(bookId);
+  }
+
+  @Override
+  public BookWithAuthorsGenresTagsDto addMessageToBook(int bookId, int userId, MessageDto dto) {
+    final var id = new MessageId();
+    id.setBookId(bookId);
+    id.setUserId(userId);
+    dto.setId(id);
+    dto.setUser(
+      mapper.fromSimpleEntity(
+        repository.findById(userId).orElse(null)
+      )
+    );
+
+    var saved = messageMapper.fromEntity(
+      messageRepository.save(
+        messageMapper.toEntity(dto)
+      )
+    );
+
+    return bookRepository
+      .findById(bookId)
+      .map(bookMapper::fromEntityWithAuthorsGenresTags)
+      .orElse(null);
   }
 
   @Override

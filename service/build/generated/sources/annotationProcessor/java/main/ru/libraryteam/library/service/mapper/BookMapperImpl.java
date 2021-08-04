@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.BookEntity;
 import ru.libraryteam.library.service.model.BookDto;
-import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-04T14:52:13+0300",
+    date = "2021-08-05T01:39:10+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -23,6 +24,8 @@ public class BookMapperImpl implements BookMapper {
     private GenreMapper genreMapper;
     @Autowired
     private TagMapper tagMapper;
+    @Autowired
+    private MessageMapper messageMapper;
 
     @Override
     public BookWithAuthorsGenresTagsDto fromEntityWithAuthorsGenresTags(BookEntity book) {
@@ -42,6 +45,7 @@ public class BookMapperImpl implements BookMapper {
         bookWithAuthorsGenresTagsDto.setAuthors( authorMapper.fromEntities( book.getAuthors() ) );
         bookWithAuthorsGenresTagsDto.setGenres( genreMapper.fromEntities( book.getGenres() ) );
         bookWithAuthorsGenresTagsDto.setTags( tagMapper.fromEntities( book.getTags() ) );
+        bookWithAuthorsGenresTagsDto.setMessages( messageMapper.fromEntities( book.getMessages() ) );
 
         return bookWithAuthorsGenresTagsDto;
     }
@@ -55,6 +59,37 @@ public class BookMapperImpl implements BookMapper {
         List<BookWithAuthorsGenresTagsDto> list = new ArrayList<BookWithAuthorsGenresTagsDto>();
         for ( BookEntity bookEntity : books ) {
             list.add( fromEntityWithAuthorsGenresTags( bookEntity ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public SimpleBookWithAuthorsGenresDto fromEntityWithAuthorsGenres(BookEntity book) {
+        if ( book == null ) {
+            return null;
+        }
+
+        SimpleBookWithAuthorsGenresDto simpleBookWithAuthorsGenresDto = new SimpleBookWithAuthorsGenresDto();
+
+        simpleBookWithAuthorsGenresDto.setId( book.getId() );
+        simpleBookWithAuthorsGenresDto.setBookName( book.getBookName() );
+        simpleBookWithAuthorsGenresDto.setYearOfPublishing( book.getYearOfPublishing() );
+        simpleBookWithAuthorsGenresDto.setAuthors( authorMapper.fromEntities( book.getAuthors() ) );
+        simpleBookWithAuthorsGenresDto.setGenres( genreMapper.fromEntities( book.getGenres() ) );
+
+        return simpleBookWithAuthorsGenresDto;
+    }
+
+    @Override
+    public List<SimpleBookWithAuthorsGenresDto> fromEntitiesWithAuthorsGenres(Iterable<BookEntity> books) {
+        if ( books == null ) {
+            return null;
+        }
+
+        List<SimpleBookWithAuthorsGenresDto> list = new ArrayList<SimpleBookWithAuthorsGenresDto>();
+        for ( BookEntity bookEntity : books ) {
+            list.add( fromEntityWithAuthorsGenres( bookEntity ) );
         }
 
         return list;

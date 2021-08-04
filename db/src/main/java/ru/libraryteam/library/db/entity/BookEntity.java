@@ -97,6 +97,10 @@ public class BookEntity {
   )
   private Set<TagEntity> tags;
 
+  @OneToMany
+  @JoinColumn(name = "book_id")
+  private Set<MessageEntity> messages;
+
   //id
   public Integer getId() { return id; }
 
@@ -157,5 +161,13 @@ public class BookEntity {
 
   public void setTags(Set<TagEntity> tags) {
     this.tags = tags;
+  }
+
+  public Set<MessageEntity> getMessages() {
+    return messages;
+  }
+
+  public void setMessages(Set<MessageEntity> messages) {
+    this.messages = messages;
   }
 }

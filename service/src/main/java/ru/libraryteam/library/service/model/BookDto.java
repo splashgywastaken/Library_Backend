@@ -1,36 +1,40 @@
 package ru.libraryteam.library.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({
-   "id",
+  "id",
   "book_name",
-  "year_of_publishing",
+  "authors",
+  "categories",
+  "publication_year",
   "isbn",
-  "age_rating",
+  "quantity",
+  "ages",
   "language",
-  "quantity"
+  "tags",
+  "comments"
   })
 public class BookDto {
 
   private Integer id;
 
-  @JsonProperty("book_name")
+  @JsonProperty(value = "book_name")
   private String bookName;
 
-  @JsonProperty("year_of_publishing")
+  @JsonProperty(value = "publication_year")
   private Integer yearOfPublishing;
 
   private String isbn;
 
-  @JsonProperty("age_rating")
+  @JsonProperty(value = "ages")
   private String ageRating;
 
   private String language;
 
   private Integer quantity;
-
 
   public Integer getId() {
     return id;

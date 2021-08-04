@@ -1,7 +1,8 @@
 package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.*;
-import ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface BookService {
 
   BookWithAuthorsGenresTagsDto getBookInfo(int bookId);
 
-  List<BookWithAuthorsGenresTagsDto> getAllBooks();
+  List<SimpleBookWithAuthorsGenresDto> getAllBooks();
 
   void addAuthorToBook(int bookId, int authorId);
 
@@ -29,6 +30,8 @@ public interface BookService {
   void extendedAddTagToBook(BookDto book, BookWithAuthorsGenresTagsDto dto);
 
   void deleteBook(int bookId);
+
+  BookWithAuthorsGenresTagsDto addMessageToBook(int bookId, int authorId, MessageDto dto);
 
   PageDto<BookDto> search(
     List<String> authorLastName,

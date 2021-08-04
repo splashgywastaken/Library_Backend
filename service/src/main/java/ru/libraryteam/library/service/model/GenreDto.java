@@ -12,6 +12,6 @@ public interface GenreDto {
   @Nullable
   public Integer getId();
 
-  @JsonProperty("genre_name")
+  @JsonProperty(value = "genre_name")
   public String getGenreName();
 }

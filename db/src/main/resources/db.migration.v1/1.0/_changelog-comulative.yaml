@@ -58,3 +58,11 @@ databaseChangeLog:
         - sqlFile:
             path: LT-001-202108012319.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108042028
+      author: MTurusov
+      comment: ALTER TABLE library.messages. ALLOW null for title
+      changes:
+        - sqlFile:
+            path: LT-001-202108042028.sql
+            relativeToChangelogFile: true

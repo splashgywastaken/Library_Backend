@@ -4,6 +4,16 @@ ru/libraryteam/library/service/mapper/UserMapper.java
  ru.libraryteam.library.service.mapper.UserMapper
 ru/libraryteam/library/service/model/impl/AuthorDtoImpl.java
  ru.libraryteam.library.service.model.impl.AuthorDtoImpl
+ru/libraryteam/library/service/model/BookWithAuthorsGenresTagsDto.java
+ ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto
+ru/libraryteam/library/service/model/simple/dto/SimpleBookWithAuthorsGenresDto.java
+ ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto
+ru/libraryteam/library/service/model/simple/dto/SimpleBookDto.java
+ ru.libraryteam.library.service.model.simple.dto.SimpleBookDto
+ru/libraryteam/library/service/mapper/MessageMapper.java
+ ru.libraryteam.library.service.mapper.MessageMapper
+ru/libraryteam/library/service/model/simple/dto/SimpleUserMessageDto.java
+ ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto
 ru/libraryteam/library/service/mapper/AuthorMapper.java
  ru.libraryteam.library.service.mapper.AuthorMapper
 ru/libraryteam/library/service/logic/impl/AchievementServiceImpl.java
@@ -28,6 +38,8 @@ ru/libraryteam/library/service/logic/impl/TagServiceImpl.java
  ru.libraryteam.library.service.logic.impl.TagServiceImpl
 ru/libraryteam/library/service/model/impl/GenreDtoImpl.java
  ru.libraryteam.library.service.model.impl.GenreDtoImpl
+ru/libraryteam/library/service/model/MessageDto.java
+ ru.libraryteam.library.service.model.MessageDto
 ru/libraryteam/library/service/model/impl/TagDtoImpl.java
  ru.libraryteam.library.service.model.impl.TagDtoImpl
 ru/libraryteam/library/service/model/GenreDto.java
@@ -52,8 +64,6 @@ ru/libraryteam/library/service/mapper/NoteMapper.java
  ru.libraryteam.library.service.mapper.NoteMapper
 ru/libraryteam/library/service/model/AuthorDto.java
  ru.libraryteam.library.service.model.AuthorDto
-ru/libraryteam/library/service/model/complex/dto/BookWithAuthorsGenresTagsDto.java
- ru.libraryteam.library.service.model.complex.dto.BookWithAuthorsGenresTagsDto
 ru/libraryteam/library/service/mapper/TagMapper.java
  ru.libraryteam.library.service.mapper.TagMapper
 ru/libraryteam/library/service/logic/UserService.java
