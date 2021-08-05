@@ -16,7 +16,8 @@ import java.util.Set;
     @NamedAttributeNode(value = "language"),
     @NamedAttributeNode(value = "authors", subgraph = "authors"),
     @NamedAttributeNode(value = "genres", subgraph = "genres"),
-    @NamedAttributeNode(value = "tags", subgraph = "tags")
+    @NamedAttributeNode(value = "tags", subgraph = "tags"),
+    @NamedAttributeNode(value = "messages", subgraph = "messages")
   },
   subgraphs = {
     @NamedSubgraph(
@@ -39,6 +40,13 @@ import java.util.Set;
       attributeNodes = {
         @NamedAttributeNode("id"),
         @NamedAttributeNode("tagName")
+      }
+    ),
+    @NamedSubgraph(
+      name = "messages",
+      attributeNodes = {
+        @NamedAttributeNode("id"),
+        @NamedAttributeNode("messageBody")
       }
     )
   }
@@ -95,11 +103,11 @@ public class BookEntity {
     name = "book_tags",
     schema = "library"
   )
-  private Set<TagEntity> tags;
+  private Set<TagEntity> tags = new HashSet<>();
 
   @OneToMany
-  @JoinColumn(name = "book_id")
-  private Set<MessageEntity> messages;
+  @JoinColumn(name = "book_id", referencedColumnName = "book_id")
+  private Set<MessageEntity> messages = new HashSet<>();
 
   //id
   public Integer getId() { return id; }

@@ -1,7 +1,5 @@
 package ru.libraryteam.library.db.entity;
 
-import ru.libraryteam.library.db.entity.complex.id.MessageId;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -9,8 +7,10 @@ import java.sql.Timestamp;
 @Entity(name = "messages")
 public class MessageEntity {
 
-  @EmbeddedId
-  private MessageId id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "message_id")
+  private Integer id;
 
   @Column(name = "message_title")
   private String messageTitle;
@@ -21,15 +21,15 @@ public class MessageEntity {
   @Column(name = "message_post_date")
   private Timestamp messagePostDate;
 
-  @OneToOne
-  @JoinColumn(name = "user_id", insertable = false, updatable = false)
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id")
   private UserEntity user;
 
-  public MessageId getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(MessageId id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

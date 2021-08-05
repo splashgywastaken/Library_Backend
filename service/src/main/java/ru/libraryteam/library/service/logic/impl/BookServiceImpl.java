@@ -7,11 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.entity.BookAuthorsEntity;
 import ru.libraryteam.library.db.entity.BookGenresEntity;
 import ru.libraryteam.library.db.entity.BookTagsEntity;
-import ru.libraryteam.library.db.entity.MessageEntity;
 import ru.libraryteam.library.db.entity.complex.id.BookAuthorsId;
 import ru.libraryteam.library.db.entity.complex.id.BookGenresId;
 import ru.libraryteam.library.db.entity.complex.id.BookTagsId;
-import ru.libraryteam.library.db.entity.complex.id.MessageId;
 import ru.libraryteam.library.db.repository.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.mapper.*;
@@ -252,30 +250,6 @@ public class BookServiceImpl implements BookService {
   @Override
   public void deleteBook(int bookId) {
     bookRepository.deleteById(bookId);
-  }
-
-  @Override
-  public BookWithAuthorsGenresTagsDto addMessageToBook(int bookId, int userId, MessageDto dto) {
-    final var id = new MessageId();
-    id.setBookId(bookId);
-    id.setUserId(userId);
-    dto.setId(id);
-    dto.setUser(
-      mapper.fromSimpleEntity(
-        repository.findById(userId).orElse(null)
-      )
-    );
-
-    var saved = messageMapper.fromEntity(
-      messageRepository.save(
-        messageMapper.toEntity(dto)
-      )
-    );
-
-    return bookRepository
-      .findById(bookId)
-      .map(bookMapper::fromEntityWithAuthorsGenresTags)
-      .orElse(null);
   }
 
   @Override

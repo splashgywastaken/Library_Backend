@@ -11,7 +11,7 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-05T01:39:10+0300",
+    date = "2021-08-05T17:38:13+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -26,8 +26,8 @@ public class MessageMapperImpl implements MessageMapper {
         MessageDto messageDto = new MessageDto();
 
         messageDto.setMessageBody( entity.getMessageBody() );
-        messageDto.setId( entity.getId() );
         messageDto.setUser( userEntityToSimpleUserMessageDto( entity.getUser() ) );
+        messageDto.setId( entity.getId() );
 
         return messageDto;
     }

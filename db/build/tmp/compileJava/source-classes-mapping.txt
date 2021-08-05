@@ -40,17 +40,15 @@ ru/libraryteam/library/db/entity/BookTagsEntity.java
  ru.libraryteam.library.db.entity.BookTagsEntity
 ru/libraryteam/library/db/entity/TagEntity.java
  ru.libraryteam.library.db.entity.TagEntity
-ru/libraryteam/library/db/entity/BookEntity.java
- ru.libraryteam.library.db.entity.BookEntity
+ru/libraryteam/library/db/entity/MessageEntity.java
+ ru.libraryteam.library.db.entity.MessageEntity
 ru/libraryteam/library/db/entity/AuthorEntity.java
  ru.libraryteam.library.db.entity.AuthorEntity
 ru/libraryteam/library/db/entity/complex/id/BookAuthorsId.java
  ru.libraryteam.library.db.entity.complex.id.BookAuthorsId
-ru/libraryteam/library/db/repository/BookRepository.java
- ru.libraryteam.library.db.repository.BookRepository
-ru/libraryteam/library/db/entity/complex/id/MessageId.java
- ru.libraryteam.library.db.entity.complex.id.MessageId
+ru/libraryteam/library/db/entity/BookEntity.java
+ ru.libraryteam.library.db.entity.BookEntity
 ru/libraryteam/library/db/repository/MessageRepository.java
  ru.libraryteam.library.db.repository.MessageRepository
-ru/libraryteam/library/db/entity/MessageEntity.java
- ru.libraryteam.library.db.entity.MessageEntity
+ru/libraryteam/library/db/repository/BookRepository.java
+ ru.libraryteam.library.db.repository.BookRepository

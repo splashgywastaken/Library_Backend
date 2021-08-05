@@ -66,3 +66,19 @@ databaseChangeLog:
         - sqlFile:
             path: LT-001-202108042028.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108051441
+      author: MTurusov
+      comment: ALTER TABLE library.messages. DROP COINSTRAINTS AND COLUMN user_id, book_id
+      changes:
+        - sqlFile:
+            path: LT-001-202108051441.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108051622
+      author: MTurusov
+      comment: ADD FOREIGN KEYS and PRIMARY KEY to messages
+      changes:
+        - sqlFile:
+            path: LT-001-202108051622.sql
+            relativeToChangelogFile: true

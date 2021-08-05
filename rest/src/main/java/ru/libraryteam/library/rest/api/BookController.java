@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.model.BookDto;
-import ru.libraryteam.library.service.model.MessageDto;
-import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 import java.util.ArrayList;
@@ -26,14 +25,14 @@ public class BookController {
 
   @GetMapping(value = "/search-book")
   PageDto<BookDto> newFindBooks(
-    @RequestParam(name = "name", required = false, defaultValue = "") String bookName,
+    @RequestParam(name = "name", required = false, defaultValue = "null") String bookName,
     @RequestParam(name = "author", required = false) List<String> authors,
     @RequestParam(name = "year", required = false, defaultValue = "0") Integer yearOfPublishing,
     @RequestParam(name = "tag", required = false) List<String> tags,
     @RequestParam(name = "isbn", required = false, defaultValue = "null") String isbn,
     @RequestParam(name = "genre", required = false) List<String> genres,
     @RequestParam(name = "age", required = false, defaultValue = "null") String age,
-    @RequestParam(name = "page_size", defaultValue = "3") Integer pageSize,
+    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
     @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
   ) {
     List<String> lastName = new ArrayList<>();
@@ -46,7 +45,7 @@ public class BookController {
         String[] fullName = author.split("\\s");
         if (fullName.length == 1) {
           lastName.add(fullName[0]);
-          firstName.add("");
+          firstName.add("null");
         }
         if (fullName.length > 1){
           lastName.add(fullName[0]);
@@ -55,8 +54,12 @@ public class BookController {
       }
     }
 
-    if (genres.isEmpty()) genres = new ArrayList<>();
-    if (tags.isEmpty()) tags = new ArrayList<>();
+    if (lastName.isEmpty() || firstName.isEmpty()) {
+      lastName.add("null");
+      firstName.add("null");
+    }
+    if (genres.isEmpty()) genres.add("null");
+    if (tags.isEmpty()) tags.add("null");
 
     if (bookName.isEmpty() || bookName.isBlank()) bookName = UUID.randomUUID().toString();
 
@@ -97,15 +100,6 @@ public class BookController {
   @DeleteMapping(value = "/{id}")
   void deleteBook(@PathVariable(value = "id") int bookId) {
     bookService.deleteBook(bookId);
-  }
-
-  @PostMapping(value = "/{bookId}/users/{userId}")
-  public BookWithAuthorsGenresTagsDto addUser(
-    @RequestBody MessageDto messageDto,
-    @PathVariable("bookId") int bookId,
-    @PathVariable("userId") int userId
-  ) {
-    return bookService.addMessageToBook(bookId, userId, messageDto);
   }
 
 }

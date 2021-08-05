@@ -31,8 +31,6 @@ public interface BookService {
 
   void deleteBook(int bookId);
 
-  BookWithAuthorsGenresTagsDto addMessageToBook(int bookId, int authorId, MessageDto dto);
-
   PageDto<BookDto> search(
     List<String> authorLastName,
     List<String> authorFirstName,
