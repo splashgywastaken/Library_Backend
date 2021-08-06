@@ -13,8 +13,8 @@ public interface UserMapper {
 
   UserDto fromEntity(UserEntity entity);
 
+  @Mapping(target = "role", ignore = true)
   @Mapping(target = "password", ignore = true)
-  @Mapping(target = "achievementId", ignore = true)
   UserEntity toEntity(UserDto dto);
 
   List<UserDto> formEntities(Iterable<UserEntity> entities);

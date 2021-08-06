@@ -43,9 +43,6 @@ public class UserEntity {
   @Column(name = "user_role")
   private Role role;
 
-  @Column(name = "achievement_id")
-  private Integer achievementId;
-
   //Set and Get methods
 
   //Id
@@ -92,11 +89,6 @@ public class UserEntity {
   public void setPassword(String password) { this.password = password; }
 
   public String getPassword() { return this.password; }
-
-  //Achievements
-  public void setAchievementId(Integer achievementId) { this.achievementId = achievementId; }
-
-  public Integer getAchievementId() { return achievementId; }
 
   //User's role
   public Role getRole() {

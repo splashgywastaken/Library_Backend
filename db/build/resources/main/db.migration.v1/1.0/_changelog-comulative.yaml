@@ -82,3 +82,51 @@ databaseChangeLog:
         - sqlFile:
             path: LT-001-202108051622.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061223
+      author: AKrutko
+      comment: Changed password type to char(60)
+      changes:
+        - sqlFile:
+            path: LT-001-202108061223.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061251
+      author: MTurusov
+      comment: Changed user_role type to integer
+      changes:
+        - sqlFile:
+            path: LT-001-202108061251.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061311
+      author: MTurusov
+      comment: ALTER TABLE library.users DROP FOREIGN KEYS and ADD FOREIGN KEYS to notes, achievements
+      changes:
+        - sqlFile:
+            path: LT-001-202108061311.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061339
+      author: MTurusov
+      comment: ALTER TABLE library.readind_lists ADD PRIMARY KEY
+      changes:
+        - sqlFile:
+            path: LT-001-202108061339.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061349
+      author: MTurusov
+      comment: DROP TABLE lines and ADD FOREIGN KEY to reading_states
+      changes:
+        - sqlFile:
+            path: LT-001-202108061349.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061355
+      author: MTurusov
+      comment: ALTER TABLE library.reviews ADD NEW PRIMARY KEY AND FOREIGN KEY
+      changes:
+        - sqlFile:
+            path: LT-001-202108061355.sql
+            relativeToChangelogFile: true

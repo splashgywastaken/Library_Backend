@@ -1,6 +1,7 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.UserService;
 import ru.libraryteam.library.service.model.UserDto;
@@ -33,13 +34,11 @@ public class UserController {
     return service.findById(id);
   }
 
-  //История книг пользователя
-
 
   //Поиск юзера по имени, фамилии, отчеству (возврат книг через библиотекаря)
 
 
-  //ПОСТ
+
   //Создание новой записи с инфой о юзере
   @PostMapping
   @Secured("ADMIN")
@@ -47,7 +46,7 @@ public class UserController {
     return service.createUser(dto);
   }
 
-  //ПУТ
+
   //Апдейт по айдишнику
   @PutMapping("/{id}")
   UserDto updateUser(@RequestBody UserDto dto, @PathVariable int id){
@@ -55,7 +54,7 @@ public class UserController {
     return service.updateUser(dto);
   }
 
-  //ДЕЛИТ
+
   //Удаление по айдишнику
   @DeleteMapping("/{id}")
   void deleteUser(@PathVariable int id) {
