@@ -7,8 +7,8 @@ import ru.libraryteam.library.service.security.ImmutableProfile.Builder;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-06T11:06:10+0300",
-    comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (BellSoft)"
+    date = "2021-08-06T12:40:12+0300",
+    comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
 public class ProfileMapperImpl implements ProfileMapper {

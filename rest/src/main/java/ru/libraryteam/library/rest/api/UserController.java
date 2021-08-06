@@ -1,11 +1,9 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.logic.UserService;
+import ru.libraryteam.library.service.model.UserDto;
 
 @RestController
 @RequestMapping("/users")

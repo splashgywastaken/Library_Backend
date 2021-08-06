@@ -3,9 +3,8 @@ package ru.libraryteam.library.rest.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.libraryteam.library.service.model.AuthorDto;
-import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.logic.GenreService;
+import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.model.impl.GenreDtoImpl;
 
 @RestController

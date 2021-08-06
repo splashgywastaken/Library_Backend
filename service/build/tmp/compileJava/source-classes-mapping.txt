@@ -12,6 +12,8 @@ ru/libraryteam/library/service/model/simple/dto/SimpleBookDto.java
  ru.libraryteam.library.service.model.simple.dto.SimpleBookDto
 ru/libraryteam/library/service/mapper/MessageMapper.java
  ru.libraryteam.library.service.mapper.MessageMapper
+ru/libraryteam/library/service/security/LibraryPasswordEncoder.java
+ ru.libraryteam.library.service.security.LibraryPasswordEncoder
 ru/libraryteam/library/service/model/simple/dto/SimpleUserMessageDto.java
  ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto
 ru/libraryteam/library/service/mapper/AuthorMapper.java
@@ -58,12 +60,16 @@ ru/libraryteam/library/service/logic/NoteService.java
  ru.libraryteam.library.service.logic.NoteService
 ru/libraryteam/library/service/logic/TagService.java
  ru.libraryteam.library.service.logic.TagService
+ru/libraryteam/library/service/security/Profile.java
+ ru.libraryteam.library.service.security.Profile
 ru/libraryteam/library/service/mapper/AchievementMapper.java
  ru.libraryteam.library.service.mapper.AchievementMapper
 ru/libraryteam/library/service/mapper/NoteMapper.java
  ru.libraryteam.library.service.mapper.NoteMapper
 ru/libraryteam/library/service/model/AuthorDto.java
  ru.libraryteam.library.service.model.AuthorDto
+ru/libraryteam/library/service/security/ProfileMapper.java
+ ru.libraryteam.library.service.security.ProfileMapper
 ru/libraryteam/library/service/mapper/TagMapper.java
  ru.libraryteam.library.service.mapper.TagMapper
 ru/libraryteam/library/service/logic/UserService.java
