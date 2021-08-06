@@ -10,23 +10,25 @@ public class NoteEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "note_id")
-  private Integer id;
+  private Integer noteId;
 
   @Column(name = "note_body")
   private String noteBody;
 
+  @Column(name = "user_id")
+  private Integer userId;
+
   @Column(name = "book_id")
   private Integer bookId;
-
   //Getters and setters
 
   //Id
-  public Integer getId() {
-    return id;
+  public Integer getNoteId() {
+    return noteId;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setNoteId(Integer id) {
+    this.noteId = id;
   }
 
   //Note body
@@ -38,7 +40,14 @@ public class NoteEntity {
     this.noteBody = noteBody;
   }
 
-  //Book id
+  public Integer getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Integer userId) {
+    this.userId = userId;
+  }
+
   public Integer getBookId() {
     return bookId;
   }
@@ -46,4 +55,5 @@ public class NoteEntity {
   public void setBookId(Integer bookId) {
     this.bookId = bookId;
   }
+
 }

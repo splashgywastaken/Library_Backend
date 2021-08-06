@@ -20,6 +20,7 @@ public class NoteServiceImpl implements NoteService {
     this.mapper = mapper;
   }
 
+  //Создание новой заметки
   @Override
   public NoteDto createNote(NoteDto dto) {
     return mapper.fromEntity(
@@ -29,6 +30,24 @@ public class NoteServiceImpl implements NoteService {
     );
   }
 
+  //Получение всех заметок юзера
+  @Override
+  public List<NoteDto> findByUserId(int userId) {
+    return mapper.fromEntities(
+      repository.findNoteEntitiesByUserId(userId)
+    );
+  }
+
+  //Получение заметок юзера по определенной книге
+  @Override
+  public NoteDto findByComplexId(int userId, int bookId) {
+    return mapper.fromEntity(
+      repository
+        .findNoteEntityByUserIdAndBookId(userId, bookId)
+    );
+  }
+
+  //Получение заметки по Id
   @Override
   public NoteDto findById(int id) {
     return mapper.fromEntity(
@@ -38,16 +57,25 @@ public class NoteServiceImpl implements NoteService {
     );
   }
 
+  //Получение всех заметок из бд
   @Override
   public List<NoteDto> findAll() {
     return mapper.fromEntities(repository.findAll());
   }
 
+  //Обновление заметки в бд
   @Override
   public NoteDto updateNote(NoteDto dto) {
     return createNote(dto);
   }
 
+  //Удаление заметки пользователя из бд по айди пользователя и айди книги
+  @Override
+  public void deleteNoteByComplexId(int userId, int bookId) {
+    repository.deleteNoteEntityByUserIdAndBookId(userId, bookId);
+  }
+
+  //Удаление заметки из бд по id
   @Override
   public void deleteNote(int id) {
     repository.deleteById(id);

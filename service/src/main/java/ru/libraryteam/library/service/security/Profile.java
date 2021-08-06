@@ -1,5 +1,6 @@
 package ru.libraryteam.library.service.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.immutables.value.Value;
 import ru.libraryteam.library.commons.Role;
 
@@ -10,6 +11,7 @@ public interface Profile {
   String getFirstName();
   String getLastName();
   String getUsername();
+  @JsonIgnore
   String getPassword();
   Role getRole();
 

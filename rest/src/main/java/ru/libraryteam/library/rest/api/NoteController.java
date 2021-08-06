@@ -1,9 +1,12 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.model.NoteDto;
 import ru.libraryteam.library.service.logic.NoteService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/notes")
@@ -11,25 +14,94 @@ public class NoteController {
 
   private final NoteService service;
 
+  /*
+   * Реализовать:
+   * Создание заметок по id юзера и книги
+   * Обновление заметок по их id
+   * Вывод всех заметок юзера
+   * Вывод заметки по её айди
+   * Вывод заметки по айди книги и айди юзера
+   * Удаление заметки по её айдишнику
+   * Удаление заметки по айдишнику книги и юзера
+   * */
+
   @Autowired
   public NoteController(NoteService service) { this.service = service; }
 
-  @RequestMapping
-  Iterable<NoteDto> getNotes() { return service.findAll(); }
-
-  @RequestMapping("/{id}")
-  NoteDto getNoteById(@PathVariable int id) { return service.findById(id); }
-
-  @PostMapping
-  NoteDto createNote(@RequestBody NoteDto dto) { return service.createNote(dto); }
-
-  @PutMapping("/{id}")
-  NoteDto updateNote(@RequestBody NoteDto dto, @PathVariable int id){
-    dto.setId(id);
-    return service.updateNote(dto);
+  //Создание заметки
+  @PostMapping()
+  NoteDto createNote(
+    @RequestBody NoteDto noteDto
+  ){
+    return
+      service.createNote(
+        noteDto
+      );
   }
 
-  @DeleteMapping("/{id}")
-  void deleteNote(@PathVariable int id) { service.deleteNote(id); }
+  //Обновление заметок по их id
+  @PutMapping("/{id}")
+  NoteDto updateNote(
+    @RequestBody NoteDto noteDto,
+    @PathVariable(value = "id") int id
+    ) {
+
+    noteDto.setNoteId(id);
+
+    return
+      service.updateNote(noteDto);
+  }
+
+  //Вывод всех заметок
+  @GetMapping
+  List<NoteDto> getAllNoteEntities() {
+    return
+      service.findAll();
+  }
+
+  //Вывод всех заметок юзера
+  @GetMapping("/user/{user_id}")
+  List<NoteDto> getNoteEntityByUserId(
+    @PathVariable("user_id") int userId
+  ) {
+    return
+      service.findByUserId(userId);
+  }
+
+  //Вывод заметки по её айди
+  @GetMapping("/{note_id}")
+  NoteDto getNoteEntityByNoteId(
+    @PathVariable("note_id") int noteId
+  ) {
+    return
+      service.findById(noteId);
+  }
+
+  //Вывод заметки по айди книги и айди юзера
+  @GetMapping("/user/{user_id}/book/{book_id}")
+  NoteDto getNoteByComplexId(
+    @PathVariable("user_id") int userId,
+    @PathVariable("book_id") int bookId
+  ) {
+    return
+      service.findByComplexId(userId, bookId);
+  }
+
+  //Удаление заметки по её айдишнику
+  @DeleteMapping("/{note_id}")
+  void deleteNote(
+    @PathVariable("note_id") int id
+  ) {
+    service.deleteNote(id);
+  }
+
+  //Удаление заметки по айдишнику книги и юзера
+  @DeleteMapping("/user/{user_id}/book/{book_id}")
+  void deleteNoteByComplexId(
+    @PathVariable("user_id") int userId,
+    @PathVariable("book_id") int bookId
+  ) {
+      service.deleteNoteByComplexId(userId, bookId);
+  }
 
 }
