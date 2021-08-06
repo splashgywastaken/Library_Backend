@@ -3,4 +3,5 @@ include 'rest'
 include 'service'
 include 'db'
 include 'security'
+includeBuild 'commons'
 

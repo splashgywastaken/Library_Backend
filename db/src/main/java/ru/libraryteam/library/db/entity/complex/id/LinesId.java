@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Lines implements Serializable {
+public class LinesId implements Serializable {
 
   //Fields
   @Column(name = "book_id")
@@ -12,9 +12,6 @@ public class Lines implements Serializable {
 
   @Column(name = "user_id")
   private Integer userId;
-
-  @Column(name = "number_in_line")
-  private Integer numberInLine;
 
   //Getters and setters
 
@@ -36,20 +33,11 @@ public class Lines implements Serializable {
     this.userId = userId;
   }
 
-  //Number in line
-  public Integer getNumberInLine() {
-    return numberInLine;
-  }
-
-  public void setNumberInLine(Integer numberInLine) {
-    this.numberInLine = numberInLine;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Lines lines = (Lines) o;
+    LinesId lines = (LinesId) o;
     return bookId.equals(lines.bookId) && userId.equals(lines.userId);
   }
 

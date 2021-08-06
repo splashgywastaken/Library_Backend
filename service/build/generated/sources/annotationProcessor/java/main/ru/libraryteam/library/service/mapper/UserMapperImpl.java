@@ -10,8 +10,8 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-05T17:38:13+0300",
-    comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
+    date = "2021-08-06T11:06:09+0300",
+    comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (BellSoft)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -31,7 +31,7 @@ public class UserMapperImpl implements UserMapper {
         userDto.setBirthday( entity.getBirthday() );
         userDto.setSex( entity.getSex() );
         userDto.setEmail( entity.getEmail() );
-        userDto.setLogin( entity.getLogin() );
+        userDto.setUsername( entity.getUsername() );
 
         return userDto;
     }
@@ -51,7 +51,7 @@ public class UserMapperImpl implements UserMapper {
         userEntity.setEmail( dto.getEmail() );
         userEntity.setBirthday( dto.getBirthday() );
         userEntity.setSex( dto.getSex() );
-        userEntity.setLogin( dto.getLogin() );
+        userEntity.setUsername( dto.getUsername() );
 
         return userEntity;
     }

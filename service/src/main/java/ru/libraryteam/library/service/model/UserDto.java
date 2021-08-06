@@ -1,9 +1,20 @@
 package ru.libraryteam.library.service.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
+@JsonPropertyOrder({
+  "first_name",
+  "last_name",
+  "middle_name",
+  "birthday",
+  "role",
+  "email",
+  "username"
+})
 public class UserDto {
 
   private Integer id;
@@ -26,8 +37,8 @@ public class UserDto {
   @JsonProperty("email")
   private String email;
 
-  @JsonProperty("login")
-  private String login;
+  @JsonProperty("username")
+  private String username;
 
 
   public Integer getId() {
@@ -86,11 +97,11 @@ public class UserDto {
     this.email = email;
   }
 
-  public String getLogin() {
-    return login;
+  public String getUsername() {
+    return username;
   }
 
-  public void setLogin(String login) {
-    this.login = login;
+  public void setUsername(String username) {
+    this.username = username;
   }
 }

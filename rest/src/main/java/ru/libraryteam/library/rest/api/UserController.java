@@ -1,6 +1,8 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.logic.UserService;
@@ -16,26 +18,46 @@ public class UserController {
     this.service = service;
   }
 
+  @GetMapping
+//  @Secured(
+//    "ADMIN"
+//  )
+  Iterable<UserDto> findAll(){
+    return service.findAll();
+  }
 
-  @RequestMapping
-  Iterable<UserDto> getUsers() { return service.findAll(); }
-
+  //Получение информации о пользователе по id
   @RequestMapping("/{id}")
+//  @Secured(
+//    "ADMIN"
+//  )
   UserDto getUserById(@PathVariable int id) {
     return service.findById(id);
   }
 
+  //История книг пользователя
+
+
+  //Поиск юзера по имени, фамилии, отчеству (возврат книг через библиотекаря)
+
+
+  //ПОСТ
+  //Создание новой записи с инфой о юзере
   @PostMapping
   UserDto createUser(@RequestBody UserDto dto) {
     return service.createUser(dto);
   }
 
+  //ПУТ
+  //Апдейт по айдишнику
   @PutMapping("/{id}")
   UserDto updateUser(@RequestBody UserDto dto, @PathVariable int id){
     dto.setId(id);
     return service.updateUser(dto);
   }
 
+  //ДЕЛИТ
+  //Удаление по айдишнику
   @DeleteMapping("/{id}")
   void deleteUser(@PathVariable int id) {
     service.deleteUser(id);

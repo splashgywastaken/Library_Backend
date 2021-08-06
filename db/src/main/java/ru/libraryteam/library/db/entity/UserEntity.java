@@ -1,6 +1,7 @@
 package ru.libraryteam.library.db.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.libraryteam.library.commons.Role;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,10 +35,13 @@ public class UserEntity {
   private String sex;
 
   @Column(name = "username")
-  private String login;
+  private String username;
 
   @Column(name = "password", columnDefinition = "bpchar")
   private String password;
+
+  @Column(name = "user_role")
+  private Role role;
 
   @Column(name = "achievement_id")
   private Integer achievementId;
@@ -79,19 +83,27 @@ public class UserEntity {
 
   public String getSex() { return sex; }
 
-  //login
-  public void setLogin(String login) { this.login = login; }
+  //username
+  public void setUsername(String username) { this.username = username; }
 
-  public String getLogin() { return login; }
+  public String getUsername() { return username; }
 
   //password
   public void setPassword(String password) { this.password = password; }
 
-  public String getPassword() { return password; }
+  public String getPassword() { return this.password; }
 
   //Achievements
   public void setAchievementId(Integer achievementId) { this.achievementId = achievementId; }
 
   public Integer getAchievementId() { return achievementId; }
 
+  //User's role
+  public Role getRole() {
+    return role;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
 }
