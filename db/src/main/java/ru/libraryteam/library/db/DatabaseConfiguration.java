@@ -7,7 +7,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EntityScan(basePackages = {
-  "ru.libraryteam.library.db.entity"
+  "ru.libraryteam.library.db.entity",
+  "ru.libraryteam.library.db.converter"
 })
 @EnableJpaRepositories(basePackages = "ru.libraryteam.library.db.repository")
 @EnableTransactionManagement

@@ -72,9 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
       .and()
       .authorizeRequests()
-      .anyRequest().not().fullyAuthenticated();
-      //.mvcMatchers(HttpMethod.GET, "/auth/login").not().authenticated()
-      //.anyRequest().fullyAuthenticated();
+      .mvcMatchers(HttpMethod.POST, "/auth/login").not().authenticated()
+      .anyRequest().fullyAuthenticated();
   }
 
 

@@ -44,6 +44,7 @@ public class UserController {
   //ПОСТ
   //Создание новой записи с инфой о юзере
   @PostMapping
+  @Secured("ADMIN")
   UserDto createUser(@RequestBody UserDto dto) {
     return service.createUser(dto);
   }
