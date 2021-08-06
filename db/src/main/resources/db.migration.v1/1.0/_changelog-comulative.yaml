@@ -82,3 +82,11 @@ databaseChangeLog:
         - sqlFile:
             path: LT-001-202108051622.sql
             relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061223
+      author: AKrutko
+      comment: Changed password type to char(60)
+      changes:
+        - sqlFile:
+            path: LT-001-202108061223.sql
+            relativeToChangelogFile: true

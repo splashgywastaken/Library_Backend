@@ -26,6 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     UserEntity x = userRepository.getByUsername(username);
 
     return
-      new User(x.getUsername(), new BCryptPasswordEncoder().encode(x.getPassword()), List.of( new SimpleGrantedAuthority("ROLE_" + x.getRole().name())));
+      new User(x.getUsername(), x.getPassword(), List.of( new SimpleGrantedAuthority("ROLE_" + x.getRole().name())));
   }
 }
