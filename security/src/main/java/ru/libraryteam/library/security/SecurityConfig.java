@@ -13,6 +13,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.security.handler.LibraryAccessDeniedHandler;
 import ru.libraryteam.library.security.handler.LibraryFailureHandler;
@@ -64,7 +67,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .cors().disable()
+      .cors()
+      .and()
       .csrf().disable()
       .formLogin()
       .loginProcessingUrl("/auth/login")
@@ -83,6 +87,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
     ;
+  }
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+    return source;
   }
 
 
