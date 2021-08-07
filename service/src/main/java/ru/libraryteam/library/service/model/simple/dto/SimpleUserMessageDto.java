@@ -1,6 +1,9 @@
 package ru.libraryteam.library.service.model.simple.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.Column;
 
 public class SimpleUserMessageDto {
 
@@ -12,7 +15,10 @@ public class SimpleUserMessageDto {
   @JsonProperty(value = "last_name")
   private String lastName;
 
+  @JsonProperty(value = "username")
+  private String username;
 
+  @JsonIgnore
   public Integer getId() {
     return id;
   }
@@ -35,5 +41,13 @@ public class SimpleUserMessageDto {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
   }
 }

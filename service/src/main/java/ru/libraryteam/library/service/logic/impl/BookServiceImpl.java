@@ -113,10 +113,7 @@ public class BookServiceImpl implements BookService {
       .orElse(null);
   }
 
-  @Override
-  public List<SimpleBookWithAuthorsGenresDto> getAllBooks() {
-    return bookMapper.fromEntitiesWithAuthorsGenres(bookRepository.findAll());
-  }
+
 
   @Override
   public void addAuthorToBook(int bookId, int authorId) {
@@ -248,8 +245,22 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public void deleteBook(int bookId) {
+    messageRepository.deleteAllByBookId(bookId);
     bookRepository.deleteById(bookId);
+  }
+
+  @Override
+  public PageDto<SimpleBookWithAuthorsGenresDto> getAllBooks(Integer pageSize, Integer pageNumber) {
+    var values = bookRepository.findAll(Pageable
+      .ofSize(pageSize)
+      .withPage(pageNumber)).map(bookMapper::fromEntityWithAuthorsGenres);
+    return ImmutablePageDto.<SimpleBookWithAuthorsGenresDto>builder()
+      .pageNumber(pageNumber)
+      .totalPages(values.getTotalPages())
+      .items(values.getContent())
+      .build();
   }
 
   @Override
@@ -276,8 +287,8 @@ public class BookServiceImpl implements BookService {
         isbn,
         ageRating,
         Pageable
-        .ofSize(pageSize)
-        .withPage(pageNumber)
+          .ofSize(pageSize)
+          .withPage(pageNumber)
       ).map(bookMapper::fromEntity);
 
     return ImmutablePageDto.<BookDto>builder()

@@ -45,8 +45,6 @@ public interface BookRepository extends CrudRepository<BookEntity, Integer>, Jpa
     Pageable pageable
   );
 
-
-  @Override
   @EntityGraph(value = "book-with-authors-genres-tags")
-  Iterable<BookEntity> findAll();
+  Page<BookEntity> findAll(Pageable pageable);
 }

@@ -15,7 +15,7 @@ public interface BookService {
 
   BookWithAuthorsGenresTagsDto getBookInfo(int bookId);
 
-  List<SimpleBookWithAuthorsGenresDto> getAllBooks();
+  PageDto<SimpleBookWithAuthorsGenresDto> getAllBooks(Integer pageSize, Integer pageNumber);
 
   void addAuthorToBook(int bookId, int authorId);
 

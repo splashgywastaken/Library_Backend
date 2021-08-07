@@ -2,6 +2,7 @@ package ru.libraryteam.library.service.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.repository.AuthorRepository;
 import ru.libraryteam.library.service.logic.AuthorService;
 import ru.libraryteam.library.service.mapper.AuthorMapper;

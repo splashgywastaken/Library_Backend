@@ -2,6 +2,8 @@ ru/libraryteam/library/db/repository/AchievementRepository.java
  ru.libraryteam.library.db.repository.AchievementRepository
 ru/libraryteam/library/db/repository/BookAuthorsRepository.java
  ru.libraryteam.library.db.repository.BookAuthorsRepository
+ru/libraryteam/library/db/converter/RoleConverter.java
+ ru.libraryteam.library.db.converter.RoleConverter
 ru/libraryteam/library/db/entity/complex/id/BookGenresId.java
  ru.libraryteam.library.db.entity.complex.id.BookGenresId
 ru/libraryteam/library/db/repository/TagRepository.java
@@ -14,24 +16,28 @@ ru/libraryteam/library/db/repository/AuthorRepository.java
  ru.libraryteam.library.db.repository.AuthorRepository
 ru/libraryteam/library/db/repository/BookGenresRepository.java
  ru.libraryteam.library.db.repository.BookGenresRepository
+ru/libraryteam/library/db/repository/MessageRepository.java
+ ru.libraryteam.library.db.repository.MessageRepository
 ru/libraryteam/library/db/entity/complex/id/BookTagsId.java
  ru.libraryteam.library.db.entity.complex.id.BookTagsId
+ru/libraryteam/library/db/provider/UserProvider.java
+ ru.libraryteam.library.db.provider.UserProvider
 ru/libraryteam/library/db/repository/NoteRepository.java
  ru.libraryteam.library.db.repository.NoteRepository
 ru/libraryteam/library/db/entity/BookAuthorsEntity.java
  ru.libraryteam.library.db.entity.BookAuthorsEntity
 ru/libraryteam/library/db/repository/BookRepository.java
  ru.libraryteam.library.db.repository.BookRepository
-ru/libraryteam/library/db/entity/AchievementEntity.java
- ru.libraryteam.library.db.entity.AchievementEntity
-ru/libraryteam/library/db/entity/complex/id/BookAuthorsId.java
- ru.libraryteam.library.db.entity.complex.id.BookAuthorsId
-ru/libraryteam/library/db/entity/GenreEntity.java
- ru.libraryteam.library.db.entity.GenreEntity
-ru/libraryteam/library/db/provider/impl/UserProviderImpl.java
- ru.libraryteam.library.db.provider.impl.UserProviderImpl
-ru/libraryteam/library/db/repository/MessageRepository.java
- ru.libraryteam.library.db.repository.MessageRepository
+ru/libraryteam/library/db/entity/MessageEntity.java
+ ru.libraryteam.library.db.entity.MessageEntity
+ru/libraryteam/library/db/entity/UserEntity.java
+ ru.libraryteam.library.db.entity.UserEntity
+ru/libraryteam/library/db/entity/BookEntity.java
+ ru.libraryteam.library.db.entity.BookEntity
+ru/libraryteam/library/db/DatabaseConfiguration.java
+ ru.libraryteam.library.db.DatabaseConfiguration
+ru/libraryteam/library/db/repository/UserRepository.java
+ ru.libraryteam.library.db.repository.UserRepository
 ru/libraryteam/library/db/repository/BookTagsRepository.java
  ru.libraryteam.library.db.repository.BookTagsRepository
 ru/libraryteam/library/db/repository/GenreRepository.java
@@ -40,19 +46,13 @@ ru/libraryteam/library/db/entity/BookTagsEntity.java
  ru.libraryteam.library.db.entity.BookTagsEntity
 ru/libraryteam/library/db/entity/TagEntity.java
  ru.libraryteam.library.db.entity.TagEntity
-ru/libraryteam/library/db/entity/BookEntity.java
- ru.libraryteam.library.db.entity.BookEntity
+ru/libraryteam/library/db/provider/impl/UserProviderImpl.java
+ ru.libraryteam.library.db.provider.impl.UserProviderImpl
 ru/libraryteam/library/db/entity/AuthorEntity.java
  ru.libraryteam.library.db.entity.AuthorEntity
-ru/libraryteam/library/db/DatabaseConfiguration.java
- ru.libraryteam.library.db.DatabaseConfiguration
-ru/libraryteam/library/db/converter/RoleConverter.java
- ru.libraryteam.library.db.converter.RoleConverter
-ru/libraryteam/library/db/repository/UserRepository.java
- ru.libraryteam.library.db.repository.UserRepository
-ru/libraryteam/library/db/provider/UserProvider.java
- ru.libraryteam.library.db.provider.UserProvider
-ru/libraryteam/library/db/entity/MessageEntity.java
- ru.libraryteam.library.db.entity.MessageEntity
-ru/libraryteam/library/db/entity/UserEntity.java
- ru.libraryteam.library.db.entity.UserEntity
+ru/libraryteam/library/db/entity/complex/id/BookAuthorsId.java
+ ru.libraryteam.library.db.entity.complex.id.BookAuthorsId
+ru/libraryteam/library/db/entity/AchievementEntity.java
+ ru.libraryteam.library.db.entity.AchievementEntity
+ru/libraryteam/library/db/entity/GenreEntity.java
+ ru.libraryteam.library.db.entity.GenreEntity

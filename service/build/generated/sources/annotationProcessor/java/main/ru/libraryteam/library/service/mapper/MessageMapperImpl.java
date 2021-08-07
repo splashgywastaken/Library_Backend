@@ -11,7 +11,7 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-06T14:02:10+0300",
+    date = "2021-08-07T01:37:47+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -25,9 +25,11 @@ public class MessageMapperImpl implements MessageMapper {
 
         MessageDto messageDto = new MessageDto();
 
+        messageDto.setId( entity.getId() );
         messageDto.setMessageBody( entity.getMessageBody() );
         messageDto.setUser( userEntityToSimpleUserMessageDto( entity.getUser() ) );
-        messageDto.setId( entity.getId() );
+        messageDto.setUserId( entity.getUserId() );
+        messageDto.setBookId( entity.getBookId() );
 
         return messageDto;
     }
@@ -57,6 +59,8 @@ public class MessageMapperImpl implements MessageMapper {
         messageEntity.setId( messageDto.getId() );
         messageEntity.setMessageBody( messageDto.getMessageBody() );
         messageEntity.setUser( simpleUserMessageDtoToUserEntity( messageDto.getUser() ) );
+        messageEntity.setUserId( messageDto.getUserId() );
+        messageEntity.setBookId( messageDto.getBookId() );
 
         return messageEntity;
     }
@@ -71,6 +75,7 @@ public class MessageMapperImpl implements MessageMapper {
         simpleUserMessageDto.setId( userEntity.getId() );
         simpleUserMessageDto.setFirstName( userEntity.getFirstName() );
         simpleUserMessageDto.setLastName( userEntity.getLastName() );
+        simpleUserMessageDto.setUsername( userEntity.getUsername() );
 
         return simpleUserMessageDto;
     }
@@ -85,6 +90,7 @@ public class MessageMapperImpl implements MessageMapper {
         userEntity.setId( simpleUserMessageDto.getId() );
         userEntity.setFirstName( simpleUserMessageDto.getFirstName() );
         userEntity.setLastName( simpleUserMessageDto.getLastName() );
+        userEntity.setUsername( simpleUserMessageDto.getUsername() );
 
         return userEntity;
     }
