@@ -15,4 +15,12 @@ public interface UserProvider {
 
   void deleteById(int id);
 
+  boolean isUsernameExists(String value);
+
+  boolean isUsernameExists(int id, String username);
+
+  boolean isEmailExists(String value);
+
+  boolean isEmailExists(int id, String email);
+
 }

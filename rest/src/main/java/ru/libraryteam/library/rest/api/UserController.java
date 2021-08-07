@@ -1,10 +1,15 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.UserService;
+import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
+import ru.libraryteam.library.service.model.impl.UserDtoImpl;
 
 @RestController
 @RequestMapping("/users")
@@ -40,16 +45,20 @@ public class UserController {
 
 
   //Создание новой записи с инфой о юзере
-  @PostMapping
-  @Secured("ADMIN")
-  UserDto createUser(@RequestBody UserDto dto) {
-    return service.createUser(dto);
+  @Secured("ROLE_ADMIN")
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  UserDto createUser(
+    @RequestBody UserCreateDto user
+    ) {
+    return service.createUser(user);
   }
 
 
   //Апдейт по айдишнику
   @PutMapping("/{id}")
-  UserDto updateUser(@RequestBody UserDto dto, @PathVariable int id){
+  @PreAuthorize("@userAuthService.canUpdateUser(#id)")
+  UserDto updateUser(@RequestBody UserDtoImpl dto, @PathVariable int id){
     dto.setId(id);
     return service.updateUser(dto);
   }

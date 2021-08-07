@@ -17,4 +17,12 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
   UserEntity getByUsername(String username);
 
   UserEntity findByUsernameEqualsIgnoreCase(String name);
+
+  boolean existsByUsernameIgnoreCase(String value);
+
+  boolean existsByIdIsNotAndUsernameIgnoreCase(int id, String username);
+
+  boolean existsByEmailIgnoreCase(String email);
+
+  boolean existsByIdIsNotAndEmailIgnoreCase(int id, String email);
 }

@@ -27,10 +27,6 @@ public class UserEntity {
   @Column(name = "email")
   private String email;
 
-  @Column(name = "user_birthday")
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  private LocalDate birthday;
-
   @Column(name = "user_sex")
   private String sex;
 
@@ -69,11 +65,6 @@ public class UserEntity {
   public void setEmail(String email) { this.email = email; }
 
   public String getEmail() { return email; }
-
-  //birthday
-  public void setBirthday(LocalDate birthday) { this.birthday = birthday; }
-
-  public LocalDate getBirthday() { return birthday; }
 
   //sex
   public void setSex(String sex) { this.sex = sex; }

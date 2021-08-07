@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,7 +74,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .and()
       .authorizeRequests()
       .mvcMatchers(HttpMethod.POST, "/auth/login").not().authenticated()
-      .anyRequest().fullyAuthenticated();
+      .mvcMatchers(HttpMethod.GET, "/users").permitAll()
+      .mvcMatchers(HttpMethod.POST, "/users").permitAll()
+      .anyRequest().fullyAuthenticated()
+      .and()
+      .exceptionHandling().accessDeniedHandler(new LibraryAccessDeniedHandler())
+      .and()
+      .sessionManagement()
+      .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+    ;
   }
 
 

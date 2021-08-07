@@ -4,4 +4,6 @@ dependencies {
     implementation 'javax.persistence:javax.persistence-api:2.2'
     implementation(project(':security'))
     implementation(project(':service'))
+    implementation 'jakarta.validation:jakarta.validation-api:2.0.2'
+    implementation 'org.slf4j:slf4j-api:1.7.31'
 }

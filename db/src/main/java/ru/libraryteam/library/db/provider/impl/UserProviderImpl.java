@@ -38,4 +38,23 @@ public class UserProviderImpl implements UserProvider {
     userRepository.deleteById(id);
   }
 
+  @Override
+  public boolean isUsernameExists(String value) {
+    return userRepository.existsByUsernameIgnoreCase(value);
+  }
+
+  @Override
+  public boolean isUsernameExists(int id, String username) {
+    return userRepository.existsByIdIsNotAndUsernameIgnoreCase(id, username);
+  }
+
+  @Override
+  public boolean isEmailExists(String value) {
+    return  userRepository.existsByEmailIgnoreCase(value);
+  }
+
+  @Override
+  public boolean isEmailExists(int id, String email) {
+    return userRepository.existsByIdIsNotAndEmailIgnoreCase(id, email);
+  }
 }

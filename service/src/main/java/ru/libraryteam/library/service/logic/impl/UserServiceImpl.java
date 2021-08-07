@@ -1,46 +1,70 @@
 package ru.libraryteam.library.service.logic.impl;
 
-import org.immutables.value.Value;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
+import ru.libraryteam.library.db.provider.UserProvider;
 import ru.libraryteam.library.db.repository.UserRepository;
+import ru.libraryteam.library.service.EntityNotFoundException;
 import ru.libraryteam.library.service.mapper.UserMapper;
-import ru.libraryteam.library.service.model.ImmutablePageDto;
-import ru.libraryteam.library.service.model.PageDto;
+import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.logic.UserService;
 import ru.libraryteam.library.service.security.LibraryPasswordEncoder;
+import ru.libraryteam.library.service.security.Profile;
 
-import java.util.Collection;
+import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 @Service
+@Validated
 public class UserServiceImpl implements UserService {
 
+  private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+  private final UserProvider userProvider;
   private final UserRepository repository;
   private final UserMapper userMapper;
   private final LibraryPasswordEncoder passwordEncoder;
+  private final ObjectProvider<Profile> profileProvider;
 
   @Autowired
-  public UserServiceImpl(UserRepository repository, UserMapper mapper, LibraryPasswordEncoder passwordEncoder) {
+  public UserServiceImpl(
+    UserProvider userProvider,
+    UserRepository repository,
+    UserMapper mapper,
+    LibraryPasswordEncoder passwordEncoder,
+    ObjectProvider<Profile> profileProvider
+  ) {
+    this.userProvider = userProvider;
     this.repository = repository;
     this.userMapper = mapper;
     this.passwordEncoder = passwordEncoder;
-    System.out.println(passwordEncoder.encode("admin"));
+    this.profileProvider = profileProvider;
   }
 
   @Override
-  public UserDto createUser(UserDto dto) {
-    return userMapper.fromEntity(
-      repository.save(
-        userMapper.toEntity(dto)
-      )
-    );
+  public UserDto createUser(@Valid UserCreateDto userDto) {
+
+    logger.info("User {} requested to create new entity", profileProvider.getIfAvailable());
+//    return userMapper.fromEntity(
+//      repository.save(
+//        userMapper.toEntity(dto)
+//      )
+//    );
+
+    userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+    return Optional.ofNullable(userDto)
+      .map(userMapper::toEntity)
+      .map(userProvider::save)
+      .map(userMapper::fromEntity)
+      .orElseThrow();
+
   }
 
   @Override
@@ -54,8 +78,15 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto updateUser(UserDto dto) {
-    return createUser(dto);
+  @Transactional
+  public UserDto updateUser(UserDto user) {
+    var userEntity = userProvider.findById(user.getId())
+      .orElseThrow(() -> new EntityNotFoundException(user.getId(), "User"));
+
+    userMapper.toEntity(user, userEntity);
+
+    return userMapper.fromEntity(userProvider.save(userEntity));
+
   }
 
   @Override
