@@ -23,6 +23,8 @@ import ru.libraryteam.library.security.handler.LibrarySuccessHandler;
 import ru.libraryteam.library.security.impl.UserDetailsServiceImpl;
 import ru.libraryteam.library.service.security.ProfileMapper;
 
+import java.util.Arrays;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -89,11 +91,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     ;
   }
 
+
+
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:8000/"));
+    configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+    source.registerCorsConfiguration("/**", configuration);
     return source;
+
   }
 
 
