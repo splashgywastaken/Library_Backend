@@ -9,7 +9,7 @@ import ru.libraryteam.library.service.model.NoteDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-06T14:02:10+0300",
+    date = "2021-08-07T01:37:47+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -23,9 +23,10 @@ public class NoteMapperImpl implements NoteMapper {
 
         NoteDto noteDto = new NoteDto();
 
-        noteDto.setId( entity.getId() );
+        noteDto.setNoteId( entity.getNoteId() );
         noteDto.setNoteBody( entity.getNoteBody() );
         noteDto.setBookId( entity.getBookId() );
+        noteDto.setUserId( entity.getUserId() );
 
         return noteDto;
     }
@@ -38,8 +39,9 @@ public class NoteMapperImpl implements NoteMapper {
 
         NoteEntity noteEntity = new NoteEntity();
 
-        noteEntity.setId( dto.getId() );
+        noteEntity.setNoteId( dto.getNoteId() );
         noteEntity.setNoteBody( dto.getNoteBody() );
+        noteEntity.setUserId( dto.getUserId() );
         noteEntity.setBookId( dto.getBookId() );
 
         return noteEntity;

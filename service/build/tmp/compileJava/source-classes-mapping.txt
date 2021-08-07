@@ -30,6 +30,8 @@ ru/libraryteam/library/service/model/BookDto.java
  ru.libraryteam.library.service.model.BookDto
 ru/libraryteam/library/service/logic/BookService.java
  ru.libraryteam.library.service.logic.BookService
+ru/libraryteam/library/service/logic/impl/MessageServiceImpl.java
+ ru.libraryteam.library.service.logic.impl.MessageServiceImpl
 ru/libraryteam/library/service/model/TagDto.java
  ru.libraryteam.library.service.model.TagDto
 ru/libraryteam/library/service/logic/GenreService.java
@@ -68,6 +70,8 @@ ru/libraryteam/library/service/mapper/NoteMapper.java
  ru.libraryteam.library.service.mapper.NoteMapper
 ru/libraryteam/library/service/model/AuthorDto.java
  ru.libraryteam.library.service.model.AuthorDto
+ru/libraryteam/library/service/logic/MessageService.java
+ ru.libraryteam.library.service.logic.MessageService
 ru/libraryteam/library/service/security/ProfileMapper.java
  ru.libraryteam.library.service.security.ProfileMapper
 ru/libraryteam/library/service/mapper/TagMapper.java

@@ -82,8 +82,11 @@ public class BookController {
   }
 
   @GetMapping()
-  public List<SimpleBookWithAuthorsGenresDto> getAllBooks() {
-    return bookService.getAllBooks();
+  public PageDto<SimpleBookWithAuthorsGenresDto> getAllBooks(
+    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
+    @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
+  ) {
+    return bookService.getAllBooks(pageSize, pageNumber);
   }
 
   @GetMapping("/{id}")

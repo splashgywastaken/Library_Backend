@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.libraryteam.library.db.repository.MessageRepository;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.service.mapper.UserMapper;
 import ru.libraryteam.library.service.model.ImmutablePageDto;
@@ -26,11 +27,18 @@ public class UserServiceImpl implements UserService {
   private final UserMapper userMapper;
   private final LibraryPasswordEncoder passwordEncoder;
 
+  private final MessageRepository messageRepository;
+
   @Autowired
-  public UserServiceImpl(UserRepository repository, UserMapper mapper, LibraryPasswordEncoder passwordEncoder) {
+  public UserServiceImpl(
+    UserRepository repository,
+    UserMapper mapper,
+    MessageRepository messageRepository,
+    LibraryPasswordEncoder passwordEncoder) {
     this.repository = repository;
     this.userMapper = mapper;
     this.passwordEncoder = passwordEncoder;
+    this.messageRepository = messageRepository;
     System.out.println(passwordEncoder.encode("admin"));
   }
 
@@ -59,7 +67,9 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
   public void deleteUser(int id) {
+    messageRepository.deleteAllByUserId(id);
     repository.deleteById(id);
   }
 }

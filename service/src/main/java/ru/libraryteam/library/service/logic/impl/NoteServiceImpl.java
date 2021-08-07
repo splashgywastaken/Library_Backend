@@ -2,6 +2,7 @@ package ru.libraryteam.library.service.logic.impl;
 
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.repository.NoteRepository;
 import ru.libraryteam.library.service.mapper.NoteMapper;
 import ru.libraryteam.library.service.model.NoteDto;

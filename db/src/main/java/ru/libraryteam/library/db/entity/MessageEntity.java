@@ -21,8 +21,14 @@ public class MessageEntity {
   @Column(name = "message_post_date")
   private Timestamp messagePostDate;
 
+  @Column(name = "user_id")
+  private int userId;
+
+  @Column(name = "book_id")
+  private int bookId;
+
   @ManyToOne
-  @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
   private UserEntity user;
 
   public Integer getId() {
@@ -63,5 +69,21 @@ public class MessageEntity {
 
   public void setUser(UserEntity user) {
     this.user = user;
+  }
+
+  public int getUserId() {
+    return userId;
+  }
+
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  public int getBookId() {
+    return bookId;
+  }
+
+  public void setBookId(int bookId) {
+    this.bookId = bookId;
   }
 }
