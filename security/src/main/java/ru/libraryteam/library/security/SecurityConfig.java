@@ -24,6 +24,7 @@ import ru.libraryteam.library.security.impl.UserDetailsServiceImpl;
 import ru.libraryteam.library.service.security.ProfileMapper;
 
 import java.util.Arrays;
+import java.util.List;
 
 @EnableWebSecurity
 @Configuration
@@ -69,8 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .cors()//.disable()
+      .cors().configurationSource(corsConfigurationSource())
       .and()
+      //.disable()
       .csrf().disable()
       .formLogin()
       .loginProcessingUrl("/auth/login")
@@ -93,17 +95,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-//  @Bean
-//  CorsConfigurationSource corsConfigurationSource() {
-//    CorsConfiguration configuration = new CorsConfiguration();
-//    configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080/"));
-//    configuration.setAllowedMethods(Arrays.asList("*"));
-//    configuration.setAllowedHeaders(Arrays.asList("*"));
-//    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//    source.registerCorsConfiguration("/**", configuration);
-//    return source;
-//
-//  }
+  private CorsConfigurationSource corsConfigurationSource() {
+    final var urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+    final var config = new CorsConfiguration();
+    config.setAllowCredentials(true); //разрешаем передавать ключи
+    config.addAllowedOrigin("*"); // разрешашем запросы с любого домена, но лучше указать ваш домен
+    config.addAllowedHeader("*"); // разрешаем передавать любые заголовки
+    for (var method: List.of(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.HEAD))
+      config.addAllowedMethod(method); // разрешаем http-методы
+
+    config.addExposedHeader("*"); // разрешаем возвращать все заголовки
+    urlBasedCorsConfigurationSource.registerCorsConfiguration("*", config); // разрешаем на любой API
+    return urlBasedCorsConfigurationSource;
+  }
 
 
 }
