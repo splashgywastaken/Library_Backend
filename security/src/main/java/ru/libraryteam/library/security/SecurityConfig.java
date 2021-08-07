@@ -70,8 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .cors().configurationSource(corsConfigurationSource())
-      .disable()
+      .cors()
+      .and()
       .csrf().disable()
       .formLogin()
       .loginProcessingUrl("/auth/login")
