@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-      .cors()//.configurationSource(corsConfigurationSource())
+      .cors().configurationSource(corsConfigurationSource())
       .disable()
       .csrf().disable()
       .formLogin()
@@ -97,7 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private CorsConfigurationSource corsConfigurationSource() {
     final var urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
     final var config = new CorsConfiguration();
-    config.setAllowCredentials(true); //разрешаем передавать ключи
+    //config.setAllowCredentials(true); //разрешаем передавать ключи
     config.addAllowedOrigin("*"); // разрешашем запросы с любого домена, но лучше указать ваш домен
     config.addAllowedHeader("*"); // разрешаем передавать любые заголовки
     for (var method: List.of(HttpMethod.GET, HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE, HttpMethod.HEAD))
