@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.MessageService;
+import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.model.MessageDto;
 
 @RestController
@@ -17,10 +18,10 @@ public class MessageController {
     this.messageService = messageService;
   }
 
-  @GetMapping(value = "/{id}")
+  /*@GetMapping(value = "/{id}")
   MessageDto findMessageById(@PathVariable(value = "id") int messageId) {
     return messageService.findById(messageId);
-  }
+  }*/
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   MessageDto createMessage(@RequestBody MessageDto dto) {
@@ -31,6 +32,11 @@ public class MessageController {
   MessageDto updateMessage(@RequestBody MessageDto dto, @PathVariable(value = "id") int messageId) {
     dto.setId(messageId);
     return messageService.updateMessage(dto);
+  }
+
+  @GetMapping(value = "/{id}")
+  Iterable<MessageDto> getMessagesByBookId(@PathVariable(value = "id") int bookId) {
+    return messageService.findAllById(bookId);
   }
 
   @DeleteMapping("/{id}")

@@ -15,8 +15,8 @@ import ru.libraryteam.library.service.model.ImmutableReviewDto;
 import ru.libraryteam.library.service.model.ImmutableUserDto;
 import ru.libraryteam.library.service.model.ImmutableUserDto.Builder;
 import ru.libraryteam.library.service.model.ReviewDto;
-import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleReadingListForUserBooksDto;
@@ -24,7 +24,7 @@ import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUs
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T20:38:05+0300",
+    date = "2021-08-09T00:10:22+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -43,9 +43,7 @@ public class UserMapperImpl implements UserMapper {
         userDto.firstName( entity.getFirstName() );
         userDto.lastName( entity.getLastName() );
         userDto.middleName( entity.getMiddleName() );
-        if ( entity.getBirthday() != null ) {
-            userDto.birthday( new Date( entity.getBirthday().atStartOfDay( ZoneOffset.UTC ).toInstant().toEpochMilli() ) );
-        }
+        userDto.birthday( entity.getBirthday() );
         userDto.sex( entity.getSex() );
         userDto.email( entity.getEmail() );
         userDto.role( entity.getRole() );
@@ -77,12 +75,7 @@ public class UserMapperImpl implements UserMapper {
         original.setLastName( dto.getLastName() );
         original.setMiddleName( dto.getMiddleName() );
         original.setEmail( dto.getEmail() );
-        if ( dto.getBirthday() != null ) {
-            original.setBirthday( dto.getBirthday().toLocalDate() );
-        }
-        else {
-            original.setBirthday( null );
-        }
+        original.setBirthday( dto.getBirthday() );
         original.setSex( dto.getSex() );
         original.setUsername( dto.getUsername() );
     }
@@ -99,6 +92,7 @@ public class UserMapperImpl implements UserMapper {
         userEntity.setLastName( dto.getLastName() );
         userEntity.setMiddleName( dto.getMiddleName() );
         userEntity.setEmail( dto.getEmail() );
+        userEntity.setBirthday( dto.getBirthday() );
         if ( dto.getSex() != null ) {
             userEntity.setSex( String.valueOf( dto.getSex() ) );
         }

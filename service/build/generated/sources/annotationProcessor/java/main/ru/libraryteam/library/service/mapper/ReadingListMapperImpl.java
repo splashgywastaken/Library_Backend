@@ -15,7 +15,7 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T20:38:05+0300",
+    date = "2021-08-09T00:10:22+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component

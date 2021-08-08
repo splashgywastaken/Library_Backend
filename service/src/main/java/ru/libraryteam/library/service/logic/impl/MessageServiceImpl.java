@@ -10,6 +10,8 @@ import ru.libraryteam.library.service.mapper.UserMapper;
 import ru.libraryteam.library.service.model.MessageDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
+import java.util.List;
+
 @Service
 public class MessageServiceImpl implements MessageService {
 
@@ -71,5 +73,12 @@ public class MessageServiceImpl implements MessageService {
   @Override
   public void deleteMessage(int id) {
     messageRepository.deleteById(id);
+  }
+
+  @Override
+  public List<MessageDto> findAllById(int bookId) {
+    return messageMapper.fromEntities(
+      messageRepository.getAllByBookId(bookId)
+    );
   }
 }

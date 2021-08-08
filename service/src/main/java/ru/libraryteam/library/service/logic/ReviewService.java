@@ -1,6 +1,9 @@
 package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.ReviewDto;
+import ru.libraryteam.library.service.model.create.dto.ReviewCreateDto;
+
+import javax.validation.Valid;
 
 public interface ReviewService {
 

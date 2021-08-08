@@ -2,7 +2,7 @@ package ru.libraryteam.library.service.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +25,7 @@ public final class ImmutableUserDto implements UserDto {
   private final @Nullable String firstName;
   private final @Nullable String lastName;
   private final @Nullable String middleName;
-  private final @Nullable Date birthday;
+  private final @Nullable LocalDate birthday;
   private final @Nullable String sex;
   private final @Nullable String email;
   private final Role role;
@@ -36,7 +36,7 @@ public final class ImmutableUserDto implements UserDto {
       @Nullable String firstName,
       @Nullable String lastName,
       @Nullable String middleName,
-      @Nullable Date birthday,
+      @Nullable LocalDate birthday,
       @Nullable String sex,
       @Nullable String email,
       Role role) {
@@ -101,7 +101,7 @@ public final class ImmutableUserDto implements UserDto {
    */
   @JsonProperty("birthday")
   @Override
-  public @Nullable Date getBirthday() {
+  public @Nullable LocalDate getBirthday() {
     return birthday;
   }
 
@@ -239,7 +239,7 @@ public final class ImmutableUserDto implements UserDto {
    * @param value A new value for birthday (can be {@code null})
    * @return A modified copy of the {@code this} object
    */
-  public final ImmutableUserDto withBirthday(@Nullable Date value) {
+  public final ImmutableUserDto withBirthday(@Nullable LocalDate value) {
     if (this.birthday == value) return this;
     return new ImmutableUserDto(
         this.id,
@@ -401,7 +401,7 @@ public final class ImmutableUserDto implements UserDto {
    *    .firstName(String | null) // nullable {@link UserDto#getFirstName() firstName}
    *    .lastName(String | null) // nullable {@link UserDto#getLastName() lastName}
    *    .middleName(String | null) // nullable {@link UserDto#getMiddleName() middleName}
-   *    .birthday(java.sql.Date | null) // nullable {@link UserDto#getBirthday() birthday}
+   *    .birthday(java.time.LocalDate | null) // nullable {@link UserDto#getBirthday() birthday}
    *    .sex(String | null) // nullable {@link UserDto#getSex() sex}
    *    .email(String | null) // nullable {@link UserDto#getEmail() email}
    *    .role(ru.libraryteam.library.commons.Role) // required {@link UserDto#getRole() role}
@@ -432,7 +432,7 @@ public final class ImmutableUserDto implements UserDto {
     private String firstName;
     private String lastName;
     private String middleName;
-    private Date birthday;
+    private LocalDate birthday;
     private String sex;
     private String email;
     private Role role;
@@ -466,7 +466,7 @@ public final class ImmutableUserDto implements UserDto {
       if (middleNameValue != null) {
         middleName(middleNameValue);
       }
-      Date birthdayValue = instance.getBirthday();
+      LocalDate birthdayValue = instance.getBirthday();
       if (birthdayValue != null) {
         birthday(birthdayValue);
       }
@@ -544,7 +544,7 @@ public final class ImmutableUserDto implements UserDto {
      * @return {@code this} builder for use in a chained invocation
      */
     @JsonProperty("birthday")
-    public final Builder birthday(@Nullable Date birthday) {
+    public final Builder birthday(@Nullable LocalDate birthday) {
       this.birthday = birthday;
       return this;
     }

@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.BookEntity;
 import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.create.dto.BookCreateDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T20:38:04+0300",
+    date = "2021-08-09T00:10:21+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -122,6 +123,24 @@ public class BookMapperImpl implements BookMapper {
         BookEntity bookEntity = new BookEntity();
 
         bookEntity.setId( dto.getId() );
+        bookEntity.setBookName( dto.getBookName() );
+        bookEntity.setYearOfPublishing( dto.getYearOfPublishing() );
+        bookEntity.setQuantity( dto.getQuantity() );
+        bookEntity.setIsbn( dto.getIsbn() );
+        bookEntity.setAgeRating( dto.getAgeRating() );
+        bookEntity.setLanguage( dto.getLanguage() );
+
+        return bookEntity;
+    }
+
+    @Override
+    public BookEntity toEntity(BookCreateDto dto) {
+        if ( dto == null ) {
+            return null;
+        }
+
+        BookEntity bookEntity = new BookEntity();
+
         bookEntity.setBookName( dto.getBookName() );
         bookEntity.setYearOfPublishing( dto.getYearOfPublishing() );
         bookEntity.setQuantity( dto.getQuantity() );

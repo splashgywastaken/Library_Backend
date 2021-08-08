@@ -1,5 +1,8 @@
 package ru.libraryteam.library.service.logic.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +13,10 @@ import ru.libraryteam.library.service.logic.ReviewService;
 import ru.libraryteam.library.service.mapper.ReadingListMapper;
 import ru.libraryteam.library.service.mapper.ReviewMapper;
 import ru.libraryteam.library.service.model.ReviewDto;
+import ru.libraryteam.library.service.model.create.dto.ReviewCreateDto;
+import ru.libraryteam.library.service.security.Profile;
+
+import java.util.Optional;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -21,7 +28,11 @@ public class ReviewServiceImpl implements ReviewService {
   private final ReadingListRepository readingListRepository;
 
   @Autowired
-  public ReviewServiceImpl(ReviewRepository reviewRepository, ReviewMapper reviewMapper, ReadingListMapper readingListMapper, ReadingListRepository readingListRepository) {
+  public ReviewServiceImpl(
+    ReviewRepository reviewRepository,
+    ReviewMapper reviewMapper,
+    ReadingListMapper readingListMapper,
+    ReadingListRepository readingListRepository) {
     this.reviewRepository = reviewRepository;
     this.reviewMapper = reviewMapper;
     this.readingListMapper = readingListMapper;
@@ -39,6 +50,7 @@ public class ReviewServiceImpl implements ReviewService {
   @Override
   @Transactional
   public ReviewDto createReview(ReviewDto dto, int listId) {
+
     var list = readingListMapper.fromEntity(
       readingListRepository.findById(listId)
         .orElse(null)

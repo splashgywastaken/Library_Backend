@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.ReviewService;
 import ru.libraryteam.library.service.model.ReviewDto;
+import ru.libraryteam.library.service.model.create.dto.ReviewCreateDto;
 import ru.libraryteam.library.service.model.impl.ReviewDtoImpl;
 
 @RestController
