@@ -1,11 +1,14 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
 import ru.libraryteam.library.service.model.PageDto;
+import ru.libraryteam.library.service.model.create.dto.BookCreateDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 import java.util.ArrayList;
@@ -76,8 +79,9 @@ public class BookController {
       pageNumber);
   }
 
-  @PostMapping
-  BookDto createBook(@RequestBody BookWithAuthorsGenresTagsDto dto) {
+  @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  BookDto createBook(@RequestBody BookCreateDto dto) {
     return bookService.extendedCreateBook(dto);
   }
 

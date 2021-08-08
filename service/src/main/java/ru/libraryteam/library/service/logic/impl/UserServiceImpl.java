@@ -13,19 +13,15 @@ import ru.libraryteam.library.db.repository.ReadingListRepository;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.service.EntityNotFoundException;
 import ru.libraryteam.library.service.mapper.UserMapper;
-import ru.libraryteam.library.service.model.UserCreateDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.logic.UserService;
 import ru.libraryteam.library.service.security.LibraryPasswordEncoder;
 import ru.libraryteam.library.service.security.Profile;
 
-import java.util.Collection;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Validated

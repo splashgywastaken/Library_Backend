@@ -1,4 +1,4 @@
-package ru.libraryteam.library.service.model;
+package ru.libraryteam.library.service.model.create.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.libraryteam.library.commons.Role;

@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import ru.libraryteam.library.db.entity.UserEntity;
-import ru.libraryteam.library.service.model.UserCreateDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 

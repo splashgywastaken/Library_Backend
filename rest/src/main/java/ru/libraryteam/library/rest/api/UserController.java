@@ -7,7 +7,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.UserService;
-import ru.libraryteam.library.service.model.UserCreateDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.model.impl.UserDtoImpl;
 

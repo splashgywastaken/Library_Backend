@@ -1,9 +1,13 @@
 package ru.libraryteam.library.service.logic.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import ru.libraryteam.library.db.entity.BookAuthorsEntity;
 import ru.libraryteam.library.db.entity.BookGenresEntity;
 import ru.libraryteam.library.db.entity.BookTagsEntity;
@@ -14,15 +18,23 @@ import ru.libraryteam.library.db.repository.*;
 import ru.libraryteam.library.service.logic.BookService;
 import ru.libraryteam.library.service.mapper.*;
 import ru.libraryteam.library.service.model.*;
+import ru.libraryteam.library.service.model.create.dto.BookCreateDto;
 import ru.libraryteam.library.service.model.impl.AuthorDtoImpl;
 import ru.libraryteam.library.service.model.impl.GenreDtoImpl;
 import ru.libraryteam.library.service.model.impl.TagDtoImpl;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
+import ru.libraryteam.library.service.security.Profile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Validated
 public class BookServiceImpl implements BookService {
+
+  private static final Logger logger = LoggerFactory.getLogger(BookServiceImpl.class);
+
+  private final ObjectProvider<Profile> profileProvider;
 
   private final BookRepository bookRepository;
   private final BookMapper bookMapper;
@@ -57,7 +69,9 @@ public class BookServiceImpl implements BookService {
     GenreRepository genreRepository,
     GenreMapper genreMapper,
     TagRepository tagRepository,
-    TagMapper tagMapper) {
+    TagMapper tagMapper,
+    ObjectProvider<Profile> profileProvider
+  ) {
     this.bookRepository = bookRepository;
     this.bookMapper = bookMapper;
     this.bookAuthorsRepository = bookAuthorsRepository;
@@ -71,6 +85,7 @@ public class BookServiceImpl implements BookService {
     this.genreMapper = genreMapper;
     this.tagRepository = tagRepository;
     this.tagMapper = tagMapper;
+    this.profileProvider = profileProvider;
   }
 
   @Override
@@ -83,7 +98,19 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public BookDto extendedCreateBook(BookWithAuthorsGenresTagsDto dto) {
+  public BookDto basicCreateBook(BookCreateDto dto) {
+    return bookMapper.fromEntity(
+      bookRepository.save(
+        bookMapper.toEntity(dto)
+      )
+    );
+  }
+
+  @Override
+  public BookDto extendedCreateBook(BookCreateDto dto) {
+
+    logger.info("User {} requested to create new Entity", profileProvider.getIfAvailable());
+
     var book  = (BookDto) basicCreateBook(dto);
 
     extendedAddAuthorToBook(book, dto);
@@ -92,7 +119,7 @@ public class BookServiceImpl implements BookService {
 
     extendedAddTagToBook(book, dto);
 
-    return book;
+    return Optional.ofNullable(book).orElseThrow();
   }
 
   @Override
@@ -153,7 +180,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public void extendedAddAuthorToBook(BookDto book, BookWithAuthorsGenresTagsDto dto) {
+  public void extendedAddAuthorToBook(BookDto book, BookCreateDto dto) {
     if (dto.getAuthors() != null) {
       if (!dto.getAuthors().isEmpty()) {
         for (AuthorDto author : dto.getAuthors()) {
@@ -183,7 +210,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public void extendedAddGenreToBook(BookDto book, BookWithAuthorsGenresTagsDto dto) {
+  public void extendedAddGenreToBook(BookDto book, BookCreateDto dto) {
     if (dto.getGenres() != null) {
       if (!dto.getGenres().isEmpty()) {
         for (GenreDto genre: dto.getGenres()){
@@ -212,7 +239,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public void extendedAddTagToBook(BookDto book, BookWithAuthorsGenresTagsDto dto) {
+  public void extendedAddTagToBook(BookDto book, BookCreateDto dto) {
     if (dto.getTags() != null) {
       if (!dto.getTags().isEmpty()) {
         for (TagDto tag: dto.getTags()){

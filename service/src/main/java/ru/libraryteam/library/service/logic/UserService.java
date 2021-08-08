@@ -1,6 +1,6 @@
 package ru.libraryteam.library.service.logic;
 
-import ru.libraryteam.library.service.model.UserCreateDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 
 import javax.validation.Valid;
