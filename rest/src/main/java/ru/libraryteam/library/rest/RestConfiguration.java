@@ -13,7 +13,7 @@ public class RestConfiguration implements WebMvcConfigurer {
     registry
       .addMapping("/**")
       .allowedMethods("*")
-      .allowedHeaders("")
+      .allowedHeaders("*")
       .allowedOrigins("http://localhost:8080")
       .allowCredentials(true);
   }
