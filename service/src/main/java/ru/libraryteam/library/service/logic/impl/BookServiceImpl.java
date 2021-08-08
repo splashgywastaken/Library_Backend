@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService {
   private final BookTagsRepository bookTagsRepository;
 
   private final MessageRepository messageRepository;
-  private final MessageMapper messageMapper;
+  private final ReadingListRepository readingListRepository;
 
   private final AuthorRepository authorRepository;
   private final AuthorMapper authorMapper;
@@ -43,9 +43,6 @@ public class BookServiceImpl implements BookService {
   private final TagRepository tagRepository;
   private final TagMapper tagMapper;
 
-  private final UserRepository repository;
-  private final UserMapper mapper;
-
   @Autowired
   public BookServiceImpl(
     BookRepository bookRepository,
@@ -54,28 +51,26 @@ public class BookServiceImpl implements BookService {
     BookGenresRepository bookGenresRepository,
     BookTagsRepository bookTagsRepository,
     MessageRepository messageRepository,
-    MessageMapper messageMapper,
+    ReadingListRepository readingListRepository,
     AuthorRepository authorRepository,
     AuthorMapper authorMapper,
     GenreRepository genreRepository,
     GenreMapper genreMapper,
     TagRepository tagRepository,
-    TagMapper tagMapper, UserRepository repository, UserMapper mapper) {
+    TagMapper tagMapper) {
     this.bookRepository = bookRepository;
     this.bookMapper = bookMapper;
     this.bookAuthorsRepository = bookAuthorsRepository;
     this.bookGenresRepository = bookGenresRepository;
     this.bookTagsRepository = bookTagsRepository;
     this.messageRepository = messageRepository;
-    this.messageMapper = messageMapper;
+    this.readingListRepository = readingListRepository;
     this.authorRepository = authorRepository;
     this.authorMapper = authorMapper;
     this.genreRepository = genreRepository;
     this.genreMapper = genreMapper;
     this.tagRepository = tagRepository;
     this.tagMapper = tagMapper;
-    this.repository = repository;
-    this.mapper = mapper;
   }
 
   @Override
@@ -247,6 +242,7 @@ public class BookServiceImpl implements BookService {
   @Override
   @Transactional
   public void deleteBook(int bookId) {
+    readingListRepository.deleteAllByBookId(bookId);
     messageRepository.deleteAllByBookId(bookId);
     bookRepository.deleteById(bookId);
   }

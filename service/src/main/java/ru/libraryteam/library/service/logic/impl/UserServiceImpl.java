@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import ru.libraryteam.library.db.provider.UserProvider;
 import ru.libraryteam.library.db.repository.MessageRepository;
+import ru.libraryteam.library.db.repository.ReadingListRepository;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.service.EntityNotFoundException;
 import ru.libraryteam.library.service.mapper.UserMapper;
@@ -38,6 +39,7 @@ public class UserServiceImpl implements UserService {
   private final ObjectProvider<Profile> profileProvider;
 
   private final MessageRepository messageRepository;
+  private final ReadingListRepository readingListRepository;
 
   @Autowired
   public UserServiceImpl(
@@ -46,7 +48,8 @@ public class UserServiceImpl implements UserService {
     UserMapper mapper,
     LibraryPasswordEncoder passwordEncoder,
     ObjectProvider<Profile> profileProvider,
-    MessageRepository messageRepository
+    MessageRepository messageRepository,
+    ReadingListRepository readingListRepository
   ) {
     this.userProvider = userProvider;
     this.repository = repository;
@@ -54,6 +57,7 @@ public class UserServiceImpl implements UserService {
     this.passwordEncoder = passwordEncoder;
     this.profileProvider = profileProvider;
     this.messageRepository = messageRepository;
+    this.readingListRepository = readingListRepository;
   }
 
   @Override
@@ -101,6 +105,7 @@ public class UserServiceImpl implements UserService {
   @Override
   @Transactional
   public void deleteUser(int id) {
+    readingListRepository.deleteAllByUserId(id);
     messageRepository.deleteAllByUserId(id);
     repository.deleteById(id);
   }
