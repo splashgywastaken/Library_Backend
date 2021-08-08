@@ -35,7 +35,7 @@ public class UserDtoImpl  implements UserDto {
   private String middleName;
 
   @JsonProperty("birthday")
-  private Date birthday;
+  private LocalDate birthday;
 
   @JsonProperty("role")
   private Role role;
@@ -110,12 +110,12 @@ public class UserDtoImpl  implements UserDto {
     return email;
   }
 
-  public void setBirthday(Date birthday) {
+  public void setBirthday(LocalDate birthday) {
     this.birthday = birthday;
   }
 
   @Override
-  public Date getBirthday() {
+  public LocalDate getBirthday() {
     return this.birthday;
   }
 

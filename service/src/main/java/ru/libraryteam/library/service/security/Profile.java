@@ -26,6 +26,7 @@ public interface Profile {
   String getSex();
   String getEmail();
   String getUsername();
+  String getBirthday();
   @JsonIgnore
   String getPassword();
   Role getRole();

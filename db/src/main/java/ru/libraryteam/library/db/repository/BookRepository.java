@@ -47,4 +47,9 @@ public interface BookRepository extends CrudRepository<BookEntity, Integer>, Jpa
 
   @EntityGraph(value = "book-with-authors-genres-tags")
   Page<BookEntity> findAll(Pageable pageable);
+
+  boolean existsByIsbnIgnoreCase(String isbn);
+
+  boolean existsByIdIsNotAndIsbnIgnoreCase(int id, String isbn);
+
 }

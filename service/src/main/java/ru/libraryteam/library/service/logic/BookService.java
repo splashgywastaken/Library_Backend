@@ -2,14 +2,18 @@ package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.*;
 import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.create.dto.BookCreateDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 public interface BookService {
   BookDto basicCreateBook(BookDto dto);
 
-  BookDto extendedCreateBook(BookWithAuthorsGenresTagsDto dto);
+  BookDto basicCreateBook(BookCreateDto dto);
+
+  BookDto extendedCreateBook(@Valid BookCreateDto dto);
 
   BookDto updateBook(BookDto dto);
 
@@ -23,11 +27,11 @@ public interface BookService {
 
   void addTagToBook(int bookId, int tagId);
 
-  void extendedAddAuthorToBook(BookDto book, BookWithAuthorsGenresTagsDto dto);
+  void extendedAddAuthorToBook(BookDto book, BookCreateDto dto);
 
-  void extendedAddGenreToBook(BookDto book, BookWithAuthorsGenresTagsDto dto);
+  void extendedAddGenreToBook(BookDto book, BookCreateDto dto);
 
-  void extendedAddTagToBook(BookDto book, BookWithAuthorsGenresTagsDto dto);
+  void extendedAddTagToBook(BookDto book, BookCreateDto dto);
 
   void deleteBook(int bookId);
 

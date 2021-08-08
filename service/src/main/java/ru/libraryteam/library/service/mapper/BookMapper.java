@@ -7,6 +7,7 @@ import org.mapstruct.Named;
 import ru.libraryteam.library.db.entity.BookEntity;
 import ru.libraryteam.library.service.model.BookDto;
 import ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto;
+import ru.libraryteam.library.service.model.create.dto.BookCreateDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenresDto;
 
 import java.util.List;
@@ -33,4 +34,10 @@ public interface BookMapper {
   @Mapping(target = "tags", ignore = true)
   @Mapping(target = "messages", ignore = true)
   BookEntity toEntity(BookDto dto);
+
+  @Mapping(target ="authors", ignore = true)
+  @Mapping(target = "genres", ignore = true)
+  @Mapping(target = "tags", ignore = true)
+  @Mapping(target = "messages", ignore = true)
+  BookEntity toEntity(BookCreateDto dto);
 }

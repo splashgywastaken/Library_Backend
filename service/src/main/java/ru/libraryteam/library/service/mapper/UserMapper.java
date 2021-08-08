@@ -3,7 +3,7 @@ package ru.libraryteam.library.service.mapper;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.mapstruct.*;
 import ru.libraryteam.library.db.entity.UserEntity;
-import ru.libraryteam.library.service.model.UserCreateDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUserBooksDto;
