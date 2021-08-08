@@ -154,27 +154,27 @@ databaseChangeLog:
         - sqlFile:
             path: LT-001-202108071139.sql
             relativeToChangelogFile: true
-        - changeSet:
-            id: LT-001-202108071212
-            author: MTurusov
-            comment: ADD FOREIGN KEY to reading states
-            changes:
-              - sqlFile:
-                  path: LT-001-202108071212.sql
-                  relativeToChangelogFile: true
-        - changeSet:
-            id: LT-001-202108071224
-            author: MTurusov
-            comment: ADD FOREIGN KEY to reading states
-            changes:
-              - sqlFile:
-                  path: LT-001-202108071224.sql
-                  relativeToChangelogFile: true
-        - changeSet:
-            id: LT-001-202108071826
-            author: MTurusov
-            comment: ADD daysleft column to reading lists
-            changes:
-              - sqlFile:
-                  path: LT-001-202108071826.sql
-                  relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071212
+      author: MTurusov
+      comment: ADD FOREIGN KEY to reading states
+      changes:
+        - sqlFile:
+            path: LT-001-202108071212.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071224
+      author: MTurusov
+      comment: ADD FOREIGN KEY to reading states
+      changes:
+        - sqlFile:
+            path: LT-001-202108071224.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071826
+      author: MTurusov
+      comment: ADD daysleft column to reading lists
+      changes:
+        - sqlFile:
+            path: LT-001-202108071826.sql
+            relativeToChangelogFile: true
