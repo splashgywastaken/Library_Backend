@@ -73,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .cors()
       .and()
       .csrf().disable()
-      .formLogin()
+      .formLogin().usernameParameter("email")
       .loginProcessingUrl("/auth/login")
       .successHandler(new LibrarySuccessHandler(userRepository, profileMapper))
       .failureHandler(new LibraryFailureHandler())

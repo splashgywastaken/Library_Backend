@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
   public UserServiceImpl(
     UserProvider userProvider,
     UserRepository repository,
-    UserMapper mapper,
+    UserMapper userMapper,
     LibraryPasswordEncoder passwordEncoder,
     ObjectProvider<Profile> profileProvider,
     MessageRepository messageRepository,
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
   ) {
     this.userProvider = userProvider;
     this.repository = repository;
-    this.userMapper = mapper;
+    this.userMapper = userMapper;
     this.passwordEncoder = passwordEncoder;
     this.profileProvider = profileProvider;
     this.messageRepository = messageRepository;

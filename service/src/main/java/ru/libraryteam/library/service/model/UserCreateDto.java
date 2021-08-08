@@ -27,12 +27,12 @@ public class UserCreateDto {
   private String firstName;
 
   @JsonProperty("last_name")
-  @NotBlank(message = "middle_name.is-blank")
+  @NotBlank(message = "last_name.is-blank")
   @Size(min = 1, max = 45, message = "middle_name.out-of-range")
   private String lastName;
 
   @JsonProperty("middle_name")
-  @NotBlank(message = "first_name.is-blank")
+  @NotBlank(message = "middle_name.is-blank")
   @Size(min = 1, max = 45, message = "middle_name.out-of-range")
   private String middleName;
 

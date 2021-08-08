@@ -11,6 +11,14 @@ public interface UserRepository extends CrudRepository<UserEntity, Integer> {
   @Query(
     ""
       + "FROM users u "
+      + "WHERE LOWER(?1) = LOWER(u.email) "
+
+  )
+  UserEntity getByEmail(String email);
+
+  @Query(
+    ""
+      + "FROM users u "
       + "WHERE LOWER(?1) = LOWER(u.username) "
 
   )
