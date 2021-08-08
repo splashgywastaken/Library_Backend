@@ -1,11 +1,14 @@
 package ru.libraryteam.library.service.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.immutables.value.Generated;
 import org.springframework.lang.Nullable;
+import ru.libraryteam.library.commons.Role;
 
 /**
  * Immutable implementation of {@link UserDto}.
@@ -22,8 +25,10 @@ public final class ImmutableUserDto implements UserDto {
   private final @Nullable String firstName;
   private final @Nullable String lastName;
   private final @Nullable String middleName;
+  private final @Nullable Date birthday;
   private final @Nullable String sex;
   private final @Nullable String email;
+  private final Role role;
 
   private ImmutableUserDto(
       Integer id,
@@ -31,15 +36,19 @@ public final class ImmutableUserDto implements UserDto {
       @Nullable String firstName,
       @Nullable String lastName,
       @Nullable String middleName,
+      @Nullable Date birthday,
       @Nullable String sex,
-      @Nullable String email) {
+      @Nullable String email,
+      Role role) {
     this.id = id;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.middleName = middleName;
+    this.birthday = birthday;
     this.sex = sex;
     this.email = email;
+    this.role = role;
   }
 
   /**
@@ -88,6 +97,15 @@ public final class ImmutableUserDto implements UserDto {
   }
 
   /**
+   * @return The value of the {@code birthday} attribute
+   */
+  @JsonProperty("birthday")
+  @Override
+  public @Nullable Date getBirthday() {
+    return birthday;
+  }
+
+  /**
    * @return The value of the {@code sex} attribute
    */
   @JsonProperty("sex")
@@ -106,6 +124,15 @@ public final class ImmutableUserDto implements UserDto {
   }
 
   /**
+   * @return The value of the {@code role} attribute
+   */
+  @JsonProperty("role")
+  @Override
+  public Role getRole() {
+    return role;
+  }
+
+  /**
    * Copy the current immutable object by setting a value for the {@link UserDto#getId() id} attribute.
    * An equals check used to prevent copying of the same value by returning {@code this}.
    * @param value A new value for id
@@ -114,7 +141,16 @@ public final class ImmutableUserDto implements UserDto {
   public final ImmutableUserDto withId(Integer value) {
     Integer newValue = Objects.requireNonNull(value, "id");
     if (this.id.equals(newValue)) return this;
-    return new ImmutableUserDto(newValue, this.username, this.firstName, this.lastName, this.middleName, this.sex, this.email);
+    return new ImmutableUserDto(
+        newValue,
+        this.username,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.birthday,
+        this.sex,
+        this.email,
+        this.role);
   }
 
   /**
@@ -125,7 +161,16 @@ public final class ImmutableUserDto implements UserDto {
    */
   public final ImmutableUserDto withUsername(@Nullable String value) {
     if (Objects.equals(this.username, value)) return this;
-    return new ImmutableUserDto(this.id, value, this.firstName, this.lastName, this.middleName, this.sex, this.email);
+    return new ImmutableUserDto(
+        this.id,
+        value,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.birthday,
+        this.sex,
+        this.email,
+        this.role);
   }
 
   /**
@@ -136,7 +181,16 @@ public final class ImmutableUserDto implements UserDto {
    */
   public final ImmutableUserDto withFirstName(@Nullable String value) {
     if (Objects.equals(this.firstName, value)) return this;
-    return new ImmutableUserDto(this.id, this.username, value, this.lastName, this.middleName, this.sex, this.email);
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        value,
+        this.lastName,
+        this.middleName,
+        this.birthday,
+        this.sex,
+        this.email,
+        this.role);
   }
 
   /**
@@ -147,7 +201,16 @@ public final class ImmutableUserDto implements UserDto {
    */
   public final ImmutableUserDto withLastName(@Nullable String value) {
     if (Objects.equals(this.lastName, value)) return this;
-    return new ImmutableUserDto(this.id, this.username, this.firstName, value, this.middleName, this.sex, this.email);
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        this.firstName,
+        value,
+        this.middleName,
+        this.birthday,
+        this.sex,
+        this.email,
+        this.role);
   }
 
   /**
@@ -158,7 +221,36 @@ public final class ImmutableUserDto implements UserDto {
    */
   public final ImmutableUserDto withMiddleName(@Nullable String value) {
     if (Objects.equals(this.middleName, value)) return this;
-    return new ImmutableUserDto(this.id, this.username, this.firstName, this.lastName, value, this.sex, this.email);
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        this.firstName,
+        this.lastName,
+        value,
+        this.birthday,
+        this.sex,
+        this.email,
+        this.role);
+  }
+
+  /**
+   * Copy the current immutable object by setting a value for the {@link UserDto#getBirthday() birthday} attribute.
+   * A shallow reference equality check is used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for birthday (can be {@code null})
+   * @return A modified copy of the {@code this} object
+   */
+  public final ImmutableUserDto withBirthday(@Nullable Date value) {
+    if (this.birthday == value) return this;
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        value,
+        this.sex,
+        this.email,
+        this.role);
   }
 
   /**
@@ -169,7 +261,16 @@ public final class ImmutableUserDto implements UserDto {
    */
   public final ImmutableUserDto withSex(@Nullable String value) {
     if (Objects.equals(this.sex, value)) return this;
-    return new ImmutableUserDto(this.id, this.username, this.firstName, this.lastName, this.middleName, value, this.email);
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.birthday,
+        value,
+        this.email,
+        this.role);
   }
 
   /**
@@ -180,7 +281,38 @@ public final class ImmutableUserDto implements UserDto {
    */
   public final ImmutableUserDto withEmail(@Nullable String value) {
     if (Objects.equals(this.email, value)) return this;
-    return new ImmutableUserDto(this.id, this.username, this.firstName, this.lastName, this.middleName, this.sex, value);
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.birthday,
+        this.sex,
+        value,
+        this.role);
+  }
+
+  /**
+   * Copy the current immutable object by setting a value for the {@link UserDto#getRole() role} attribute.
+   * A value equality check is used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for role
+   * @return A modified copy of the {@code this} object
+   */
+  public final ImmutableUserDto withRole(Role value) {
+    if (this.role == value) return this;
+    Role newValue = Objects.requireNonNull(value, "role");
+    if (this.role.equals(newValue)) return this;
+    return new ImmutableUserDto(
+        this.id,
+        this.username,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.birthday,
+        this.sex,
+        this.email,
+        newValue);
   }
 
   /**
@@ -200,12 +332,14 @@ public final class ImmutableUserDto implements UserDto {
         && Objects.equals(firstName, another.firstName)
         && Objects.equals(lastName, another.lastName)
         && Objects.equals(middleName, another.middleName)
+        && Objects.equals(birthday, another.birthday)
         && Objects.equals(sex, another.sex)
-        && Objects.equals(email, another.email);
+        && Objects.equals(email, another.email)
+        && role.equals(another.role);
   }
 
   /**
-   * Computes a hash code from attributes: {@code id}, {@code username}, {@code firstName}, {@code lastName}, {@code middleName}, {@code sex}, {@code email}.
+   * Computes a hash code from attributes: {@code id}, {@code username}, {@code firstName}, {@code lastName}, {@code middleName}, {@code birthday}, {@code sex}, {@code email}, {@code role}.
    * @return hashCode value
    */
   @Override
@@ -216,8 +350,10 @@ public final class ImmutableUserDto implements UserDto {
     h += (h << 5) + Objects.hashCode(firstName);
     h += (h << 5) + Objects.hashCode(lastName);
     h += (h << 5) + Objects.hashCode(middleName);
+    h += (h << 5) + Objects.hashCode(birthday);
     h += (h << 5) + Objects.hashCode(sex);
     h += (h << 5) + Objects.hashCode(email);
+    h += (h << 5) + role.hashCode();
     return h;
   }
 
@@ -233,8 +369,10 @@ public final class ImmutableUserDto implements UserDto {
         + ", firstName=" + firstName
         + ", lastName=" + lastName
         + ", middleName=" + middleName
+        + ", birthday=" + birthday
         + ", sex=" + sex
         + ", email=" + email
+        + ", role=" + role
         + "}";
   }
 
@@ -263,8 +401,10 @@ public final class ImmutableUserDto implements UserDto {
    *    .firstName(String | null) // nullable {@link UserDto#getFirstName() firstName}
    *    .lastName(String | null) // nullable {@link UserDto#getLastName() lastName}
    *    .middleName(String | null) // nullable {@link UserDto#getMiddleName() middleName}
+   *    .birthday(java.sql.Date | null) // nullable {@link UserDto#getBirthday() birthday}
    *    .sex(String | null) // nullable {@link UserDto#getSex() sex}
    *    .email(String | null) // nullable {@link UserDto#getEmail() email}
+   *    .role(ru.libraryteam.library.commons.Role) // required {@link UserDto#getRole() role}
    *    .build();
    * </pre>
    * @return A new ImmutableUserDto builder
@@ -281,17 +421,21 @@ public final class ImmutableUserDto implements UserDto {
    * but instead used immediately to create instances.</em>
    */
   @Generated(from = "UserDto", generator = "Immutables")
+  @JsonPropertyOrder({"id", "first_name", "last_name", "middle_name", "birthday", "sex", "username", "email", "role"})
   public static final class Builder {
     private static final long INIT_BIT_ID = 0x1L;
-    private long initBits = 0x1L;
+    private static final long INIT_BIT_ROLE = 0x2L;
+    private long initBits = 0x3L;
 
     private Integer id;
     private String username;
     private String firstName;
     private String lastName;
     private String middleName;
+    private Date birthday;
     private String sex;
     private String email;
+    private Role role;
 
     private Builder() {
     }
@@ -322,6 +466,10 @@ public final class ImmutableUserDto implements UserDto {
       if (middleNameValue != null) {
         middleName(middleNameValue);
       }
+      Date birthdayValue = instance.getBirthday();
+      if (birthdayValue != null) {
+        birthday(birthdayValue);
+      }
       String sexValue = instance.getSex();
       if (sexValue != null) {
         sex(sexValue);
@@ -330,6 +478,7 @@ public final class ImmutableUserDto implements UserDto {
       if (emailValue != null) {
         email(emailValue);
       }
+      role(instance.getRole());
       return this;
     }
 
@@ -390,6 +539,17 @@ public final class ImmutableUserDto implements UserDto {
     }
 
     /**
+     * Initializes the value for the {@link UserDto#getBirthday() birthday} attribute.
+     * @param birthday The value for birthday (can be {@code null})
+     * @return {@code this} builder for use in a chained invocation
+     */
+    @JsonProperty("birthday")
+    public final Builder birthday(@Nullable Date birthday) {
+      this.birthday = birthday;
+      return this;
+    }
+
+    /**
      * Initializes the value for the {@link UserDto#getSex() sex} attribute.
      * @param sex The value for sex (can be {@code null})
      * @return {@code this} builder for use in a chained invocation
@@ -412,6 +572,18 @@ public final class ImmutableUserDto implements UserDto {
     }
 
     /**
+     * Initializes the value for the {@link UserDto#getRole() role} attribute.
+     * @param role The value for role 
+     * @return {@code this} builder for use in a chained invocation
+     */
+    @JsonProperty("role")
+    public final Builder role(Role role) {
+      this.role = Objects.requireNonNull(role, "role");
+      initBits &= ~INIT_BIT_ROLE;
+      return this;
+    }
+
+    /**
      * Builds a new {@link ImmutableUserDto ImmutableUserDto}.
      * @return An immutable instance of UserDto
      * @throws java.lang.IllegalStateException if any required attributes are missing
@@ -420,12 +592,13 @@ public final class ImmutableUserDto implements UserDto {
       if (initBits != 0) {
         throw new IllegalStateException(formatRequiredAttributesMessage());
       }
-      return new ImmutableUserDto(id, username, firstName, lastName, middleName, sex, email);
+      return new ImmutableUserDto(id, username, firstName, lastName, middleName, birthday, sex, email, role);
     }
 
     private String formatRequiredAttributesMessage() {
       List<String> attributes = new ArrayList<>();
       if ((initBits & INIT_BIT_ID) != 0) attributes.add("id");
+      if ((initBits & INIT_BIT_ROLE) != 0) attributes.add("role");
       return "Cannot build UserDto, some of required attributes are not set " + attributes;
     }
   }

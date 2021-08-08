@@ -1,5 +1,7 @@
 package ru.libraryteam.library.service.mapper;
 
+import java.sql.Date;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -13,7 +15,7 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T14:03:31+0300",
+    date = "2021-08-08T14:13:09+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -32,8 +34,12 @@ public class UserMapperImpl implements UserMapper {
         userDto.firstName( entity.getFirstName() );
         userDto.lastName( entity.getLastName() );
         userDto.middleName( entity.getMiddleName() );
+        if ( entity.getBirthday() != null ) {
+            userDto.birthday( new Date( entity.getBirthday().atStartOfDay( ZoneOffset.UTC ).toInstant().toEpochMilli() ) );
+        }
         userDto.sex( entity.getSex() );
         userDto.email( entity.getEmail() );
+        userDto.role( entity.getRole() );
 
         return userDto.build();
     }
@@ -48,6 +54,12 @@ public class UserMapperImpl implements UserMapper {
         original.setLastName( dto.getLastName() );
         original.setMiddleName( dto.getMiddleName() );
         original.setEmail( dto.getEmail() );
+        if ( dto.getBirthday() != null ) {
+            original.setBirthday( dto.getBirthday().toLocalDate() );
+        }
+        else {
+            original.setBirthday( null );
+        }
         original.setSex( dto.getSex() );
         original.setUsername( dto.getUsername() );
     }

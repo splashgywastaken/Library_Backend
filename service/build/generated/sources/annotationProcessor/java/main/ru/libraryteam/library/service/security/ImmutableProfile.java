@@ -19,6 +19,9 @@ public final class ImmutableProfile implements Profile {
   private final int id;
   private final String firstName;
   private final String lastName;
+  private final String middleName;
+  private final String sex;
+  private final String email;
   private final String username;
   private final String password;
   private final Role role;
@@ -27,12 +30,18 @@ public final class ImmutableProfile implements Profile {
       int id,
       String firstName,
       String lastName,
+      String middleName,
+      String sex,
+      String email,
       String username,
       String password,
       Role role) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.middleName = middleName;
+    this.sex = sex;
+    this.email = email;
     this.username = username;
     this.password = password;
     this.role = role;
@@ -60,6 +69,30 @@ public final class ImmutableProfile implements Profile {
   @Override
   public String getLastName() {
     return lastName;
+  }
+
+  /**
+   * @return The value of the {@code middleName} attribute
+   */
+  @Override
+  public String getMiddleName() {
+    return middleName;
+  }
+
+  /**
+   * @return The value of the {@code sex} attribute
+   */
+  @Override
+  public String getSex() {
+    return sex;
+  }
+
+  /**
+   * @return The value of the {@code email} attribute
+   */
+  @Override
+  public String getEmail() {
+    return email;
   }
 
   /**
@@ -94,7 +127,16 @@ public final class ImmutableProfile implements Profile {
    */
   public final ImmutableProfile withId(int value) {
     if (this.id == value) return this;
-    return new ImmutableProfile(value, this.firstName, this.lastName, this.username, this.password, this.role);
+    return new ImmutableProfile(
+        value,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.sex,
+        this.email,
+        this.username,
+        this.password,
+        this.role);
   }
 
   /**
@@ -106,7 +148,16 @@ public final class ImmutableProfile implements Profile {
   public final ImmutableProfile withFirstName(String value) {
     String newValue = Objects.requireNonNull(value, "firstName");
     if (this.firstName.equals(newValue)) return this;
-    return new ImmutableProfile(this.id, newValue, this.lastName, this.username, this.password, this.role);
+    return new ImmutableProfile(
+        this.id,
+        newValue,
+        this.lastName,
+        this.middleName,
+        this.sex,
+        this.email,
+        this.username,
+        this.password,
+        this.role);
   }
 
   /**
@@ -118,7 +169,79 @@ public final class ImmutableProfile implements Profile {
   public final ImmutableProfile withLastName(String value) {
     String newValue = Objects.requireNonNull(value, "lastName");
     if (this.lastName.equals(newValue)) return this;
-    return new ImmutableProfile(this.id, this.firstName, newValue, this.username, this.password, this.role);
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        newValue,
+        this.middleName,
+        this.sex,
+        this.email,
+        this.username,
+        this.password,
+        this.role);
+  }
+
+  /**
+   * Copy the current immutable object by setting a value for the {@link Profile#getMiddleName() middleName} attribute.
+   * An equals check used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for middleName
+   * @return A modified copy of the {@code this} object
+   */
+  public final ImmutableProfile withMiddleName(String value) {
+    String newValue = Objects.requireNonNull(value, "middleName");
+    if (this.middleName.equals(newValue)) return this;
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        this.lastName,
+        newValue,
+        this.sex,
+        this.email,
+        this.username,
+        this.password,
+        this.role);
+  }
+
+  /**
+   * Copy the current immutable object by setting a value for the {@link Profile#getSex() sex} attribute.
+   * An equals check used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for sex
+   * @return A modified copy of the {@code this} object
+   */
+  public final ImmutableProfile withSex(String value) {
+    String newValue = Objects.requireNonNull(value, "sex");
+    if (this.sex.equals(newValue)) return this;
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        newValue,
+        this.email,
+        this.username,
+        this.password,
+        this.role);
+  }
+
+  /**
+   * Copy the current immutable object by setting a value for the {@link Profile#getEmail() email} attribute.
+   * An equals check used to prevent copying of the same value by returning {@code this}.
+   * @param value A new value for email
+   * @return A modified copy of the {@code this} object
+   */
+  public final ImmutableProfile withEmail(String value) {
+    String newValue = Objects.requireNonNull(value, "email");
+    if (this.email.equals(newValue)) return this;
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.sex,
+        newValue,
+        this.username,
+        this.password,
+        this.role);
   }
 
   /**
@@ -130,7 +253,16 @@ public final class ImmutableProfile implements Profile {
   public final ImmutableProfile withUsername(String value) {
     String newValue = Objects.requireNonNull(value, "username");
     if (this.username.equals(newValue)) return this;
-    return new ImmutableProfile(this.id, this.firstName, this.lastName, newValue, this.password, this.role);
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.sex,
+        this.email,
+        newValue,
+        this.password,
+        this.role);
   }
 
   /**
@@ -142,7 +274,16 @@ public final class ImmutableProfile implements Profile {
   public final ImmutableProfile withPassword(String value) {
     String newValue = Objects.requireNonNull(value, "password");
     if (this.password.equals(newValue)) return this;
-    return new ImmutableProfile(this.id, this.firstName, this.lastName, this.username, newValue, this.role);
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.sex,
+        this.email,
+        this.username,
+        newValue,
+        this.role);
   }
 
   /**
@@ -155,7 +296,16 @@ public final class ImmutableProfile implements Profile {
     if (this.role == value) return this;
     Role newValue = Objects.requireNonNull(value, "role");
     if (this.role.equals(newValue)) return this;
-    return new ImmutableProfile(this.id, this.firstName, this.lastName, this.username, this.password, newValue);
+    return new ImmutableProfile(
+        this.id,
+        this.firstName,
+        this.lastName,
+        this.middleName,
+        this.sex,
+        this.email,
+        this.username,
+        this.password,
+        newValue);
   }
 
   /**
@@ -173,13 +323,16 @@ public final class ImmutableProfile implements Profile {
     return id == another.id
         && firstName.equals(another.firstName)
         && lastName.equals(another.lastName)
+        && middleName.equals(another.middleName)
+        && sex.equals(another.sex)
+        && email.equals(another.email)
         && username.equals(another.username)
         && password.equals(another.password)
         && role.equals(another.role);
   }
 
   /**
-   * Computes a hash code from attributes: {@code id}, {@code firstName}, {@code lastName}, {@code username}, {@code password}, {@code role}.
+   * Computes a hash code from attributes: {@code id}, {@code firstName}, {@code lastName}, {@code middleName}, {@code sex}, {@code email}, {@code username}, {@code password}, {@code role}.
    * @return hashCode value
    */
   @Override
@@ -188,6 +341,9 @@ public final class ImmutableProfile implements Profile {
     h += (h << 5) + id;
     h += (h << 5) + firstName.hashCode();
     h += (h << 5) + lastName.hashCode();
+    h += (h << 5) + middleName.hashCode();
+    h += (h << 5) + sex.hashCode();
+    h += (h << 5) + email.hashCode();
     h += (h << 5) + username.hashCode();
     h += (h << 5) + password.hashCode();
     h += (h << 5) + role.hashCode();
@@ -204,6 +360,9 @@ public final class ImmutableProfile implements Profile {
         + "id=" + id
         + ", firstName=" + firstName
         + ", lastName=" + lastName
+        + ", middleName=" + middleName
+        + ", sex=" + sex
+        + ", email=" + email
         + ", username=" + username
         + ", password=" + password
         + ", role=" + role
@@ -233,6 +392,9 @@ public final class ImmutableProfile implements Profile {
    *    .id(int) // required {@link Profile#getId() id}
    *    .firstName(String) // required {@link Profile#getFirstName() firstName}
    *    .lastName(String) // required {@link Profile#getLastName() lastName}
+   *    .middleName(String) // required {@link Profile#getMiddleName() middleName}
+   *    .sex(String) // required {@link Profile#getSex() sex}
+   *    .email(String) // required {@link Profile#getEmail() email}
    *    .username(String) // required {@link Profile#getUsername() username}
    *    .password(String) // required {@link Profile#getPassword() password}
    *    .role(ru.libraryteam.library.commons.Role) // required {@link Profile#getRole() role}
@@ -256,14 +418,20 @@ public final class ImmutableProfile implements Profile {
     private static final long INIT_BIT_ID = 0x1L;
     private static final long INIT_BIT_FIRST_NAME = 0x2L;
     private static final long INIT_BIT_LAST_NAME = 0x4L;
-    private static final long INIT_BIT_USERNAME = 0x8L;
-    private static final long INIT_BIT_PASSWORD = 0x10L;
-    private static final long INIT_BIT_ROLE = 0x20L;
-    private long initBits = 0x3fL;
+    private static final long INIT_BIT_MIDDLE_NAME = 0x8L;
+    private static final long INIT_BIT_SEX = 0x10L;
+    private static final long INIT_BIT_EMAIL = 0x20L;
+    private static final long INIT_BIT_USERNAME = 0x40L;
+    private static final long INIT_BIT_PASSWORD = 0x80L;
+    private static final long INIT_BIT_ROLE = 0x100L;
+    private long initBits = 0x1ffL;
 
     private int id;
     private String firstName;
     private String lastName;
+    private String middleName;
+    private String sex;
+    private String email;
     private String username;
     private String password;
     private Role role;
@@ -283,6 +451,9 @@ public final class ImmutableProfile implements Profile {
       id(instance.getId());
       firstName(instance.getFirstName());
       lastName(instance.getLastName());
+      middleName(instance.getMiddleName());
+      sex(instance.getSex());
+      email(instance.getEmail());
       username(instance.getUsername());
       password(instance.getPassword());
       role(instance.getRole());
@@ -319,6 +490,39 @@ public final class ImmutableProfile implements Profile {
     public final Builder lastName(String lastName) {
       this.lastName = Objects.requireNonNull(lastName, "lastName");
       initBits &= ~INIT_BIT_LAST_NAME;
+      return this;
+    }
+
+    /**
+     * Initializes the value for the {@link Profile#getMiddleName() middleName} attribute.
+     * @param middleName The value for middleName 
+     * @return {@code this} builder for use in a chained invocation
+     */
+    public final Builder middleName(String middleName) {
+      this.middleName = Objects.requireNonNull(middleName, "middleName");
+      initBits &= ~INIT_BIT_MIDDLE_NAME;
+      return this;
+    }
+
+    /**
+     * Initializes the value for the {@link Profile#getSex() sex} attribute.
+     * @param sex The value for sex 
+     * @return {@code this} builder for use in a chained invocation
+     */
+    public final Builder sex(String sex) {
+      this.sex = Objects.requireNonNull(sex, "sex");
+      initBits &= ~INIT_BIT_SEX;
+      return this;
+    }
+
+    /**
+     * Initializes the value for the {@link Profile#getEmail() email} attribute.
+     * @param email The value for email 
+     * @return {@code this} builder for use in a chained invocation
+     */
+    public final Builder email(String email) {
+      this.email = Objects.requireNonNull(email, "email");
+      initBits &= ~INIT_BIT_EMAIL;
       return this;
     }
 
@@ -364,7 +568,7 @@ public final class ImmutableProfile implements Profile {
       if (initBits != 0) {
         throw new IllegalStateException(formatRequiredAttributesMessage());
       }
-      return new ImmutableProfile(id, firstName, lastName, username, password, role);
+      return new ImmutableProfile(id, firstName, lastName, middleName, sex, email, username, password, role);
     }
 
     private String formatRequiredAttributesMessage() {
@@ -372,6 +576,9 @@ public final class ImmutableProfile implements Profile {
       if ((initBits & INIT_BIT_ID) != 0) attributes.add("id");
       if ((initBits & INIT_BIT_FIRST_NAME) != 0) attributes.add("firstName");
       if ((initBits & INIT_BIT_LAST_NAME) != 0) attributes.add("lastName");
+      if ((initBits & INIT_BIT_MIDDLE_NAME) != 0) attributes.add("middleName");
+      if ((initBits & INIT_BIT_SEX) != 0) attributes.add("sex");
+      if ((initBits & INIT_BIT_EMAIL) != 0) attributes.add("email");
       if ((initBits & INIT_BIT_USERNAME) != 0) attributes.add("username");
       if ((initBits & INIT_BIT_PASSWORD) != 0) attributes.add("password");
       if ((initBits & INIT_BIT_ROLE) != 0) attributes.add("role");

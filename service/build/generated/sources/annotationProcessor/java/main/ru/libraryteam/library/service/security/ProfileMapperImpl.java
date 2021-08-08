@@ -7,7 +7,7 @@ import ru.libraryteam.library.service.security.ImmutableProfile.Builder;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T14:03:31+0300",
+    date = "2021-08-08T14:13:09+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -26,6 +26,9 @@ public class ProfileMapperImpl implements ProfileMapper {
         }
         profile.firstName( userEntity.getFirstName() );
         profile.lastName( userEntity.getLastName() );
+        profile.middleName( userEntity.getMiddleName() );
+        profile.sex( userEntity.getSex() );
+        profile.email( userEntity.getEmail() );
         profile.username( userEntity.getUsername() );
         profile.password( userEntity.getPassword() );
         profile.role( userEntity.getRole() );
