@@ -12,7 +12,7 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleBookWithAuthorsGenr
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T14:13:08+0300",
+    date = "2021-08-08T20:38:04+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -74,7 +74,6 @@ public class BookMapperImpl implements BookMapper {
 
         simpleBookWithAuthorsGenresDto.setId( book.getId() );
         simpleBookWithAuthorsGenresDto.setBookName( book.getBookName() );
-        simpleBookWithAuthorsGenresDto.setYearOfPublishing( book.getYearOfPublishing() );
         simpleBookWithAuthorsGenresDto.setAuthors( authorMapper.fromEntities( book.getAuthors() ) );
         simpleBookWithAuthorsGenresDto.setGenres( genreMapper.fromEntities( book.getGenres() ) );
 

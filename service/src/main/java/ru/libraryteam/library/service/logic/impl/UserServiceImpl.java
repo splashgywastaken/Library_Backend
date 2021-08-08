@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -12,20 +13,18 @@ import ru.libraryteam.library.db.repository.MessageRepository;
 import ru.libraryteam.library.db.repository.ReadingListRepository;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.service.EntityNotFoundException;
+import ru.libraryteam.library.service.logic.UserService;
 import ru.libraryteam.library.service.mapper.UserMapper;
+import ru.libraryteam.library.service.model.ImmutablePageDto;
+import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
-import ru.libraryteam.library.service.logic.UserService;
+import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUserBooksDto;
 import ru.libraryteam.library.service.security.LibraryPasswordEncoder;
 import ru.libraryteam.library.service.security.Profile;
 
-import java.util.Collection;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Validated
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
   private final UserProvider userProvider;
-  private final UserRepository repository;
+  private final UserRepository userRepository;
   private final UserMapper userMapper;
   private final LibraryPasswordEncoder passwordEncoder;
   private final ObjectProvider<Profile> profileProvider;
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService {
   @Autowired
   public UserServiceImpl(
     UserProvider userProvider,
-    UserRepository repository,
+    UserRepository userRepository,
     UserMapper userMapper,
     LibraryPasswordEncoder passwordEncoder,
     ObjectProvider<Profile> profileProvider,
@@ -52,7 +51,7 @@ public class UserServiceImpl implements UserService {
     ReadingListRepository readingListRepository
   ) {
     this.userProvider = userProvider;
-    this.repository = repository;
+    this.userRepository = userRepository;
     this.userMapper = userMapper;
     this.passwordEncoder = passwordEncoder;
     this.profileProvider = profileProvider;
@@ -81,13 +80,20 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserDto findById(int id) {
-    return userMapper.fromEntity(repository.findById(id).orElse(null));
+  public SimpleUserForUserBooksDto findById(int id) {
+    return userMapper.simpleUserForUserBooksDtoFromEntity(userRepository.findById(id).orElse(null));
   }
 
   @Override
-  public List<UserDto> findAll() {
-    return userMapper.formEntities(repository.findAll());
+  public PageDto<UserDto> findAll(Integer pageSize, Integer pageNumber) {
+    var values = userRepository.findAll(Pageable
+      .ofSize(pageSize)
+      .withPage(pageNumber)).map(userMapper::fromEntity);
+    return ImmutablePageDto.<UserDto>builder()
+      .pageNumber(pageNumber)
+      .totalPages(values.getTotalPages())
+      .items(values.getContent())
+      .build();
   }
 
   @Override
@@ -107,6 +113,6 @@ public class UserServiceImpl implements UserService {
   public void deleteUser(int id) {
     readingListRepository.deleteAllByUserId(id);
     messageRepository.deleteAllByUserId(id);
-    repository.deleteById(id);
+    userRepository.deleteById(id);
   }
 }

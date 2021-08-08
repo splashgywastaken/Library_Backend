@@ -5,6 +5,8 @@ import ru.libraryteam.library.commons.Role;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Table(schema = "library", name = "users")
 @Entity(name = "users")
@@ -42,6 +44,10 @@ public class UserEntity {
 
   @Column(name = "user_role")
   private Role role;
+
+  @OneToMany
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+  private Set<ReadingListEntity> lists = new HashSet<>();
 
   //Set and Get methods
 
@@ -101,5 +107,13 @@ public class UserEntity {
 
   public void setRole(Role role) {
     this.role = role;
+  }
+
+  public Set<ReadingListEntity> getLists() {
+    return lists;
+  }
+
+  public void setLists(Set<ReadingListEntity> lists) {
+    this.lists = lists;
   }
 }

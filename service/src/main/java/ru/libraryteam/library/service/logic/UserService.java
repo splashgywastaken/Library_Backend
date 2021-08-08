@@ -1,7 +1,9 @@
 package ru.libraryteam.library.service.logic;
 
+import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
+import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUserBooksDto;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -10,9 +12,9 @@ public interface UserService {
 
   UserDto createUser(@Valid UserCreateDto userDto);
 
-  UserDto findById(int id);
+  SimpleUserForUserBooksDto findById(int id);
 
-  List<UserDto> findAll();
+  PageDto<UserDto> findAll(Integer pageSize, Integer pageNumber);
 
   UserDto updateUser(UserDto dto);
 

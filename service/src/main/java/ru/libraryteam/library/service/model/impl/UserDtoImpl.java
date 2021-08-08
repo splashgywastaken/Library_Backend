@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import ru.libraryteam.library.commons.Role;
+import ru.libraryteam.library.service.model.ReadingListDto;
+import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
 import ru.libraryteam.library.service.model.UserDto;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @JsonPropertyOrder({
   "first_name",
@@ -124,6 +127,5 @@ public class UserDtoImpl  implements UserDto {
   public Role getRole() {
     return this.role;
   }
-
 }
 

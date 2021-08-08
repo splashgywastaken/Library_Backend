@@ -53,7 +53,7 @@ public class MessageServiceImpl implements MessageService {
     dtoUser.setId(user.getId());
     dtoUser.setFirstName(user.getFirstName());
     dtoUser.setLastName(user.getLastName());
-    dtoUser.setUsername(user.getUsername());
+    dtoUser.setMiddleName(user.getMiddleName());
     dto.setUser(dtoUser);
 
     return messageMapper.fromEntity(

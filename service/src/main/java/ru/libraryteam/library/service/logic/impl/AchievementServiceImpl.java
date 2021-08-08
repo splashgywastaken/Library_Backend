@@ -11,31 +11,31 @@ import java.util.List;
 @Service
 public class AchievementServiceImpl implements AchievementService {
 
-  private final AchievementRepository repository;
-  private final AchievementMapper mapper;
+  private final AchievementRepository achievementRepository;
+  private final AchievementMapper achievementMapper;
 
-  public AchievementServiceImpl(AchievementRepository repository, AchievementMapper mapper) {
-    this.repository = repository;
-    this.mapper = mapper;
+  public AchievementServiceImpl(AchievementRepository achievementRepository, AchievementMapper achievementMapper) {
+    this.achievementRepository = achievementRepository;
+    this.achievementMapper = achievementMapper;
   }
 
   @Override
   public AchievementDto createAchievement(AchievementDto achievementDto) {
-    return mapper.fromEntity(
-      repository.save(
-        mapper.toEntity(achievementDto)
+    return achievementMapper.fromEntity(
+      achievementRepository.save(
+        achievementMapper.toEntity(achievementDto)
       )
     );
   }
 
   @Override
   public AchievementDto findById(int id) {
-    return mapper.fromEntity(repository.findById(id).orElse(null));
+    return achievementMapper.fromEntity(achievementRepository.findById(id).orElse(null));
   }
 
   @Override
   public List<AchievementDto> findAll() {
-    return mapper.fromEntities(repository.findAll());
+    return achievementMapper.fromEntities(achievementRepository.findAll());
   }
 
   @Override
@@ -45,6 +45,6 @@ public class AchievementServiceImpl implements AchievementService {
 
   @Override
   public void deleteAchievement(int id) {
-    repository.deleteById(id);
+    achievementRepository.deleteById(id);
   }
 }

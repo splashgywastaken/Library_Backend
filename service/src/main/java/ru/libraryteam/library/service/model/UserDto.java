@@ -10,6 +10,7 @@ import ru.libraryteam.library.commons.Role;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Value.Immutable
 @JsonDeserialize(builder = ImmutableUserDto.Builder.class)

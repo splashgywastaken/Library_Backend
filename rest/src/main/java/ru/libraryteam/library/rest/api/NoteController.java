@@ -5,6 +5,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.model.NoteDto;
 import ru.libraryteam.library.service.logic.NoteService;
+import ru.libraryteam.library.service.model.PageDto;
 
 import java.util.List;
 
@@ -54,9 +55,12 @@ public class NoteController {
 
   //Вывод всех заметок
   @GetMapping
-  List<NoteDto> getAllNoteEntities() {
+  PageDto<NoteDto> getAllNoteEntities(
+    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
+    @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
+  ) {
     return
-      service.findAll();
+      service.findAll(pageSize, pageNumber);
   }
 
   //Вывод всех заметок юзера

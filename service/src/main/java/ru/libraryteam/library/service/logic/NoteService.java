@@ -1,6 +1,7 @@
 package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.NoteDto;
+import ru.libraryteam.library.service.model.PageDto;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface NoteService {
 
   NoteDto findById(int id);
 
-  List<NoteDto> findAll();
+  PageDto<NoteDto> findAll(Integer pageSize, Integer pageNumber);
 
   NoteDto updateNote(NoteDto dto);
 

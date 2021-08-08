@@ -28,6 +28,8 @@ ru/libraryteam/library/service/logic/GenreService.java
  ru.libraryteam.library.service.logic.GenreService
 ru/libraryteam/library/service/model/UserCreateDto.java
  ru.libraryteam.library.service.model.UserCreateDto
+ru/libraryteam/library/service/model/simple/dto/userbooks/SimpleUserForUserBooksDto.java
+ ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUserBooksDto
 ru/libraryteam/library/service/model/MessageDto.java
  ru.libraryteam.library.service.model.MessageDto
 ru/libraryteam/library/service/model/impl/TagDtoImpl.java
@@ -64,6 +66,8 @@ ru/libraryteam/library/service/model/impl/AuthorDtoImpl.java
  ru.libraryteam.library.service.model.impl.AuthorDtoImpl
 ru/libraryteam/library/service/model/BookWithAuthorsGenresTagsDto.java
  ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto
+ru/libraryteam/library/service/model/simple/dto/userbooks/SimpleReadingListForUserBooksDto.java
+ ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleReadingListForUserBooksDto
 ru/libraryteam/library/service/validation/UsernameUniqueForUpdate.java
  ru.libraryteam.library.service.validation.UsernameUniqueForUpdate
 ru/libraryteam/library/service/logic/impl/ReadingListServiceImpl.java

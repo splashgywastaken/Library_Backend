@@ -2,7 +2,6 @@ package ru.libraryteam.library.service.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.repository.GenreRepository;
 import ru.libraryteam.library.service.logic.GenreService;
 import ru.libraryteam.library.service.mapper.GenreMapper;
@@ -13,32 +12,32 @@ import java.util.List;
 @Service
 public class GenreServiceImpl implements GenreService {
 
-  private final GenreRepository repository;
-  private final GenreMapper mapper;
+  private final GenreRepository genreRepository;
+  private final GenreMapper genreMapper;
 
   @Autowired
-  public GenreServiceImpl(GenreRepository repository, GenreMapper mapper) {
-    this.repository = repository;
-    this.mapper = mapper;
+  public GenreServiceImpl(GenreRepository genreRepository, GenreMapper genreMapper) {
+    this.genreRepository = genreRepository;
+    this.genreMapper = genreMapper;
   }
 
   @Override
   public GenreDto createGenre(GenreDto genreDto) {
-    return mapper.fromEntity(
-      repository.save(
-        mapper.toEntity(genreDto)
+    return genreMapper.fromEntity(
+      genreRepository.save(
+        genreMapper.toEntity(genreDto)
       )
     );
   }
 
   @Override
   public GenreDto findById(int id) {
-    return mapper.fromEntity(repository.findById(id).orElse(null));
+    return genreMapper.fromEntity(genreRepository.findById(id).orElse(null));
   }
 
   @Override
   public List<GenreDto> findAll() {
-    return mapper.fromEntities(repository.findAll());
+    return genreMapper.fromEntities(genreRepository.findAll());
   }
 
   @Override
@@ -48,6 +47,6 @@ public class GenreServiceImpl implements GenreService {
 
   @Override
   public void deleteGenre(int id) {
-    repository.deleteById(id);
+    genreRepository.deleteById(id);
   }
 }

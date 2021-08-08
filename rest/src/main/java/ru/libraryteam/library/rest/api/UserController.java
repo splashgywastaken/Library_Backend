@@ -7,9 +7,11 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.UserService;
+import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.model.impl.UserDtoImpl;
+import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUserBooksDto;
 
 @RestController
 @RequestMapping("/users")
@@ -26,8 +28,11 @@ public class UserController {
 //  @Secured(
 //    "ADMIN"
 //  )
-  Iterable<UserDto> findAll(){
-    return service.findAll();
+  PageDto<UserDto> findAll(
+    @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
+    @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
+  ){
+    return service.findAll(pageSize, pageNumber);
   }
 
   //Получение информации о пользователе по id
@@ -35,7 +40,7 @@ public class UserController {
 //  @Secured(
 //    "ADMIN"
 //  )
-  UserDto getUserById(@PathVariable int id) {
+  SimpleUserForUserBooksDto getUserById(@PathVariable int id) {
     return service.findById(id);
   }
 

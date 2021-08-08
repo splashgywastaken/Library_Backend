@@ -13,13 +13,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 })
 public class SimpleBookDto {
 
+  @JsonProperty("id")
   private Integer id;
 
   @JsonProperty(value = "book_name")
   private String bookName;
-
-  @JsonProperty(value = "publication_year")
-  private Integer yearOfPublishing;
 
   public Integer getId() {
     return id;
@@ -35,13 +33,5 @@ public class SimpleBookDto {
 
   public void setBookName(String bookName) {
     this.bookName = bookName;
-  }
-
-  public Integer getYearOfPublishing() {
-    return yearOfPublishing;
-  }
-
-  public void setYearOfPublishing(Integer yearOfPublishing) {
-    this.yearOfPublishing = yearOfPublishing;
   }
 }

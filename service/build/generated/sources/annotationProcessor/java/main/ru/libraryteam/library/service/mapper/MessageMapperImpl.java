@@ -11,7 +11,7 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T14:13:08+0300",
+    date = "2021-08-08T20:38:04+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -75,7 +75,7 @@ public class MessageMapperImpl implements MessageMapper {
         simpleUserDto.setId( userEntity.getId() );
         simpleUserDto.setFirstName( userEntity.getFirstName() );
         simpleUserDto.setLastName( userEntity.getLastName() );
-        simpleUserDto.setUsername( userEntity.getUsername() );
+        simpleUserDto.setMiddleName( userEntity.getMiddleName() );
 
         return simpleUserDto;
     }
@@ -90,7 +90,7 @@ public class MessageMapperImpl implements MessageMapper {
         userEntity.setId( simpleUserDto.getId() );
         userEntity.setFirstName( simpleUserDto.getFirstName() );
         userEntity.setLastName( simpleUserDto.getLastName() );
-        userEntity.setUsername( simpleUserDto.getUsername() );
+        userEntity.setMiddleName( simpleUserDto.getMiddleName() );
 
         return userEntity;
     }
