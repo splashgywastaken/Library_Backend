@@ -2,17 +2,23 @@ ru/libraryteam/library/rest/api/AuthorController.java
  ru.libraryteam.library.rest.api.AuthorController
 ru/libraryteam/library/rest/api/GenreController.java
  ru.libraryteam.library.rest.api.GenreController
-ru/libraryteam/library/rest/api/MessageController.java
- ru.libraryteam.library.rest.api.MessageController
+ru/libraryteam/library/rest/api/BookController.java
+ ru.libraryteam.library.rest.api.BookController
 ru/libraryteam/library/rest/api/AchievementController.java
  ru.libraryteam.library.rest.api.AchievementController
+ru/libraryteam/library/rest/handler/PlannerExceptionHandlers.java
+ ru.libraryteam.library.rest.handler.PlannerExceptionHandlers
 ru/libraryteam/library/rest/api/TagController.java
  ru.libraryteam.library.rest.api.TagController
 ru/libraryteam/library/rest/RestConfiguration.java
  ru.libraryteam.library.rest.RestConfiguration
+ru/libraryteam/library/rest/api/MessageController.java
+ ru.libraryteam.library.rest.api.MessageController
 ru/libraryteam/library/rest/api/UserController.java
  ru.libraryteam.library.rest.api.UserController
 ru/libraryteam/library/rest/api/NoteController.java
  ru.libraryteam.library.rest.api.NoteController
-ru/libraryteam/library/rest/api/BookController.java
- ru.libraryteam.library.rest.api.BookController
+ru/libraryteam/library/rest/model/ErrorModel.java
+ ru.libraryteam.library.rest.model.ErrorModel
+ru/libraryteam/library/rest/model/ValidationError.java
+ ru.libraryteam.library.rest.model.ValidationError
