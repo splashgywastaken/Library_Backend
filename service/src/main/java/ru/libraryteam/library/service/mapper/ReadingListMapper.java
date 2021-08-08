@@ -12,7 +12,7 @@ import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
 
 import java.util.List;
 
-@Mapper(uses = {BookMapper.class, ReviewMapper.class})
+@Mapper(uses = {BookMapper.class, ReviewMapper.class, UserMapper.class})
 public interface ReadingListMapper {
 
   @Named("with-book-review")
@@ -25,6 +25,7 @@ public interface ReadingListMapper {
 
   @Mapping(target = "review", ignore = true)
   @Mapping(target = "book", ignore = true)
+  @Mapping(target = "user", ignore = true)
   ReadingListEntity toEntity(ReadingListDto dto);
 
   List<ReadingListDto> fromEntities(Iterable<ReadingListEntity> entities);

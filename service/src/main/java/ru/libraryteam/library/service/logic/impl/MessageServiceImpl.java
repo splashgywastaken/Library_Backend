@@ -2,15 +2,13 @@ package ru.libraryteam.library.service.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ru.libraryteam.library.db.entity.MessageEntity;
 import ru.libraryteam.library.db.repository.MessageRepository;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.service.logic.MessageService;
 import ru.libraryteam.library.service.mapper.MessageMapper;
 import ru.libraryteam.library.service.mapper.UserMapper;
 import ru.libraryteam.library.service.model.MessageDto;
-import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Service
 public class MessageServiceImpl implements MessageService {
@@ -50,7 +48,7 @@ public class MessageServiceImpl implements MessageService {
         .orElse(null)
     );
 
-    var dtoUser = new SimpleUserMessageDto();
+    var dtoUser = new SimpleUserDto();
 
     dtoUser.setId(user.getId());
     dtoUser.setFirstName(user.getFirstName());

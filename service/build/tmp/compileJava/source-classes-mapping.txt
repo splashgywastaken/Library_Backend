@@ -8,10 +8,12 @@ ru/libraryteam/library/service/mapper/MessageMapper.java
  ru.libraryteam.library.service.mapper.MessageMapper
 ru/libraryteam/library/service/security/LibraryPasswordEncoder.java
  ru.libraryteam.library.service.security.LibraryPasswordEncoder
+ru/libraryteam/library/service/logic/impl/ReviewServiceImpl.java
+ ru.libraryteam.library.service.logic.impl.ReviewServiceImpl
 ru/libraryteam/library/service/model/ReadingListDto.java
  ru.libraryteam.library.service.model.ReadingListDto
-ru/libraryteam/library/service/logic/impl/ReadingListServiceImpl.java
- ru.libraryteam.library.service.logic.impl.ReadingListServiceImpl
+ru/libraryteam/library/service/logic/impl/BookServiceImpl.java
+ ru.libraryteam.library.service.logic.impl.BookServiceImpl
 ru/libraryteam/library/service/EntityNotFoundException.java
  ru.libraryteam.library.service.EntityNotFoundException
 ru/libraryteam/library/service/model/AchievementDto.java
@@ -64,18 +66,16 @@ ru/libraryteam/library/service/model/BookWithAuthorsGenresTagsDto.java
  ru.libraryteam.library.service.model.BookWithAuthorsGenresTagsDto
 ru/libraryteam/library/service/validation/UsernameUniqueForUpdate.java
  ru.libraryteam.library.service.validation.UsernameUniqueForUpdate
-ru/libraryteam/library/service/model/simple/dto/SimpleUserMessageDto.java
- ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto
+ru/libraryteam/library/service/logic/impl/ReadingListServiceImpl.java
+ ru.libraryteam.library.service.logic.impl.ReadingListServiceImpl
 ru/libraryteam/library/service/model/ReviewDto.java
  ru.libraryteam.library.service.model.ReviewDto
 ru/libraryteam/library/service/mapper/AuthorMapper.java
  ru.libraryteam.library.service.mapper.AuthorMapper
 ru/libraryteam/library/service/logic/impl/AchievementServiceImpl.java
  ru.libraryteam.library.service.logic.impl.AchievementServiceImpl
-ru/libraryteam/library/service/logic/impl/ReviewServiceImpl.java
- ru.libraryteam.library.service.logic.impl.ReviewServiceImpl
-ru/libraryteam/library/service/model/simple/dto/SimpleBookReadingListDto.java
- ru.libraryteam.library.service.model.simple.dto.SimpleBookReadingListDto
+ru/libraryteam/library/service/logic/impl/UserServiceImpl.java
+ ru.libraryteam.library.service.logic.impl.UserServiceImpl
 ru/libraryteam/library/service/validation/validator/StringUsernameUnique.java
  ru.libraryteam.library.service.validation.validator.StringUsernameUnique
 ru/libraryteam/library/service/validation/validator/StringEmailUnique.java
@@ -88,10 +88,16 @@ ru/libraryteam/library/service/logic/impl/TagServiceImpl.java
  ru.libraryteam.library.service.logic.impl.TagServiceImpl
 ru/libraryteam/library/service/model/impl/GenreDtoImpl.java
  ru.libraryteam.library.service.model.impl.GenreDtoImpl
+ru/libraryteam/library/service/logic/ReadingListService.java
+ ru.libraryteam.library.service.logic.ReadingListService
 ru/libraryteam/library/service/model/ReadingListWithBookReviewDto.java
  ru.libraryteam.library.service.model.ReadingListWithBookReviewDto
 ru/libraryteam/library/service/ServiceConfig.java
  ru.libraryteam.library.service.ServiceConfig
+ru/libraryteam/library/service/model/simple/dto/SimpleUserDto.java
+ ru.libraryteam.library.service.model.simple.dto.SimpleUserDto
+ru/libraryteam/library/service/mapper/ReviewMapper.java
+ ru.libraryteam.library.service.mapper.ReviewMapper
 ru/libraryteam/library/service/logic/AchievementService.java
  ru.libraryteam.library.service.logic.AchievementService
 ru/libraryteam/library/service/mapper/BookMapper.java
@@ -106,6 +112,10 @@ ru/libraryteam/library/service/model/AuthorDto.java
  ru.libraryteam.library.service.model.AuthorDto
 ru/libraryteam/library/service/logic/MessageService.java
  ru.libraryteam.library.service.logic.MessageService
+ru/libraryteam/library/service/mapper/ReadingListMapper.java
+ ru.libraryteam.library.service.mapper.ReadingListMapper
+ru/libraryteam/library/service/logic/ReviewService.java
+ ru.libraryteam.library.service.logic.ReviewService
 ru/libraryteam/library/service/validation/EmailUnique.java
  ru.libraryteam.library.service.validation.EmailUnique
 ru/libraryteam/library/service/model/UserDto.java
@@ -114,15 +124,3 @@ ru/libraryteam/library/service/logic/impl/GenreServiceImpl.java
  ru.libraryteam.library.service.logic.impl.GenreServiceImpl
 ru/libraryteam/library/service/validation/EmailUniqueForUpdate.java
  ru.libraryteam.library.service.validation.EmailUniqueForUpdate
-ru/libraryteam/library/service/mapper/ReadingListMapper.java
- ru.libraryteam.library.service.mapper.ReadingListMapper
-ru/libraryteam/library/service/mapper/ReviewMapper.java
- ru.libraryteam.library.service.mapper.ReviewMapper
-ru/libraryteam/library/service/logic/ReadingListService.java
- ru.libraryteam.library.service.logic.ReadingListService
-ru/libraryteam/library/service/logic/ReviewService.java
- ru.libraryteam.library.service.logic.ReviewService
-ru/libraryteam/library/service/logic/impl/UserServiceImpl.java
- ru.libraryteam.library.service.logic.impl.UserServiceImpl
-ru/libraryteam/library/service/logic/impl/BookServiceImpl.java
- ru.libraryteam.library.service.logic.impl.BookServiceImpl

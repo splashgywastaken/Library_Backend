@@ -31,6 +31,10 @@ public class ReadingListEntity {
   @JoinColumn(name = "book_id", referencedColumnName = "book_id", insertable = false, updatable = false)
   private BookEntity book;
 
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+  private UserEntity user;
+
   @Column(name = "user_id")
   private Integer userId;
 
@@ -121,5 +125,13 @@ public class ReadingListEntity {
 
   public void setReviewId(Integer reviewId) {
     this.reviewId = reviewId;
+  }
+
+  public UserEntity getUser() {
+    return user;
+  }
+
+  public void setUser(UserEntity user) {
+    this.user = user;
   }
 }

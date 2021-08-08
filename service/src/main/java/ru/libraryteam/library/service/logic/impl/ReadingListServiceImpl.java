@@ -11,6 +11,7 @@ import ru.libraryteam.library.service.mapper.ReadingListMapper;
 import ru.libraryteam.library.service.model.ImmutablePageDto;
 import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.ReadingListDto;
+import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -30,8 +31,8 @@ public class ReadingListServiceImpl implements ReadingListService {
 
   @Override
   @Transactional
-  public ReadingListDto findById(int id) {
-    var list = readingListMapper.fromEntity(
+  public ReadingListWithBookReviewDto findById(int id) {
+    var list = readingListMapper.fromEntityWithBookReview(
       readingListRepository.findById(id)
         .orElse(null)
     );
@@ -105,12 +106,12 @@ public class ReadingListServiceImpl implements ReadingListService {
 
   @Override
   @Transactional
-  public PageDto<ReadingListDto> findAll(Integer pageSize, Integer pageNumber) {
+  public PageDto<ReadingListWithBookReviewDto> findAll(Integer pageSize, Integer pageNumber) {
     var values = readingListRepository.findAll(
       Pageable
         .ofSize(pageSize)
-        .withPage(pageNumber)).map(readingListMapper::fromEntity);
-    return ImmutablePageDto.<ReadingListDto>builder()
+        .withPage(pageNumber)).map(readingListMapper::fromEntityWithBookReview);
+    return ImmutablePageDto.<ReadingListWithBookReviewDto>builder()
       .pageNumber(pageNumber)
       .totalPages(values.getTotalPages())
       .items(values.getContent())

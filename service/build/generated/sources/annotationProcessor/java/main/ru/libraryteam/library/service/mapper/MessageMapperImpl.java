@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.MessageEntity;
 import ru.libraryteam.library.db.entity.UserEntity;
 import ru.libraryteam.library.service.model.MessageDto;
-import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T09:50:50+0300",
+    date = "2021-08-08T14:03:30+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -27,7 +27,7 @@ public class MessageMapperImpl implements MessageMapper {
 
         messageDto.setId( entity.getId() );
         messageDto.setMessageBody( entity.getMessageBody() );
-        messageDto.setUser( userEntityToSimpleUserMessageDto( entity.getUser() ) );
+        messageDto.setUser( userEntityToSimpleUserDto( entity.getUser() ) );
         messageDto.setUserId( entity.getUserId() );
         messageDto.setBookId( entity.getBookId() );
 
@@ -58,39 +58,39 @@ public class MessageMapperImpl implements MessageMapper {
 
         messageEntity.setId( messageDto.getId() );
         messageEntity.setMessageBody( messageDto.getMessageBody() );
-        messageEntity.setUser( simpleUserMessageDtoToUserEntity( messageDto.getUser() ) );
+        messageEntity.setUser( simpleUserDtoToUserEntity( messageDto.getUser() ) );
         messageEntity.setUserId( messageDto.getUserId() );
         messageEntity.setBookId( messageDto.getBookId() );
 
         return messageEntity;
     }
 
-    protected SimpleUserMessageDto userEntityToSimpleUserMessageDto(UserEntity userEntity) {
+    protected SimpleUserDto userEntityToSimpleUserDto(UserEntity userEntity) {
         if ( userEntity == null ) {
             return null;
         }
 
-        SimpleUserMessageDto simpleUserMessageDto = new SimpleUserMessageDto();
+        SimpleUserDto simpleUserDto = new SimpleUserDto();
 
-        simpleUserMessageDto.setId( userEntity.getId() );
-        simpleUserMessageDto.setFirstName( userEntity.getFirstName() );
-        simpleUserMessageDto.setLastName( userEntity.getLastName() );
-        simpleUserMessageDto.setUsername( userEntity.getUsername() );
+        simpleUserDto.setId( userEntity.getId() );
+        simpleUserDto.setFirstName( userEntity.getFirstName() );
+        simpleUserDto.setLastName( userEntity.getLastName() );
+        simpleUserDto.setUsername( userEntity.getUsername() );
 
-        return simpleUserMessageDto;
+        return simpleUserDto;
     }
 
-    protected UserEntity simpleUserMessageDtoToUserEntity(SimpleUserMessageDto simpleUserMessageDto) {
-        if ( simpleUserMessageDto == null ) {
+    protected UserEntity simpleUserDtoToUserEntity(SimpleUserDto simpleUserDto) {
+        if ( simpleUserDto == null ) {
             return null;
         }
 
         UserEntity userEntity = new UserEntity();
 
-        userEntity.setId( simpleUserMessageDto.getId() );
-        userEntity.setFirstName( simpleUserMessageDto.getFirstName() );
-        userEntity.setLastName( simpleUserMessageDto.getLastName() );
-        userEntity.setUsername( simpleUserMessageDto.getUsername() );
+        userEntity.setId( simpleUserDto.getId() );
+        userEntity.setFirstName( simpleUserDto.getFirstName() );
+        userEntity.setLastName( simpleUserDto.getLastName() );
+        userEntity.setUsername( simpleUserDto.getUsername() );
 
         return userEntity;
     }

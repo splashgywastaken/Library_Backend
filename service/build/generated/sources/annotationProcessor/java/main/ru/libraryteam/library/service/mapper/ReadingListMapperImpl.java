@@ -7,13 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.BookEntity;
 import ru.libraryteam.library.db.entity.ReadingListEntity;
+import ru.libraryteam.library.db.entity.UserEntity;
 import ru.libraryteam.library.service.model.ReadingListDto;
 import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
-import ru.libraryteam.library.service.model.simple.dto.SimpleBookReadingListDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleBookDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T09:52:53+0300",
+    date = "2021-08-08T14:03:31+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -21,6 +23,8 @@ public class ReadingListMapperImpl implements ReadingListMapper {
 
     @Autowired
     private ReviewMapper reviewMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public ReadingListWithBookReviewDto fromEntityWithBookReview(ReadingListEntity entity) {
@@ -39,7 +43,8 @@ public class ReadingListMapperImpl implements ReadingListMapper {
         readingListWithBookReviewDto.setDaysLeft( entity.getDaysLeft() );
         readingListWithBookReviewDto.setReviewId( entity.getReviewId() );
         readingListWithBookReviewDto.setReview( reviewMapper.fromEntity( entity.getReview() ) );
-        readingListWithBookReviewDto.setBook( bookEntityToSimpleBookReadingListDto( entity.getBook() ) );
+        readingListWithBookReviewDto.setBook( bookEntityToSimpleBookDto( entity.getBook() ) );
+        readingListWithBookReviewDto.setUser( userMapper.fromSimpleEntity( entity.getUser() ) );
 
         return readingListWithBookReviewDto;
     }
@@ -125,38 +130,56 @@ public class ReadingListMapperImpl implements ReadingListMapper {
         readingListEntity.setReadingFinishedAt( dto.getReadingFinishedAt() );
         readingListEntity.setReadingState( dto.getReadingState() );
         readingListEntity.setReview( reviewMapper.toEntity( dto.getReview() ) );
-        readingListEntity.setBook( simpleBookReadingListDtoToBookEntity( dto.getBook() ) );
+        readingListEntity.setBook( simpleBookDtoToBookEntity( dto.getBook() ) );
         readingListEntity.setUserId( dto.getUserId() );
         readingListEntity.setBookId( dto.getBookId() );
         readingListEntity.setDaysLeft( dto.getDaysLeft() );
         readingListEntity.setReviewId( dto.getReviewId() );
+        readingListEntity.setUser( simpleUserDtoToUserEntity( dto.getUser() ) );
 
         return readingListEntity;
     }
 
-    protected SimpleBookReadingListDto bookEntityToSimpleBookReadingListDto(BookEntity bookEntity) {
+    protected SimpleBookDto bookEntityToSimpleBookDto(BookEntity bookEntity) {
         if ( bookEntity == null ) {
             return null;
         }
 
-        SimpleBookReadingListDto simpleBookReadingListDto = new SimpleBookReadingListDto();
+        SimpleBookDto simpleBookDto = new SimpleBookDto();
 
-        simpleBookReadingListDto.setId( bookEntity.getId() );
-        simpleBookReadingListDto.setBookName( bookEntity.getBookName() );
+        simpleBookDto.setId( bookEntity.getId() );
+        simpleBookDto.setBookName( bookEntity.getBookName() );
+        simpleBookDto.setYearOfPublishing( bookEntity.getYearOfPublishing() );
 
-        return simpleBookReadingListDto;
+        return simpleBookDto;
     }
 
-    protected BookEntity simpleBookReadingListDtoToBookEntity(SimpleBookReadingListDto simpleBookReadingListDto) {
-        if ( simpleBookReadingListDto == null ) {
+    protected BookEntity simpleBookDtoToBookEntity(SimpleBookDto simpleBookDto) {
+        if ( simpleBookDto == null ) {
             return null;
         }
 
         BookEntity bookEntity = new BookEntity();
 
-        bookEntity.setId( simpleBookReadingListDto.getId() );
-        bookEntity.setBookName( simpleBookReadingListDto.getBookName() );
+        bookEntity.setId( simpleBookDto.getId() );
+        bookEntity.setBookName( simpleBookDto.getBookName() );
+        bookEntity.setYearOfPublishing( simpleBookDto.getYearOfPublishing() );
 
         return bookEntity;
+    }
+
+    protected UserEntity simpleUserDtoToUserEntity(SimpleUserDto simpleUserDto) {
+        if ( simpleUserDto == null ) {
+            return null;
+        }
+
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setId( simpleUserDto.getId() );
+        userEntity.setFirstName( simpleUserDto.getFirstName() );
+        userEntity.setLastName( simpleUserDto.getLastName() );
+        userEntity.setUsername( simpleUserDto.getUsername() );
+
+        return userEntity;
     }
 }

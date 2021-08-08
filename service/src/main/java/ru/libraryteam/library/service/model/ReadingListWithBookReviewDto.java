@@ -1,11 +1,14 @@
 package ru.libraryteam.library.service.model;
 
-import ru.libraryteam.library.service.model.simple.dto.SimpleBookReadingListDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleBookDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 public class ReadingListWithBookReviewDto extends ReadingListDto {
   private ReviewDto review;
 
-  private SimpleBookReadingListDto book;
+  private SimpleBookDto book;
+
+  private SimpleUserDto user;
 
   public ReviewDto getReview() {
     return review;
@@ -15,11 +18,19 @@ public class ReadingListWithBookReviewDto extends ReadingListDto {
     this.review = review;
   }
 
-  public SimpleBookReadingListDto getBook() {
+  public SimpleBookDto getBook() {
     return book;
   }
 
-  public void setBook(SimpleBookReadingListDto book) {
+  public void setBook(SimpleBookDto book) {
     this.book = book;
+  }
+
+  public SimpleUserDto getUser() {
+    return user;
+  }
+
+  public void setUser(SimpleUserDto user) {
+    this.user = user;
   }
 }

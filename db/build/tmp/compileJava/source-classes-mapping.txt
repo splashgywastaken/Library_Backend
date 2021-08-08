@@ -64,7 +64,7 @@ ru/libraryteam/library/db/repository/ReadingListRepository.java
  ru.libraryteam.library.db.repository.ReadingListRepository
 ru/libraryteam/library/db/repository/ReviewRepository.java
  ru.libraryteam.library.db.repository.ReviewRepository
-ru/libraryteam/library/db/entity/ReadingListEntity.java
- ru.libraryteam.library.db.entity.ReadingListEntity
 ru/libraryteam/library/db/entity/ReviewEntity.java
  ru.libraryteam.library.db.entity.ReviewEntity
+ru/libraryteam/library/db/entity/ReadingListEntity.java
+ ru.libraryteam.library.db.entity.ReadingListEntity

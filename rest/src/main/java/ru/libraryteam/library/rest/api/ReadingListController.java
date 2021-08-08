@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.ReadingListService;
 import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.ReadingListDto;
+import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
 
 @RestController
 @RequestMapping("/lists")
@@ -19,7 +20,7 @@ public class ReadingListController {
   }
 
   @GetMapping(value = "/{id}")
-  ReadingListDto findListById(@PathVariable(value = "id") int id) {
+  ReadingListWithBookReviewDto findListById(@PathVariable(value = "id") int id) {
     return readingListService.findById(id);
   }
 
@@ -41,7 +42,7 @@ public class ReadingListController {
   }
 
   @GetMapping
-  PageDto<ReadingListDto> getReadingLists(
+  PageDto<ReadingListWithBookReviewDto> getReadingLists(
     @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
     @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
   ) {

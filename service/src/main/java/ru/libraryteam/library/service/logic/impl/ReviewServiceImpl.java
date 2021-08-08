@@ -3,6 +3,7 @@ package ru.libraryteam.library.service.logic.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.libraryteam.library.db.entity.ReadingState;
 import ru.libraryteam.library.db.repository.ReadingListRepository;
 import ru.libraryteam.library.db.repository.ReviewRepository;
 import ru.libraryteam.library.service.logic.ReviewService;
@@ -38,26 +39,30 @@ public class ReviewServiceImpl implements ReviewService {
   @Override
   @Transactional
   public ReviewDto createReview(ReviewDto dto, int listId) {
-    var review = reviewMapper.fromEntity(
-      reviewRepository.save(
-        reviewMapper.toEntity(dto)
-      )
-    );
-
     var list = readingListMapper.fromEntity(
       readingListRepository.findById(listId)
         .orElse(null)
     );
 
-    list.setReviewId(review.getId());
+    if (list.getReadingState() == ReadingState.I_FINISHED_READING && list.getReviewId() == null) {
+      var review = reviewMapper.fromEntity(
+        reviewRepository.save(
+          reviewMapper.toEntity(dto)
+        )
+      );
 
-    readingListMapper.fromEntity(
-      readingListRepository.save(
-        readingListMapper.toEntity(list)
-      )
-    );
+      list.setReviewId(review.getId());
 
-    return review;
+      readingListMapper.fromEntity(
+        readingListRepository.save(
+          readingListMapper.toEntity(list)
+        )
+      );
+
+      return review;
+    }
+
+    return null;
   }
 
   @Override

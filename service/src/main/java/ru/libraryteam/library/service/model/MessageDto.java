@@ -1,8 +1,7 @@
 package ru.libraryteam.library.service.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 public class MessageDto {
 
@@ -11,7 +10,7 @@ public class MessageDto {
   @JsonProperty(value = "message_body")
   private String messageBody;
 
-  private SimpleUserMessageDto user;
+  private SimpleUserDto user;
 
   @JsonProperty(value = "user_id")
   private int userId;
@@ -35,11 +34,11 @@ public class MessageDto {
     this.messageBody = messageBody;
   }
 
-  public SimpleUserMessageDto getUser() {
+  public SimpleUserDto getUser() {
     return user;
   }
 
-  public void setUser(SimpleUserMessageDto user) {
+  public void setUser(SimpleUserDto user) {
     this.user = user;
   }
 

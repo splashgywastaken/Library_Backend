@@ -9,11 +9,11 @@ import ru.libraryteam.library.service.model.ImmutableUserDto;
 import ru.libraryteam.library.service.model.ImmutableUserDto.Builder;
 import ru.libraryteam.library.service.model.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
-import ru.libraryteam.library.service.model.simple.dto.SimpleUserMessageDto;
+import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-08T09:50:51+0300",
+    date = "2021-08-08T14:03:31+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -89,28 +89,28 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public SimpleUserMessageDto fromSimpleEntity(UserEntity entity) {
+    public SimpleUserDto fromSimpleEntity(UserEntity entity) {
         if ( entity == null ) {
             return null;
         }
 
-        SimpleUserMessageDto simpleUserMessageDto = new SimpleUserMessageDto();
+        SimpleUserDto simpleUserDto = new SimpleUserDto();
 
-        simpleUserMessageDto.setId( entity.getId() );
-        simpleUserMessageDto.setFirstName( entity.getFirstName() );
-        simpleUserMessageDto.setLastName( entity.getLastName() );
-        simpleUserMessageDto.setUsername( entity.getUsername() );
+        simpleUserDto.setId( entity.getId() );
+        simpleUserDto.setFirstName( entity.getFirstName() );
+        simpleUserDto.setLastName( entity.getLastName() );
+        simpleUserDto.setUsername( entity.getUsername() );
 
-        return simpleUserMessageDto;
+        return simpleUserDto;
     }
 
     @Override
-    public List<SimpleUserMessageDto> fromSimpleEntities(Iterable<UserEntity> entities) {
+    public List<SimpleUserDto> fromSimpleEntities(Iterable<UserEntity> entities) {
         if ( entities == null ) {
             return null;
         }
 
-        List<SimpleUserMessageDto> list = new ArrayList<SimpleUserMessageDto>();
+        List<SimpleUserDto> list = new ArrayList<SimpleUserDto>();
         for ( UserEntity userEntity : entities ) {
             list.add( fromSimpleEntity( userEntity ) );
         }

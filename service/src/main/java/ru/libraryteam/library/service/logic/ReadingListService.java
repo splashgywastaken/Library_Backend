@@ -2,10 +2,11 @@ package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.PageDto;
 import ru.libraryteam.library.service.model.ReadingListDto;
+import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
 
 public interface ReadingListService {
 
-  ReadingListDto findById(int id);
+  ReadingListWithBookReviewDto findById(int id);
 
   ReadingListDto createReadingList(ReadingListDto dto);
 
@@ -15,5 +16,5 @@ public interface ReadingListService {
 
   void deleteList(int id);
 
-  PageDto<ReadingListDto> findAll(Integer pageSize, Integer pageNumber);
+  PageDto<ReadingListWithBookReviewDto> findAll(Integer pageSize, Integer pageNumber);
 }
