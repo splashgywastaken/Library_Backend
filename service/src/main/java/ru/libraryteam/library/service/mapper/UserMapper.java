@@ -1,5 +1,6 @@
 package ru.libraryteam.library.service.mapper;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
@@ -11,6 +12,18 @@ import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 import java.util.List;
 
 @Mapper
+@JsonPropertyOrder({
+  "id",
+  "first_name",
+  "second_name",
+  "middle_name",
+  "birthday",
+  "sex",
+  "username",
+  "email",
+  "role"
+})
+
 public interface UserMapper {
 
   UserDto fromEntity(UserEntity entity);

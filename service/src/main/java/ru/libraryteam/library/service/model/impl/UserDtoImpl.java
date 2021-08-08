@@ -3,8 +3,10 @@ package ru.libraryteam.library.service.model.impl;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import ru.libraryteam.library.commons.Role;
 import ru.libraryteam.library.service.model.UserDto;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 @JsonPropertyOrder({
@@ -28,6 +30,12 @@ public class UserDtoImpl  implements UserDto {
 
   @JsonProperty("middle_name")
   private String middleName;
+
+  @JsonProperty("birthday")
+  private Date birthday;
+
+  @JsonProperty("role")
+  private Role role;
 
   @JsonProperty("sex")
   private String sex;
@@ -98,5 +106,24 @@ public class UserDtoImpl  implements UserDto {
   public String getEmail() {
     return email;
   }
+
+  public void setBirthday(Date birthday) {
+    this.birthday = birthday;
+  }
+
+  @Override
+  public Date getBirthday() {
+    return this.birthday;
+  }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
+  @Override
+  public Role getRole() {
+    return this.role;
+  }
+
 }
 
