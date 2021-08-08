@@ -2,12 +2,14 @@ package ru.libraryteam.library.service.logic;
 
 import ru.libraryteam.library.service.model.NoteDto;
 import ru.libraryteam.library.service.model.PageDto;
+import ru.libraryteam.library.service.model.create.dto.NoteCreateDto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 public interface NoteService {
 
-  NoteDto createNote(NoteDto dto);
+  NoteDto createNote(@Valid NoteCreateDto dto);
 
   List<NoteDto> findByUserId(int userId);
 

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.model.NoteDto;
 import ru.libraryteam.library.service.logic.NoteService;
 import ru.libraryteam.library.service.model.PageDto;
+import ru.libraryteam.library.service.model.create.dto.NoteCreateDto;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class NoteController {
   //Создание заметки
   @PostMapping()
   NoteDto createNote(
-    @RequestBody NoteDto noteDto
+    @RequestBody NoteCreateDto noteDto
   ){
     return
       service.createNote(
