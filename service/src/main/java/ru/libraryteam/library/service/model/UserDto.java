@@ -46,7 +46,7 @@ public interface UserDto {
   @Nullable
   @JsonProperty("birthday")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  Date getBirthday();
+  LocalDate getBirthday();
 
   @Nullable
   @JsonProperty("sex")

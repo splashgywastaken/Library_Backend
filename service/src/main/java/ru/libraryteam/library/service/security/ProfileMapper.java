@@ -15,7 +15,6 @@ import ru.libraryteam.library.db.entity.UserEntity;
   "email",
   "role"
 })
-
 public interface ProfileMapper {
   Profile toProfile(UserEntity userEntity);
 }

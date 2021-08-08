@@ -1,11 +1,14 @@
 package ru.libraryteam.library.service.model.create.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 import ru.libraryteam.library.commons.Role;
 import ru.libraryteam.library.service.validation.EmailUnique;
 import ru.libraryteam.library.service.validation.UsernameUnique;
 
 import javax.validation.constraints.*;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class UserCreateDto {
 
@@ -35,6 +38,11 @@ public class UserCreateDto {
   @NotBlank(message = "middle_name.is-blank")
   @Size(min = 1, max = 45, message = "middle_name.out-of-range")
   private String middleName;
+
+  @JsonProperty("birthday")
+  @NotNull(message = "birthday.is-null")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  private LocalDate birthday;
 
   @EmailUnique
   @JsonProperty("email")
@@ -107,5 +115,13 @@ public class UserCreateDto {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public LocalDate getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(LocalDate birthday) {
+    this.birthday = birthday;
   }
 }

@@ -7,6 +7,7 @@ import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.model.TagDto;
 import ru.libraryteam.library.service.validation.IsbnUnique;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -15,7 +16,7 @@ public class BookCreateDto {
 
   @JsonProperty("book_name")
   @Size(max = 100, message = "book_name.out-of-range")
-  @NotNull(message = "book_name.is-null")
+  @NotBlank(message = "book_name.is-blank")
   private String bookName;
 
   @JsonProperty("publication_year")
@@ -25,17 +26,17 @@ public class BookCreateDto {
   @IsbnUnique
   @JsonProperty("isbn")
   @Size(max = 20, message = "isbn.out-of-range")
-  @NotNull(message = "isbn.is-null")
+  @NotBlank(message = "isbn.is-blank")
   private String isbn;
 
   @JsonProperty("ages")
   @Size(max = 20, message = "ages.out-of-range")
-  @NotNull(message = "ages.is-null")
+  @NotBlank(message = "ages.is-blank")
   private String ageRating;
 
   @JsonProperty("language")
   @Size(max = 30, message = "language.out-of-range")
-  @NotNull(message = "language.is-null")
+  @NotBlank(message = "language.is-blank")
   private String language;
 
   @JsonProperty("quantity")
