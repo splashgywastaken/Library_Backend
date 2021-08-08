@@ -17,7 +17,7 @@ import ru.libraryteam.library.service.logic.UserService;
 import ru.libraryteam.library.service.mapper.UserMapper;
 import ru.libraryteam.library.service.model.ImmutablePageDto;
 import ru.libraryteam.library.service.model.PageDto;
-import ru.libraryteam.library.service.model.UserCreateDto;
+import ru.libraryteam.library.service.model.create.dto.UserCreateDto;
 import ru.libraryteam.library.service.model.UserDto;
 import ru.libraryteam.library.service.model.simple.dto.userbooks.SimpleUserForUserBooksDto;
 import ru.libraryteam.library.service.security.LibraryPasswordEncoder;
@@ -76,7 +76,6 @@ public class UserServiceImpl implements UserService {
       .map(userProvider::save)
       .map(userMapper::fromEntity)
       .orElseThrow();
-
   }
 
   @Override
