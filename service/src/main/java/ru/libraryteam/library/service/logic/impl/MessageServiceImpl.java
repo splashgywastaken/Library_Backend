@@ -2,6 +2,7 @@ package ru.libraryteam.library.service.logic.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.libraryteam.library.db.repository.MessageRepository;
 import ru.libraryteam.library.db.repository.UserRepository;
 import ru.libraryteam.library.service.logic.MessageService;
@@ -43,6 +44,7 @@ public class MessageServiceImpl implements MessageService {
   }
 
   @Override
+  @Transactional
   public MessageDto createMessage(MessageDto dto) {
     var user = userMapper.fromEntity(
       userRepository

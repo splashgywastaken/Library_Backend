@@ -107,6 +107,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public BookDto extendedCreateBook(BookCreateDto dto) {
 
     logger.info("User {} requested to create new Entity", profileProvider.getIfAvailable());
@@ -180,6 +181,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public void extendedAddAuthorToBook(BookDto book, BookCreateDto dto) {
     if (dto.getAuthors() != null) {
       if (!dto.getAuthors().isEmpty()) {
@@ -210,6 +212,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public void extendedAddGenreToBook(BookDto book, BookCreateDto dto) {
     if (dto.getGenres() != null) {
       if (!dto.getGenres().isEmpty()) {
@@ -239,6 +242,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public void extendedAddTagToBook(BookDto book, BookCreateDto dto) {
     if (dto.getTags() != null) {
       if (!dto.getTags().isEmpty()) {
