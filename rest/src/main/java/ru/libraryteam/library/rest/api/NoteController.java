@@ -1,7 +1,6 @@
 package ru.libraryteam.library.rest.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.model.NoteDto;
 import ru.libraryteam.library.service.logic.NoteService;
@@ -15,17 +14,6 @@ import java.util.List;
 public class NoteController {
 
   private final NoteService service;
-
-  /*
-   * Реализовать:
-   * Создание заметок по id юзера и книги
-   * Обновление заметок по их id
-   * Вывод всех заметок юзера
-   * Вывод заметки по её айди
-   * Вывод заметки по айди книги и айди юзера
-   * Удаление заметки по её айдишнику
-   * Удаление заметки по айдишнику книги и юзера
-   * */
 
   @Autowired
   public NoteController(NoteService service) { this.service = service; }

@@ -31,4 +31,18 @@ public class UserAuthService {
 
   }
 
+  public boolean canDeleteUser(int id) {
+    final var profile = profileProvider.getIfAvailable();
+
+    if (profile == null) {
+      return false;
+    }
+
+    if (profile.getRole() == Role.ADMIN || profile.getRole() == Role.USER) {
+      return true;
+    }
+
+    return profile.getId() == id;
+
+  }
 }

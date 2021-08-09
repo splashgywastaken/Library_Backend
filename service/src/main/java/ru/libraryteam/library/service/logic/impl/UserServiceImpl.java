@@ -63,11 +63,6 @@ public class UserServiceImpl implements UserService {
   public UserDto createUser(@Valid UserCreateDto userDto) {
 
     logger.info("User {} requested to create new entity", profileProvider.getIfAvailable());
-//    return userMapper.fromEntity(
-//      repository.save(
-//        userMapper.toEntity(dto)
-//      )
-//    );
 
     userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
