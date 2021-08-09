@@ -25,9 +25,6 @@ public class UserController {
   }
 
   @GetMapping
-//  @Secured(
-//    "ADMIN"
-//  )
   PageDto<UserDto> findAll(
     @RequestParam(name = "page_size", defaultValue = "10") Integer pageSize,
     @RequestParam(name = "page_number", defaultValue = "0") Integer pageNumber
@@ -37,17 +34,9 @@ public class UserController {
 
   //Получение информации о пользователе по id
   @RequestMapping("/{id}")
-//  @Secured(
-//    "ADMIN"
-//  )
   SimpleUserForUserBooksDto getUserById(@PathVariable int id) {
     return service.findById(id);
   }
-
-
-  //Поиск юзера по имени, фамилии, отчеству (возврат книг через библиотекаря)
-
-
 
   //Создание новой записи с инфой о юзере
   @Secured("ROLE_ADMIN")
@@ -71,6 +60,7 @@ public class UserController {
 
   //Удаление по айдишнику
   @DeleteMapping("/{id}")
+  @PreAuthorize("@userAuthService.canDeleteUser(#id)")//Удалить могут только админ и сам юзер
   void deleteUser(@PathVariable int id) {
     service.deleteUser(id);
   }
