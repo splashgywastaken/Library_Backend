@@ -9,7 +9,7 @@ public interface ReviewService {
 
   ReviewDto findById(int id);
 
-  ReviewDto createReview(ReviewDto dto, int listId);
+  ReviewDto createReview(@Valid ReviewCreateDto dto, int listId);
 
   void deleteReview(int id);
 }

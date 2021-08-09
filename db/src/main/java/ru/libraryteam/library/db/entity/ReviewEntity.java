@@ -22,7 +22,7 @@ public class ReviewEntity {
   private Timestamp reviewPostDate;
 
   @Column(name = "review_rating")
-  private int reviewRating;
+  private Integer reviewRating;
 
   public Integer getId() {
     return id;
@@ -56,11 +56,11 @@ public class ReviewEntity {
     this.reviewPostDate = reviewPostDate;
   }
 
-  public int getReviewRating() {
+  public Integer getReviewRating() {
     return reviewRating;
   }
 
-  public void setReviewRating(int reviewRating) {
+  public void setReviewRating(Integer reviewRating) {
     this.reviewRating = reviewRating;
   }
 }

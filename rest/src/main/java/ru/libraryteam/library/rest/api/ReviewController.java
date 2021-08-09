@@ -25,7 +25,7 @@ public class ReviewController {
   }
 
   @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  ReviewDto createReview(@RequestBody ReviewDto dto, @PathVariable(value = "id") int listId) {
+  ReviewDto createReview(@RequestBody ReviewCreateDto dto, @PathVariable(value = "id") int listId) {
     return reviewService.createReview(dto, listId);
   }
 

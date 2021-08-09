@@ -6,7 +6,7 @@ public class ReviewDtoImpl implements ReviewDto {
 
   private Integer id;
 
-  private int reviewRating;
+  private Integer reviewRating;
 
   @Override
   public Integer getId() {
@@ -18,11 +18,11 @@ public class ReviewDtoImpl implements ReviewDto {
   }
 
   @Override
-  public int getReviewRating() {
+  public Integer getReviewRating() {
     return reviewRating;
   }
 
-  public void setReviewRating(int reviewRating) {
+  public void setReviewRating(Integer reviewRating) {
     this.reviewRating = reviewRating;
   }
 }
