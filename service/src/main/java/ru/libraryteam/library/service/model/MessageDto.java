@@ -3,10 +3,13 @@ package ru.libraryteam.library.service.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
+import javax.validation.constraints.NotNull;
+
 public class MessageDto {
 
   private Integer id;
 
+  @NotNull
   @JsonProperty(value = "message_body")
   private String messageBody;
 

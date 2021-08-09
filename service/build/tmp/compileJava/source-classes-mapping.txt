@@ -44,6 +44,8 @@ ru/libraryteam/library/service/model/impl/ReviewDtoImpl.java
  ru.libraryteam.library.service.model.impl.ReviewDtoImpl
 ru/libraryteam/library/service/mapper/GenreMapper.java
  ru.libraryteam.library.service.mapper.GenreMapper
+ru/libraryteam/library/service/model/create/dto/MessageCreateDto.java
+ ru.libraryteam.library.service.model.create.dto.MessageCreateDto
 ru/libraryteam/library/service/logic/NoteService.java
  ru.libraryteam.library.service.logic.NoteService
 ru/libraryteam/library/service/logic/TagService.java
@@ -84,6 +86,8 @@ ru/libraryteam/library/service/logic/impl/AchievementServiceImpl.java
  ru.libraryteam.library.service.logic.impl.AchievementServiceImpl
 ru/libraryteam/library/service/logic/impl/UserServiceImpl.java
  ru.libraryteam.library.service.logic.impl.UserServiceImpl
+ru/libraryteam/library/service/model/create/dto/NoteCreateDto.java
+ ru.libraryteam.library.service.model.create.dto.NoteCreateDto
 ru/libraryteam/library/service/validation/validator/StringUsernameUnique.java
  ru.libraryteam.library.service.validation.validator.StringUsernameUnique
 ru/libraryteam/library/service/validation/IsbnUniqueForUpdate.java

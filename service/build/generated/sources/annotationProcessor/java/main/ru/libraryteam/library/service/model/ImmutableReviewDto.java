@@ -18,9 +18,9 @@ import org.springframework.lang.Nullable;
 @javax.annotation.processing.Generated("org.immutables.processor.ProxyProcessor")
 public final class ImmutableReviewDto implements ReviewDto {
   private final @Nullable Integer id;
-  private final int reviewRating;
+  private final Integer reviewRating;
 
-  private ImmutableReviewDto(@Nullable Integer id, int reviewRating) {
+  private ImmutableReviewDto(@Nullable Integer id, Integer reviewRating) {
     this.id = id;
     this.reviewRating = reviewRating;
   }
@@ -39,7 +39,7 @@ public final class ImmutableReviewDto implements ReviewDto {
    */
   @JsonProperty("user_mark")
   @Override
-  public int getReviewRating() {
+  public Integer getReviewRating() {
     return reviewRating;
   }
 
@@ -56,13 +56,14 @@ public final class ImmutableReviewDto implements ReviewDto {
 
   /**
    * Copy the current immutable object by setting a value for the {@link ReviewDto#getReviewRating() reviewRating} attribute.
-   * A value equality check is used to prevent copying of the same value by returning {@code this}.
+   * An equals check used to prevent copying of the same value by returning {@code this}.
    * @param value A new value for reviewRating
    * @return A modified copy of the {@code this} object
    */
-  public final ImmutableReviewDto withReviewRating(int value) {
-    if (this.reviewRating == value) return this;
-    return new ImmutableReviewDto(this.id, value);
+  public final ImmutableReviewDto withReviewRating(Integer value) {
+    Integer newValue = Objects.requireNonNull(value, "reviewRating");
+    if (this.reviewRating.equals(newValue)) return this;
+    return new ImmutableReviewDto(this.id, newValue);
   }
 
   /**
@@ -78,7 +79,7 @@ public final class ImmutableReviewDto implements ReviewDto {
 
   private boolean equalTo(ImmutableReviewDto another) {
     return Objects.equals(id, another.id)
-        && reviewRating == another.reviewRating;
+        && reviewRating.equals(another.reviewRating);
   }
 
   /**
@@ -89,7 +90,7 @@ public final class ImmutableReviewDto implements ReviewDto {
   public int hashCode() {
     int h = 5381;
     h += (h << 5) + Objects.hashCode(id);
-    h += (h << 5) + reviewRating;
+    h += (h << 5) + reviewRating.hashCode();
     return h;
   }
 
@@ -126,7 +127,7 @@ public final class ImmutableReviewDto implements ReviewDto {
    * <pre>
    * ImmutableReviewDto.builder()
    *    .id(Integer | null) // nullable {@link ReviewDto#getId() id}
-   *    .reviewRating(int) // required {@link ReviewDto#getReviewRating() reviewRating}
+   *    .reviewRating(Integer) // required {@link ReviewDto#getReviewRating() reviewRating}
    *    .build();
    * </pre>
    * @return A new ImmutableReviewDto builder
@@ -148,7 +149,7 @@ public final class ImmutableReviewDto implements ReviewDto {
     private long initBits = 0x1L;
 
     private Integer id;
-    private int reviewRating;
+    private Integer reviewRating;
 
     private Builder() {
     }
@@ -187,8 +188,8 @@ public final class ImmutableReviewDto implements ReviewDto {
      * @return {@code this} builder for use in a chained invocation
      */
     @JsonProperty("user_mark")
-    public final Builder reviewRating(int reviewRating) {
-      this.reviewRating = reviewRating;
+    public final Builder reviewRating(Integer reviewRating) {
+      this.reviewRating = Objects.requireNonNull(reviewRating, "reviewRating");
       initBits &= ~INIT_BIT_REVIEW_RATING;
       return this;
     }

@@ -6,7 +6,7 @@ import ru.libraryteam.library.service.model.ReadingListWithBookReviewDto;
 
 public interface ReadingListService {
 
-  ReadingListWithBookReviewDto findById(int id);
+  ReadingListWithBookReviewDto findById(int bookId, int userId);
 
   ReadingListDto createReadingList(ReadingListDto dto);
 

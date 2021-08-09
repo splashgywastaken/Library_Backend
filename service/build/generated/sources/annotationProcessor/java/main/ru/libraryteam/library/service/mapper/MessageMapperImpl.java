@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 import ru.libraryteam.library.db.entity.MessageEntity;
 import ru.libraryteam.library.db.entity.UserEntity;
 import ru.libraryteam.library.service.model.MessageDto;
+import ru.libraryteam.library.service.model.create.dto.MessageCreateDto;
 import ru.libraryteam.library.service.model.simple.dto.SimpleUserDto;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-08-09T00:10:21+0300",
+    date = "2021-08-09T10:45:58+0300",
     comments = "version: 1.4.2.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-6.8.3.jar, environment: Java 11.0.11 (Oracle Corporation)"
 )
 @Component
@@ -49,18 +50,39 @@ public class MessageMapperImpl implements MessageMapper {
     }
 
     @Override
-    public MessageEntity toEntity(MessageDto messageDto) {
-        if ( messageDto == null ) {
+    public void toEntity(MessageDto dto, MessageEntity original) {
+        if ( dto == null ) {
+            return;
+        }
+
+        original.setId( dto.getId() );
+        original.setMessageBody( dto.getMessageBody() );
+        if ( dto.getUser() != null ) {
+            if ( original.getUser() == null ) {
+                original.setUser( new UserEntity() );
+            }
+            simpleUserDtoToUserEntity( dto.getUser(), original.getUser() );
+        }
+        else {
+            original.setUser( null );
+        }
+        original.setUserId( dto.getUserId() );
+        original.setBookId( dto.getBookId() );
+    }
+
+    @Override
+    public MessageEntity toEntity(MessageCreateDto dto) {
+        if ( dto == null ) {
             return null;
         }
 
         MessageEntity messageEntity = new MessageEntity();
 
-        messageEntity.setId( messageDto.getId() );
-        messageEntity.setMessageBody( messageDto.getMessageBody() );
-        messageEntity.setUser( simpleUserDtoToUserEntity( messageDto.getUser() ) );
-        messageEntity.setUserId( messageDto.getUserId() );
-        messageEntity.setBookId( messageDto.getBookId() );
+        messageEntity.setId( dto.getId() );
+        messageEntity.setMessageBody( dto.getMessageBody() );
+        messageEntity.setUser( simpleUserDtoToUserEntity1( dto.getUser() ) );
+        messageEntity.setUserId( dto.getUserId() );
+        messageEntity.setBookId( dto.getBookId() );
 
         return messageEntity;
     }
@@ -80,7 +102,18 @@ public class MessageMapperImpl implements MessageMapper {
         return simpleUserDto;
     }
 
-    protected UserEntity simpleUserDtoToUserEntity(SimpleUserDto simpleUserDto) {
+    protected void simpleUserDtoToUserEntity(SimpleUserDto simpleUserDto, UserEntity mappingTarget) {
+        if ( simpleUserDto == null ) {
+            return;
+        }
+
+        mappingTarget.setId( simpleUserDto.getId() );
+        mappingTarget.setFirstName( simpleUserDto.getFirstName() );
+        mappingTarget.setLastName( simpleUserDto.getLastName() );
+        mappingTarget.setMiddleName( simpleUserDto.getMiddleName() );
+    }
+
+    protected UserEntity simpleUserDtoToUserEntity1(SimpleUserDto simpleUserDto) {
         if ( simpleUserDto == null ) {
             return null;
         }

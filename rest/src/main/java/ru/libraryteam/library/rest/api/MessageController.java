@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.libraryteam.library.service.logic.MessageService;
 import ru.libraryteam.library.service.model.GenreDto;
 import ru.libraryteam.library.service.model.MessageDto;
+import ru.libraryteam.library.service.model.create.dto.MessageCreateDto;
 
 @RestController
 @RequestMapping("/books/messages")
@@ -24,14 +25,8 @@ public class MessageController {
   }*/
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  MessageDto createMessage(@RequestBody MessageDto dto) {
-    return messageService.createMessage(dto);
-  }
-
-  @PutMapping("/{id}")
-  MessageDto updateMessage(@RequestBody MessageDto dto, @PathVariable(value = "id") int messageId) {
-    dto.setId(messageId);
-    return messageService.updateMessage(dto);
+  MessageDto createMessage(@RequestBody MessageCreateDto dto) {
+    return messageService.createValidMessage(dto);
   }
 
   @GetMapping(value = "/{id}")

@@ -18,10 +18,10 @@ public class ReadingListDto {
   private Timestamp readingFinishedAt;
 
   @JsonProperty(value = "user_id")
-  private Integer userId;
+  private int userId;
 
   @JsonProperty(value = "book_id")
-  private Integer bookId;
+  private int bookId;
 
   @JsonProperty("review_id")
   private Integer reviewId;
@@ -63,19 +63,19 @@ public class ReadingListDto {
     this.readingFinishedAt = readingFinishedAt;
   }
 
-  public Integer getUserId() {
+  public int getUserId() {
     return userId;
   }
 
-  public void setUserId(Integer userId) {
+  public void setUserId(int userId) {
     this.userId = userId;
   }
 
-  public Integer getBookId() {
+  public int getBookId() {
     return bookId;
   }
 
-  public void setBookId(Integer bookId) {
+  public void setBookId(int bookId) {
     this.bookId = bookId;
   }
 

@@ -31,10 +31,9 @@ public class ReadingListServiceImpl implements ReadingListService {
 
   @Override
   @Transactional
-  public ReadingListWithBookReviewDto findById(int id) {
+  public ReadingListWithBookReviewDto findById(int bookId, int userId) {
     var list = readingListMapper.fromEntityWithBookReview(
-      readingListRepository.findById(id)
-        .orElse(null)
+      readingListRepository.getByBookIdAndUserId(bookId, userId)
     );
 
     if (list.getDaysLeft()!=null) {

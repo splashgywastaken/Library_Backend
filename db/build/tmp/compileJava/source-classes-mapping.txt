@@ -20,16 +20,16 @@ ru/libraryteam/library/db/repository/BookRepository.java
  ru.libraryteam.library.db.repository.BookRepository
 ru/libraryteam/library/db/entity/complex/id/BookTagsId.java
  ru.libraryteam.library.db.entity.complex.id.BookTagsId
-ru/libraryteam/library/db/entity/ReviewEntity.java
- ru.libraryteam.library.db.entity.ReviewEntity
+ru/libraryteam/library/db/repository/NoteRepository.java
+ ru.libraryteam.library.db.repository.NoteRepository
 ru/libraryteam/library/db/provider/impl/UserProviderImpl.java
  ru.libraryteam.library.db.provider.impl.UserProviderImpl
 ru/libraryteam/library/db/entity/BookAuthorsEntity.java
  ru.libraryteam.library.db.entity.BookAuthorsEntity
-ru/libraryteam/library/db/repository/NoteRepository.java
- ru.libraryteam.library.db.repository.NoteRepository
-ru/libraryteam/library/db/repository/ReadingListRepository.java
- ru.libraryteam.library.db.repository.ReadingListRepository
+ru/libraryteam/library/db/repository/MessageRepository.java
+ ru.libraryteam.library.db.repository.MessageRepository
+ru/libraryteam/library/db/provider/impl/BookProviderImpl.java
+ ru.libraryteam.library.db.provider.impl.BookProviderImpl
 ru/libraryteam/library/db/entity/ReadingState.java
  ru.libraryteam.library.db.entity.ReadingState
 ru/libraryteam/library/db/entity/BookEntity.java
@@ -58,17 +58,29 @@ ru/libraryteam/library/db/entity/GenreEntity.java
  ru.libraryteam.library.db.entity.GenreEntity
 ru/libraryteam/library/db/entity/UserEntity.java
  ru.libraryteam.library.db.entity.UserEntity
-ru/libraryteam/library/db/entity/ReadingListEntity.java
- ru.libraryteam.library.db.entity.ReadingListEntity
+ru/libraryteam/library/db/provider/NoteProvider.java
+ ru.libraryteam.library.db.provider.NoteProvider
 ru/libraryteam/library/db/provider/UserProvider.java
  ru.libraryteam.library.db.provider.UserProvider
 ru/libraryteam/library/db/entity/MessageEntity.java
  ru.libraryteam.library.db.entity.MessageEntity
 ru/libraryteam/library/db/repository/UserRepository.java
  ru.libraryteam.library.db.repository.UserRepository
+ru/libraryteam/library/db/provider/impl/MessageProviderImpl.java
+ ru.libraryteam.library.db.provider.impl.MessageProviderImpl
+ru/libraryteam/library/db/provider/MessageProvider.java
+ ru.libraryteam.library.db.provider.MessageProvider
+ru/libraryteam/library/db/provider/impl/NoteProviderImpl.java
+ ru.libraryteam.library.db.provider.impl.NoteProviderImpl
+ru/libraryteam/library/db/provider/impl/ReviewProviderImpl.java
+ ru.libraryteam.library.db.provider.impl.ReviewProviderImpl
 ru/libraryteam/library/db/provider/BookProvider.java
  ru.libraryteam.library.db.provider.BookProvider
-ru/libraryteam/library/db/provider/impl/BookProviderImpl.java
- ru.libraryteam.library.db.provider.impl.BookProviderImpl
-ru/libraryteam/library/db/repository/MessageRepository.java
- ru.libraryteam.library.db.repository.MessageRepository
+ru/libraryteam/library/db/provider/ReviewProvider.java
+ ru.libraryteam.library.db.provider.ReviewProvider
+ru/libraryteam/library/db/entity/ReviewEntity.java
+ ru.libraryteam.library.db.entity.ReviewEntity
+ru/libraryteam/library/db/repository/ReadingListRepository.java
+ ru.libraryteam.library.db.repository.ReadingListRepository
+ru/libraryteam/library/db/entity/ReadingListEntity.java
+ ru.libraryteam.library.db.entity.ReadingListEntity

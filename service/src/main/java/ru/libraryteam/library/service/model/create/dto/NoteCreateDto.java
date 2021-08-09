@@ -18,7 +18,7 @@ public class NoteCreateDto {
   private Integer id;
 
   @JsonProperty("note_body")
-  @NotNull(message = "note_body.is-blank")
+  @NotNull(message = "note_body.is-null")
   @Size(min = 1, max = 250, message = "note_body.out-of-range")
   private String noteBody;
 

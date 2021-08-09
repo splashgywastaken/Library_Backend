@@ -22,4 +22,6 @@ public interface ReadingListRepository extends CrudRepository<ReadingListEntity,
   void deleteAllByBookId(int bookId);
 
   void deleteAllByUserId(int userId);
+
+  ReadingListEntity getByBookIdAndUserId(int bookId, int userId);
 }

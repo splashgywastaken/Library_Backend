@@ -36,10 +36,10 @@ public class ReadingListEntity {
   private UserEntity user;
 
   @Column(name = "user_id")
-  private Integer userId;
+  private int userId;
 
   @Column(name = "book_id")
-  private Integer bookId;
+  private int bookId;
 
   @Column(name = "review_id")
   private Integer reviewId;
@@ -95,19 +95,19 @@ public class ReadingListEntity {
     this.book = book;
   }
 
-  public Integer getUserId() {
+  public int getUserId() {
     return userId;
   }
 
-  public void setUserId(Integer userId) {
+  public void setUserId(int userId) {
     this.userId = userId;
   }
 
-  public Integer getBookId() {
+  public int getBookId() {
     return bookId;
   }
 
-  public void setBookId(Integer bookId) {
+  public void setBookId(int bookId) {
     this.bookId = bookId;
   }
 

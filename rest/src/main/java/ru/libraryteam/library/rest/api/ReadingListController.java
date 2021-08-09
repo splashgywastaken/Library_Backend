@@ -19,9 +19,11 @@ public class ReadingListController {
     this.readingListService = readingListService;
   }
 
-  @GetMapping(value = "/{id}")
-  ReadingListWithBookReviewDto findListById(@PathVariable(value = "id") int id) {
-    return readingListService.findById(id);
+  @GetMapping(value = "/user/{userId}/book/{bookId}")
+  ReadingListWithBookReviewDto findListById(
+    @PathVariable(value = "bookId") int bookId,
+    @PathVariable(value = "userId") int userId) {
+    return readingListService.findById(bookId, userId);
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
