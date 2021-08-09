@@ -1,0 +1,11 @@
+dependencies {
+    implementation 'org.springframework.security:spring-security-web:5.5.1'
+    implementation "org.springframework.security:spring-security-config:5.5.1"
+    implementation 'org.springframework.data:spring-data-jpa:2.5.3'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    implementation "jakarta.servlet:jakarta.servlet-api:4.0.3"
+
+    implementation(project(':service'))
+    implementation(project(':db'))
+}

@@ -1,0 +1,180 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: postgresql
+  - changeSet:
+      id: LT-001-202107191234
+      author: MTurusov
+      comment: CREATE Initital DB Structure
+      changes:
+        - sqlFile:
+            path: LT-001-202107191234.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107210928
+      author: MTurusov
+      comment: CREATE Initital DB Structure. Phase 2
+      changes:
+        - sqlFile:
+            path: LT-001-202107210928.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211051
+      author: MTurusov
+      comment: Supplemented the user table with data
+      changes:
+        - sqlFile:
+            path: LT-001-202107211051.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211140
+      author: MTurusov
+      comment: CREATE Initital DB Structure. Phase 3
+      changes:
+        - sqlFile:
+            path: LT-001-202107211140.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211252
+      author: MTurusov
+      comment: ALTER TABLE users ADD FOREIGN KEY note_id and ALTER TABLE notes
+      changes:
+        - sqlFile:
+            path: LT-001-202107211252.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202107211458
+      author: MTurusov
+      comment: ALTER TABLE users, authors DELETE UNIQUE sex CONSTRAINT
+      changes:
+        - sqlFile:
+            path: LT-001-202107211458.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108012319
+      author: MTurusov
+      comment: CREATE TABLE library.tags
+      changes:
+        - sqlFile:
+            path: LT-001-202108012319.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108042028
+      author: MTurusov
+      comment: ALTER TABLE library.messages. ALLOW null for title
+      changes:
+        - sqlFile:
+            path: LT-001-202108042028.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108051441
+      author: MTurusov
+      comment: ALTER TABLE library.messages. DROP COINSTRAINTS AND COLUMN user_id, book_id
+      changes:
+        - sqlFile:
+            path: LT-001-202108051441.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108051622
+      author: MTurusov
+      comment: ADD FOREIGN KEYS and PRIMARY KEY to messages
+      changes:
+        - sqlFile:
+            path: LT-001-202108051622.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061223
+      author: AKrutko
+      comment: Changed password type to char(60)
+      changes:
+        - sqlFile:
+            path: LT-001-202108061223.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061251
+      author: MTurusov
+      comment: Changed user_role type to integer
+      changes:
+        - sqlFile:
+            path: LT-001-202108061251.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061311
+      author: MTurusov
+      comment: ALTER TABLE library.users DROP FOREIGN KEYS and ADD FOREIGN KEYS to notes, achievements
+      changes:
+        - sqlFile:
+            path: LT-001-202108061311.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061339
+      author: MTurusov
+      comment: ALTER TABLE library.readind_lists ADD PRIMARY KEY
+      changes:
+        - sqlFile:
+            path: LT-001-202108061339.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061349
+      author: MTurusov
+      comment: DROP TABLE lines and ADD FOREIGN KEY to reading_states
+      changes:
+        - sqlFile:
+            path: LT-001-202108061349.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108061355
+      author: MTurusov
+      comment: ALTER TABLE library.reviews ADD NEW PRIMARY KEY AND FOREIGN KEY
+      changes:
+        - sqlFile:
+            path: LT-001-202108061355.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108062001
+      author: MTurusov
+      comment: ALTER TABLE library.messages SET NOT NULL FOR FOREIGN KEYS
+      changes:
+        - sqlFile:
+            path: LT-001-202108062001.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108062121
+      author: MTurusov
+      comment: DROP NOT NULL messages
+      changes:
+        - sqlFile:
+            path: LT-001-202108062121.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071139
+      author: MTurusov
+      comment: ADD new reading states
+      changes:
+        - sqlFile:
+            path: LT-001-202108071139.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071212
+      author: MTurusov
+      comment: ADD FOREIGN KEY to reading states
+      changes:
+        - sqlFile:
+            path: LT-001-202108071212.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071224
+      author: MTurusov
+      comment: ADD FOREIGN KEY to reading states
+      changes:
+        - sqlFile:
+            path: LT-001-202108071224.sql
+            relativeToChangelogFile: true
+  - changeSet:
+      id: LT-001-202108071826
+      author: MTurusov
+      comment: ADD daysleft column to reading lists
+      changes:
+        - sqlFile:
+            path: LT-001-202108071826.sql
+            relativeToChangelogFile: true
